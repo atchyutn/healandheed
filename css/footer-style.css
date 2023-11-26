@@ -60,3 +60,14 @@ display: none;
 .footer .contact-btn:hover {
   background-color: #ffffff;
 }
+
+.footer .social-icons .follow-us {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.footer .social-icons .fa-2x {
+    font-size: 1.5em;
+}
+
