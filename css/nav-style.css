@@ -1,0 +1,155 @@
+/* Navbar and hero section */
+ .navbar {
+      background-color: #fff;
+      /* White background */
+      border-radius: 0.25rem;
+      /* Rounded corners */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* Slight shadow for depth */
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      /* Increase the size of the logo */
+    }
+
+    /* Sticky navbar */
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      /* Higher index to stay above other elements */
+    }
+
+    /* Navbar links style */
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      /* Make the text bolder */
+      color: #333;
+      /* Darker text for better contrast */
+      margin-right: 1rem;
+      /* Space between links */
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #0056b3;
+      /* Color change on hover for better interaction */
+    }
+
+    /* Style for background */
+    .background {
+      background-image: url('../assets/wave-background.svg');
+      /* Replace with your image path */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      /* Full height of the viewport */
+    }
+
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* Align content to the top */
+      height: 100%;
+      padding-top: 20px;
+      /* Gap from navbar */
+    }
+
+    .left-content img {
+      width: 100%;
+      /* Responsive width */
+      max-width: 100%;
+      /* Maximum size */
+      margin-bottom: 2rem;
+      /* Space after the image, responsive unit */
+    }
+
+    .left-content .heading-and-cta {
+      flex-grow: 1;
+      /* Takes up remaining space */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* Align text to the top */
+    }
+
+    .lead {
+      color: #5f5e61;
+    }
+
+    /* Style for the SVG image to make it responsive */
+    .svg-image img {
+      width: 100%;
+      /* Responsive width */
+      max-width: 100%;
+      /* Maximum size */
+      height: auto;
+    }
+
+    /* Custom styles for the heading */
+    .split-color {
+      color: #2d1674;
+      font-size: 2.5rem;
+      /* Responsive font size */
+      font-weight: bold;
+    }
+
+    .split-color span {
+      color: #E36C8B;
+    }
+
+    /* Style for the CTA button */
+    .cta-button {
+      background-color: #E36C8B;
+      color: white;
+      padding: 10px 20px;
+      /* Adjusted padding */
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      font-weight: bold;
+      text-decoration: none;
+      width: max-content;
+      margin-top: 3rem;
+      /* Responsive unit for margin-top */
+      font-size: 1.3rem;
+      /* Responsive font size */
+    }
+
+    .cta-button i {
+      margin-right: 10px;
+    }
+
+    /* Responsive font sizes using Bootstrap utility classes */
+    h1 {
+      font-size: 2.5rem;
+      /* Base size for h1 */
+    }
+
+    @media (min-width: 768px) {
+
+      /* Medium devices (tablets, 768px and up) */
+      .split-color {
+        font-size: 3.5rem;
+      }
+
+      .cta-button {
+        font-size: 1.5rem;
+        padding: 15px 25px;
+      }
+    }
+
+    @media (min-width: 992px) {
+
+      /* Large devices (desktops, 992px and up) */
+      .split-color {
+        font-size: 4rem;
+      }
+
+      .cta-button {
+        font-size: 1.75rem;
+        padding: 20px 30px;
+      }
+    }

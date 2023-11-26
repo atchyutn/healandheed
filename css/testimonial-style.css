@@ -1,0 +1,112 @@
+
+.testimonial-section {
+  background-color: #ebedef;
+  padding: 60px 0;
+}
+
+.testimonial-section h2 {
+      color: #2d1674;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+.testimonial-section h2,
+.testimonial-section h3 {
+  color: #2d1674;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.carousel-inner {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.carousel-item {
+  margin-right: 15px;
+  flex: 0 0 auto;
+  width: calc(33.333% - 15px);
+}
+
+.carousel-item .card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* 3D effect */
+  border: none;
+  padding: 2rem;
+  border-radius: 10px;
+  background: #fff;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.carousel-item .blockquote {
+  position: relative;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.carousel-item .blockquote:before {
+  content: "\f10d";
+  font-family: "FontAwesome";
+  font-size: 2.5rem; /* Adjusted quote icon size */
+  color: #2d1674;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  top: -30px;
+}
+
+.carousel-item .blockquote-footer {
+  color: #6c757d;
+  font-style: normal;
+  font-size: 0.875rem;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 3%;
+  height: 15%;
+  border-radius: 50%;
+  background-color: #e36c8b;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+}
+
+.carousel-control-prev span,
+.carousel-control-next span {
+  font-size: 1.5rem; /* Icon size */
+  text-decoration: none; 
+}
+
+.carousel-control-prev {
+  left: calc(-4% - 1px); /* Align to the edge of the left box */
+}
+
+.carousel-control-next {
+  right: calc(-4% - 1px); /* Align to the edge of the right box */
+}
+
+/* Hide the default arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    width: calc(50% - 15px);
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item {
+    width: 100%;
+  }
+}

@@ -1,0 +1,62 @@
+
+
+.footer {
+ background-image: url('../assets/wave-background-white.svg');
+      /* Update the path to your image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 50px 0;
+}
+
+.footer:before {
+display: none;
+}
+
+.footer .logo img {
+  height: 150px; /* Adjust as needed */
+}
+
+.footer .quick-links a,
+.footer .location a,
+.footer .message a {
+  text-decoration: none;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.footer .quick-links a:hover,
+.footer .location a:hover,
+.footer .message a:hover {
+  color: #e36c8b;
+}
+
+.footer .social-icons a {
+  color: #333;
+  margin-right: 1rem;
+}
+
+.footer .social-icons a:hover {
+  color: #e36c8b;
+}
+
+.footer .send-message{
+  color: #fff;
+}
+
+.footer .contact-btn {
+  background-color: #e36c8b;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+}
+
+.footer .contact-btn:hover {
+  background-color: #ffffff;
+}

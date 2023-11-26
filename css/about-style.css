@@ -1,0 +1,85 @@
+.section-heading {
+  color: #2d1674;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.basic-approach {
+  padding: 60px 0;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.basic-approach h2,
+.basic-approach h3 {
+  color: #2d1674;
+}
+
+.basic-approach p {
+  color: #666;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  /* Adjusted padding for the line */
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 57px;
+  /* Line on the left side */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #d6d6d6;
+}
+
+.timeline-step {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  /* Align with the top of content box */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2d1674;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.timeline-content {
+  position: relative;
+  margin-left: 80px;
+  /* Space for the icon */
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content:before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  /* Align with the icon */
+  left: -30px;
+  /* Arrow pointing to icon */
+  border: 15px solid transparent;
+  border-right-color: white;
+}
+
+/* ... existing cta-button styles ... */
+
+.cta-button {}
+
+/* ... other styles ... */

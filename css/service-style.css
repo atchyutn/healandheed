@@ -1,0 +1,129 @@
+/* .services {
+      background-color: #f9f9f9;
+      padding: 60px 0;
+    } */
+
+    .services {
+      background-image: url('../assets/services-background.svg');
+      /* Update the path to your image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 50px 0;
+      /* Add padding to the section for better content visibility */
+    }
+
+
+    .services h2 {
+      color: #2d1674;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-box {
+      background: #fff;
+      padding: 30px;
+      margin: 10px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      flex-basis: calc(50% - 20px);
+    }
+
+    .service-box h3 {
+      color: #333;
+      font-size: 1.2rem;
+      font-weight: bold;
+      /* Make the text bold */
+      margin-top: 2rem;
+      /* Add space above the text */
+      display: block;
+    }
+
+    .icon-bg {
+      background-color: #2d1674;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+    }
+
+    .fa-inverse {
+      color: #fff;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .service-box {
+        flex-basis: 100%;
+        margin: 10px 0;
+      }
+    }
+
+
+    .sub-heading {
+      color: #2d1674;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .services-description {
+      color: #6c757d;
+      /* Bootstrap's text-muted class color */
+      margin-bottom: 2rem;
+    }
+
+    .therapy-services-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .therapy-service-item {
+      background: #fff;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      font-size: 1rem;
+      color: #fff;
+      background-color: #2d1674;
+      border-radius: 50%;
+      padding: 0.5rem;
+      margin-right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-text {
+      margin: 0;
+      color: #2d1674;
+      font-weight: 500;
+    }
+
+    .accordion-button {
+      font-weight: 500;
+      /* Bold font for accordion headers */
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: #2d1674;
+      /* Dark color for active accordion header */
+      background: #e3e4fa;
+      /* Light background for active accordion header */
+    }
+
+    .accordion-body {
+      font-size: 0.9rem;
+      /* Smaller font size for accordion content */
+    }
