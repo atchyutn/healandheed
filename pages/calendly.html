@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal and Heed - Online Therapy Sessions for Kids</title>
+    <!-- Bootstrap CSS CDN for version 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/nav-style.css">
+  <link rel="stylesheet" href="../css/calendly.css">
+  <link rel="stylesheet" href="../css/footer-style.css">
+
+</head>
+<body>
+      <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assets/logo.png" alt="Logo"> <!-- Adjusted path to your logo -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Home</a> <!-- Updated link to Home -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html#about">About Us</a> <!-- Updated link to About Us -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html#services">Services</a> <!-- Updated link to Services -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="./calendly.html">Book an online Session</a> <!-- Current page -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tel:+918506994424">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ <!-- Loader -->
+    <div id="calendly-loader" class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Calendly inline widget begin -->
+    <div class="calendly-inline-widget" 
+         data-url="https://calendly.com/healandheed/online-therapy-sessions-for-kids?text_color=2d1674&primary_color=e36c8a" 
+         style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" 
+            src="https://assets.calendly.com/assets/external/widget.js" 
+            async></script>
+    <!-- Calendly inline widget end -->
+
+    <!-- Footer Section -->
+
+
+<footer class="footer mt-auto py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="logo">
+          <img src="../assets/logo.png" alt="Logo"> <!-- Placeholder for the logo -->
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h5>Quick Links</h5>
+        <div class="quick-links">
+          <a href="#">Home</a>
+          <a href="#">Blog</a>
+          <a href="tel:+918506994424">Contact</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h5>Location</h5>
+        <div class="location">
+          <address>
+            Plot:182, Road No. 7,<br>
+            Kamala Nagar,<br>
+            Vanasthalipuram,<br>
+            Hyderabad,<br>
+            Telangana 500070
+          </address>
+        </div>
+      </div>
+      <div class="col-md-3 send-message">
+        <h5>Enroll Now</h5>
+        <div class="message">
+          <p>Book your session today for personalized support and nurturing growth with 'Heal and Heed'.</p>
+          <a href="tel:+918506994424" class="contact-btn">
+              <i class="fas fa-calendar-days"></i> Schedule an Appointment
+            </a>
+        </div>
+      </div>
+    </div>
+   <div class="row mt-3">
+  <div class="col-md-8 text-center">
+    <div class="social-icons">
+      <span class="follow-us">Follow us on:</span>
+      <!-- Uncomment any icons you wish to include -->
+      <!-- <a href="#" target="_blank"><i class="fab fa-tiktok fa-2x"></i></a> -->
+      <a href="https://www.instagram.com/heal.and.heed" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="https://www.linkedin.com/company/heal-and-heed/" target="_blank"><i class="fab fa-linkedin-in fa-2x"></i></a>
+      <!-- <a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a> -->
+    </div>
+  </div>
+</div>
+
+  </div>
+</footer>
+
+    <!-- Additional content can be added here -->
+
+       <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.3/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+        // Wait for the Calendly widget to load
+        window.addEventListener('load', function() {
+            // Once loaded, hide the loader
+            document.getElementById('calendly-loader').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

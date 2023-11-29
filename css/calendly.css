@@ -1,0 +1,21 @@
+
+/* Loader Styles */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    background: #fff; /* Background color */
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Calendly Widget Styles */
+.calendly-inline-widget {
+    width: 100vw; /* Full width of the viewport */
+    min-width: 320px; /* Minimum width */
+    height: 700px; /* Adjust height as needed */
+}
