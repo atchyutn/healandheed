@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heal & Heed: Summer Program 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple:      #2d1674;
+    --purple-deep: #1e0e52;
+    --purple-soft: rgba(45,22,116,0.06);
+    --purple-mid:  rgba(45,22,116,0.12);
+    --pink:        #e36c8a;
+    --pink-soft:   rgba(227,108,138,0.10);
+    --pink-mid:    rgba(227,108,138,0.18);
+    --white:       #ffffff;
+    --black:       #000000;
+    --text:        #18122e;
+    --muted:       #6e6888;
+    --border:      rgba(45,22,116,0.11);
+    --r:           16px;
+    --r-lg:        24px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero { background: var(--purple); position: relative; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 80% at 90% 10%, rgba(227,108,138,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  }
+  .hero-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.05); }
+  .hero-ring-1 { width: 520px; height: 520px; right: -140px; top: -180px; }
+  .hero-ring-2 { width: 320px; height: 320px; right: 30px; top: -60px; }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 980px; margin: 0 auto;
+    padding: 76px 40px 56px;
+    display: grid; grid-template-columns: 1fr 200px;
+    gap: 48px; align-items: end;
+  }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--pink-mid); border: 1px solid rgba(227,108,138,0.3);
+    color: #f0a8bc; font-size: 10.5px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 6px 15px; border-radius: 50px; margin-bottom: 22px;
+  }
+  .hero-kicker-dot { width: 5px; height: 5px; background: var(--pink); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5.5vw, 62px); font-weight: 900;
+    color: var(--white); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--pink); }
+  .hero-lead {
+    font-size: 15.5px; color: rgba(255,255,255,0.58); font-weight: 300;
+    max-width: 500px; line-height: 1.8; margin-bottom: 30px;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-tag {
+    border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.72);
+    font-size: 12px; font-weight: 500; padding: 6px 15px; border-radius: 50px;
+  }
+  .hero-tag.filled { background: var(--pink); border-color: var(--pink); color: #fff; font-weight: 600; }
+  .hero-nums { display: flex; flex-direction: column; gap: 18px; align-items: flex-end; padding-bottom: 6px; }
+  .hero-num { text-align: right; }
+  .hero-num .n { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: var(--pink); line-height: 1; }
+  .hero-num .l { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+
+  .hero-strip {
+    position: relative; z-index: 1; max-width: 980px; margin: 0 auto;
+    padding: 18px 40px 36px; display: flex; gap: 36px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .hs-item .hl { font-size: 9.5px; color: rgba(255,255,255,0.3); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
+  .hs-item .hv { font-size: 13.5px; color: rgba(255,255,255,0.78); font-weight: 500; }
+
+  /* ─── PAGE WRAPPER ─── */
+  .page { max-width: 980px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* ─── SECTION HEADER ─── */
+  .sh {
+    padding: 64px 0 30px; border-bottom: 1px solid var(--border);
+    margin-bottom: 36px; display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 24px; flex-wrap: wrap;
+  }
+  .sh-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); margin-bottom: 7px; }
+  .sh h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(21px, 3.5vw, 30px); font-weight: 700;
+    color: var(--purple); line-height: 1.22; letter-spacing: -0.2px;
+  }
+  .sh-note { font-size: 13.5px; color: var(--muted); max-width: 280px; text-align: right; line-height: 1.65; }
+
+  /* ─── PULL QUOTE ─── */
+  .pull {
+    background: var(--purple); border-radius: var(--r-lg);
+    padding: 44px 50px; margin: 50px 0; position: relative; overflow: hidden;
+  }
+  .pull::after {
+    content: ''; position: absolute; width: 280px; height: 280px;
+    right: -60px; top: -80px;
+    background: radial-gradient(circle, rgba(227,108,138,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pull q {
+    font-family: 'Playfair Display', serif; font-size: clamp(17px, 2.8vw, 22px);
+    font-style: italic; color: var(--white); line-height: 1.65; quotes: none;
+    display: block; position: relative; z-index: 1; max-width: 700px;
+  }
+  .pull q strong { font-style: normal; color: var(--pink); }
+  .pull-from { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.32); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; position: relative; z-index: 1; }
+
+  /* ─── WHAT TO EXPECT ─── */
+  .expect {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+  }
+  .exp-cell { background: var(--white); padding: 28px 24px; transition: background 0.18s; cursor: default; }
+  .exp-cell:hover { background: var(--purple-soft); }
+  .exp-n { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--pink); opacity: 0.5; line-height: 1; margin-bottom: 12px; }
+  .exp-cell h4 { font-size: 13.5px; font-weight: 700; color: var(--purple); margin-bottom: 7px; line-height: 1.35; }
+  .exp-cell p { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+  /* ─── SCHEDULE ─── */
+  .sched { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+  .sched-row { display: grid; grid-template-columns: 148px 1fr; border-bottom: 1px solid var(--border); }
+  .sched-row:last-child { border-bottom: none; }
+  .sched-row:hover .sched-body { background: var(--purple-soft); }
+  .sched-time {
+    padding: 22px 20px 22px 24px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center; gap: 3px;
+    flex-shrink: 0; background: rgba(45,22,116,0.025);
+  }
+  .sched-time .st { font-size: 12.5px; font-weight: 700; color: var(--purple); }
+  .sched-time .sd { font-size: 11px; color: var(--muted); }
+  .sched-body { padding: 22px 24px; transition: background 0.18s; }
+  .sched-head { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; flex-wrap: wrap; }
+  .sched-title { font-size: 14.5px; font-weight: 700; color: var(--black); }
+  .badge { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 50px; }
+  .badge-pink   { background: var(--pink-soft);  color: var(--pink);   }
+  .badge-purple { background: var(--purple-soft); color: var(--purple); }
+  .sched-desc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+  .sched-takeaway {
+    margin-top: 7px; font-size: 11.5px; font-weight: 600; color: var(--purple);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .sched-takeaway::before { content: ''; width: 16px; height: 2px; background: var(--pink); border-radius: 2px; flex-shrink: 0; }
+
+  /* ─── PRICING ─── */
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 0;
+  }
+  .price-card {
+    border: 1px solid var(--border); border-radius: var(--r-lg);
+    overflow: hidden; transition: border-color 0.18s, box-shadow 0.18s;
+    cursor: default;
+  }
+  .price-card:hover { border-color: var(--pink); box-shadow: 0 6px 32px rgba(227,108,138,0.12); }
+  .price-card.featured { border-color: var(--purple); border-width: 2px; }
+  .price-card.featured:hover { border-color: var(--pink); }
+  .price-header { padding: 26px 26px 20px; }
+  .price-card.featured .price-header { background: var(--purple); }
+  .price-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--pink); margin-bottom: 8px;
+  }
+  .price-card.featured .price-label { color: rgba(227,108,138,0.8); }
+  .price-name {
+    font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+    color: var(--purple); line-height: 1.25; margin-bottom: 14px;
+  }
+  .price-card.featured .price-name { color: var(--white); }
+  .price-amount {
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .price-currency { font-size: 18px; font-weight: 700; color: var(--purple); margin-top: 2px; }
+  .price-card.featured .price-currency { color: var(--pink); }
+  .price-number { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: var(--purple); line-height: 1; }
+  .price-card.featured .price-number { color: var(--white); }
+  .price-per { font-size: 12px; color: var(--muted); font-weight: 400; align-self: flex-end; padding-bottom: 4px; }
+  .price-card.featured .price-per { color: rgba(255,255,255,0.45); }
+  .price-body { padding: 20px 26px 26px; }
+  .price-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+  .price-includes {
+    list-style: none; padding: 0;
+    font-size: 12.5px; color: var(--muted); line-height: 1.9;
+  }
+  .price-includes li { display: flex; gap: 8px; align-items: flex-start; }
+  .price-includes li::before {
+    content: ''; width: 14px; height: 14px; flex-shrink: 0; margin-top: 3px;
+    background: var(--pink-soft); border-radius: 50%;
+    border: 1.5px solid var(--pink);
+    display: flex; align-items: center; justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%23e36c8a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 8px 6px; background-position: center; background-repeat: no-repeat;
+  }
+
+  /* ─── MONTH JOURNEY ─── */
+  .journey {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+  }
+  .jw { padding: 26px 22px; border-right: 1px solid var(--border); }
+  .jw:last-child { border-right: none; }
+  .jw:nth-child(odd) { background: var(--purple-soft); }
+  .jw-wk { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 5px; }
+  .jw-theme { font-size: 9.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+  .jw-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--purple); margin-bottom: 12px; line-height: 1.3; }
+  .jw-list { list-style: none; padding: 0; font-size: 12px; color: var(--muted); line-height: 1.9; }
+  .jw-list li { display: flex; gap: 7px; align-items: flex-start; }
+  .jw-list li::before { content: ''; width: 4px; height: 4px; background: var(--pink); border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+  .jw-act { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .jw-act-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 5px; }
+  .jw-act p { font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+
+  /* ─── CHECKIN STRIP ─── */
+  .checkin {
+    background: var(--pink); border-radius: var(--r-lg); padding: 38px 46px;
+    margin: 48px 0 0; display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr; gap: 28px; align-items: start;
+  }
+  .ci-item h4 { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 7px; }
+  .ci-item p { font-size: 13.5px; color: #fff; line-height: 1.7; font-weight: 400; }
+  .ci-div { background: rgba(255,255,255,0.2); }
+
+  /* ─── GAINS ─── */
+  .gains {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+  }
+  .gain { background: var(--white); padding: 28px 24px; transition: background 0.18s; cursor: default; }
+  .gain:hover { background: var(--purple-soft); }
+  .gain .gn { font-family: 'Playfair Display', serif; font-size: 10px; font-weight: 700; color: var(--pink); letter-spacing: 2px; margin-bottom: 9px; }
+  .gain h4 { font-size: 13.5px; font-weight: 700; color: var(--purple); margin-bottom: 6px; line-height: 1.3; }
+  .gain p  { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+  /* ─── CODING ─── */
+  .coding-wrap {
+    background: var(--black); border-radius: var(--r-lg); padding: 48px 48px 44px;
+    margin-top: 60px; position: relative; overflow: hidden;
+  }
+  .coding-wrap::before {
+    content: ''; position: absolute; width: 440px; height: 440px;
+    background: radial-gradient(circle, rgba(45,22,116,0.9) 0%, transparent 65%);
+    right: -100px; bottom: -120px; pointer-events: none;
+  }
+  .coding-wrap::after {
+    content: ''; position: absolute; width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(227,108,138,0.12) 0%, transparent 65%);
+    left: -40px; top: -40px; pointer-events: none;
+  }
+  .coding-inner { position: relative; z-index: 1; }
+  .coding-wrap .sh-label { color: var(--pink); }
+  .coding-wrap h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 900; color: var(--white); line-height: 1.18;
+    letter-spacing: -0.3px; margin-bottom: 12px;
+  }
+  .coding-wrap h2 em { font-style: italic; color: var(--pink); }
+  .coding-lead { font-size: 14.5px; color: rgba(255,255,255,0.45); max-width: 560px; line-height: 1.8; margin-bottom: 36px; font-weight: 300; }
+  .prog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .prog-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 13px; padding: 18px; transition: border-color 0.18s; }
+  .prog-card:hover { border-color: rgba(227,108,138,0.35); }
+  .prog-wk { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 7px; }
+  .prog-card h4 { font-size: 13.5px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+  .prog-card ul { list-style: none; padding: 0; font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.9; }
+  .prog-card ul li { display: flex; gap: 7px; align-items: flex-start; }
+  .prog-card ul li::before { content: ''; width: 3px; height: 3px; background: var(--pink); border-radius: 50%; margin-top: 9px; flex-shrink: 0; }
+  .prog-apps { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .prog-app { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 2px 9px; border-radius: 50px; }
+  .coding-note { margin-top: 24px; border-left: 2px solid var(--pink); padding: 14px 18px; background: rgba(255,255,255,0.03); border-radius: 0 10px 10px 0; font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.75; }
+  .coding-note strong { color: rgba(255,255,255,0.75); }
+
+  /* ─── FAQ ─── */
+  .faq { margin-top: 60px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q { font-size: 14.5px; font-weight: 600; color: var(--purple); margin-bottom: 7px; }
+  .faq-a { font-size: 13px; color: var(--muted); line-height: 1.75; max-width: 680px; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: var(--purple); margin-top: 80px; padding: 72px 40px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(227,108,138,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 40px);
+    font-weight: 900; color: var(--white); margin-bottom: 14px;
+    position: relative; line-height: 1.15;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--pink); }
+  .cta-section p {
+    font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 36px;
+    position: relative; font-weight: 300;
+    max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.75;
+  }
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 11px;
+    background: var(--pink); color: #fff;
+    font-size: 14px; font-weight: 700; padding: 15px 34px;
+    border-radius: 50px; text-decoration: none; position: relative;
+    transition: opacity 0.18s, transform 0.18s; letter-spacing: 0.2px;
+  }
+  .wa-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  .wa-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .cta-sub { margin-top: 18px; font-size: 12px; color: rgba(255,255,255,0.25); position: relative; letter-spacing: 0.5px; }
+
+  /* ─── FOOTER ─── */
+  .foot { background: var(--purple-deep); padding: 22px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .foot-brand { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--white); }
+  .foot-brand span { color: var(--pink); }
+  .foot-copy { font-size: 11.5px; color: rgba(255,255,255,0.22); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 780px) {
+    .hero-inner { grid-template-columns: 1fr; padding: 56px 24px 36px; }
+    .hero-nums { flex-direction: row; align-items: flex-start; }
+    .hero-num { text-align: left; }
+    .hero-strip { padding: 16px 24px 28px; gap: 22px; }
+    .page { padding: 0 24px 60px; }
+    .expect { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr 1fr; }
+    .jw:nth-child(2) { border-right: none; }
+    .jw:nth-child(1), .jw:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .checkin { grid-template-columns: 1fr; }
+    .ci-div { display: none; }
+    .prog-grid { grid-template-columns: 1fr 1fr; }
+    .gains { grid-template-columns: 1fr 1fr; }
+    .coding-wrap { padding: 30px 24px; }
+    .pull { padding: 32px 28px; }
+    .sh-note { text-align: left; max-width: 100%; }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    .expect { grid-template-columns: 1fr; }
+    .journey { grid-template-columns: 1fr; }
+    .jw { border-right: none; border-bottom: 1px solid var(--border); }
+    .prog-grid { grid-template-columns: 1fr; }
+    .gains { grid-template-columns: 1fr; }
+    .sched-row { grid-template-columns: 1fr; }
+    .sched-time { border-right: none; padding: 18px 20px 4px; background: none; }
+    .sched-body { padding: 4px 20px 18px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker"><div class="hero-kicker-dot"></div> Heal &amp; Heed · Hyderabad · Summer 2025</div>
+      <h1>A Summer That<br>Actually <em>Moves<br>Things Forward</em></h1>
+      <p class="hero-lead">A structured therapeutic programme for children aged 2–12 that builds communication, independence, and confidence, through routines they actually enjoy.</p>
+      <div class="hero-tags">
+        <div class="hero-tag filled">Ages 2–12</div>
+        <div class="hero-tag">10 AM to 4 PM</div>
+        <div class="hero-tag">4 Weeks</div>
+        <div class="hero-tag">Coding Add-On Available</div>
+      </div>
+    </div>
+    <div class="hero-nums">
+      <div class="hero-num">
+        <div class="n">4</div>
+        <div class="l">Weeks</div>
+      </div>
+      <div class="hero-num">
+        <div class="n">10</div>
+        <div class="l">Daily Blocks</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="hs-item"><div class="hl">Where</div><div class="hv">L.B. Nagar, Hyderabad</div></div>
+    <div class="hs-item"><div class="hl">Hours</div><div class="hv">10:00 AM – 4:00 PM</div></div>
+    <div class="hs-item"><div class="hl">For</div><div class="hv">Autism · ADHD · Developmental &amp; Academic Support</div></div>
+    <div class="hs-item"><div class="hl">Coding Session</div><div class="hv">3:00 PM – 4:00 PM · Add-On</div></div>
+  </div>
+</header>
+
+<main>
+<div class="page">
+
+  <!-- PULL QUOTE -->
+  <div class="pull">
+    <q>Most children do better with <strong>structure, not less of it.</strong> This programme gives them a safe place to practise the skills that make school and home life easier, in small groups where they actually get noticed.</q>
+    <div class="pull-from">The Heal &amp; Heed Team</div>
+  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <div class="sh">
+    <div>
+      <div class="sh-label">Every Single Day</div>
+      <h2>What Your Child Does Here</h2>
+    </div>
+    <p class="sh-note">Ten planned blocks, none too long, so your child never runs out of steam or patience.</p>
+  </div>
+
+  <div class="expect">
+    <div class="exp-cell">
+      <div class="exp-n">01</div>
+      <h4>A Gentle Start</h4>
+      <p>Sensory warm-up and a greeting routine every morning so your child knows what to expect from the first minute.</p>
+    </div>
+    <div class="exp-cell">
+      <div class="exp-n">02</div>
+      <h4>Group Time Together</h4>
+      <p>Songs, rhymes, and simple turn-taking activities in a small group that makes it safe to try.</p>
+    </div>
+    <div class="exp-cell">
+      <div class="exp-n">03</div>
+      <h4>Focused Activity Work</h4>
+      <p>Puzzles, sorting, and hands-on tasks that build the ability to sit, focus, and finish. The exact things school asks for.</p>
+    </div>
+    <div class="exp-cell">
+      <div class="exp-n">04</div>
+      <h4>Real Life Skills</h4>
+      <p>Hand washing, eating, packing a bag. Done step by step in here, and much easier at home after a few weeks.</p>
+    </div>
+    <div class="exp-cell">
+      <div class="exp-n">05</div>
+      <h4>Play With Peers</h4>
+      <p>Small group games where children learn to take turns and share, not because they're told to, but because the setup makes it natural.</p>
+    </div>
+    <div class="exp-cell">
+      <div class="exp-n">06</div>
+      <h4>Free Time on Their Terms</h4>
+      <p>Child-led play where your child picks what they want to do. Choosing independently is a real milestone.</p>
+    </div>
+  </div>
+
+  <!-- DAILY SCHEDULE -->
+  <div class="sh">
+    <div>
+      <div class="sh-label">Daily Schedule</div>
+      <h2>How Each Day is Laid Out</h2>
+    </div>
+    <p class="sh-note">Same order every day. Knowing what comes next helps children stay settled and engaged.</p>
+  </div>
+
+  <div class="sched">
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">10:00 – 10:30</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Arrival and Settling In</span>
+          <span class="badge badge-purple">Opens Every Day</span>
+        </div>
+        <p class="sched-desc">A sensory warm-up on arrival: gentle movement, swings, and a short greeting routine. Your child sees the day's plan on a visual board so nothing catches them off guard.</p>
+        <div class="sched-takeaway">Arrives calm and knows what to expect</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">10:30 – 11:00</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head"><span class="sched-title">Circle Time</span></div>
+        <p class="sched-desc">Songs, rhymes, simple questions about the day. Short enough that attention stays. Long enough for children to feel part of the group.</p>
+        <div class="sched-takeaway">Listening and belonging</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">11:00 – 12:00</span><span class="sd">60 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Activity Time</span>
+          <span class="badge badge-pink">Core Learning</span>
+        </div>
+        <p class="sched-desc">Table-top work: puzzles, matching, sorting, peg boards. These are the skills that get children ready for a classroom. Fun enough that they do not notice how much they are actually working on.</p>
+        <div class="sched-takeaway">Attention span and the ability to finish a task</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">12:00 – 12:45</span><span class="sd">45 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head"><span class="sched-title">Lunch Break</span></div>
+        <p class="sched-desc">A proper sit-down lunch. Children ask for what they need, wait for others, and eat together. Communication happens naturally when children are comfortable and a little hungry.</p>
+        <div class="sched-takeaway">Asking, waiting, and sitting with peers</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">12:45 – 13:15</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Life Skills</span>
+          <span class="badge badge-pink">Core Learning</span>
+        </div>
+        <p class="sched-desc">Washing hands, eating independently, packing a bag, managing the toilet routine. Broken into small steps and practised until they stick. Parents often notice the difference at home within the first week.</p>
+        <div class="sched-takeaway">Less help needed from you at home</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">13:15 – 13:45</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Social Play</span>
+          <span class="badge badge-pink">Core Learning</span>
+        </div>
+        <p class="sched-desc">Turn-taking games and shared activities. Children start by playing alongside each other. By the end of the month, most are playing with each other. That is a bigger deal than it sounds.</p>
+        <div class="sched-takeaway">Playing with others, not just next to them</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">13:45 – 14:30</span><span class="sd">45 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Skill of the Week</span>
+          <span class="badge badge-pink">Weekly Focus</span>
+        </div>
+        <p class="sched-desc">Each week has one main skill the whole group works on together. Communication one week, independence the next. Concentrated practice gets results that scattered exposure does not.</p>
+        <div class="sched-takeaway">One clear skill built per week</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">14:30 – 15:00</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head"><span class="sched-title">Creative Corner</span></div>
+        <p class="sched-desc">Art, craft, sand play, water play, matched to the week's theme. There is no right answer here, which is the point. Children who find structured tasks hard often find they can really express themselves in this slot.</p>
+        <div class="sched-takeaway">Expression and sensory comfort</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">14:30 – 15:00</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head"><span class="sched-title">Free Play: Do It Your Way</span></div>
+        <p class="sched-desc">Your child picks what they want to do. Our team is present but steps back. Children who rarely get to make decisions start to trust their own choices, and that shows up at home too.</p>
+        <div class="sched-takeaway">Independence and self-direction</div>
+      </div>
+    </div>
+
+    <div class="sched-row">
+      <div class="sched-time"><span class="st">15:00 – 15:30</span><span class="sd">30 min</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Closing the Day</span>
+          <span class="badge badge-purple">Closes Every Day</span>
+        </div>
+        <p class="sched-desc">A clean-up song, a quick look back at what happened, and a goodbye routine. Consistent endings help children transition home without the resistance that often comes with abrupt stops.</p>
+        <div class="sched-takeaway">A smooth handover to you at pick-up</div>
+      </div>
+    </div>
+
+    <div class="sched-row" style="background: rgba(0,0,0,0.015);">
+      <div class="sched-time"><span class="st">15:00 onwards</span><span class="sd">Add-On</span></div>
+      <div class="sched-body">
+        <div class="sched-head">
+          <span class="sched-title">Programming Session</span>
+          <span class="badge badge-pink">Optional Add-On</span>
+        </div>
+        <p class="sched-desc">An optional one-hour coding session for enrolled children, or as a standalone for children who are not in the therapy programme. See the Programming section below for the full breakdown.</p>
+        <div class="sched-takeaway">Logic, sequencing, and something to take home at the end</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARENT CHECKIN -->
+  <div class="checkin">
+    <div class="ci-item">
+      <h4>At Pick-Up</h4>
+      <p>A quick update on how your child's day went: what clicked, what was tricky, and one thing to try together at home.</p>
+    </div>
+    <div class="ci-div"></div>
+    <div class="ci-item">
+      <h4>Through the Month</h4>
+      <p>You will see the difference in how your child handles routines, requests, and transitions at home. That is the real measure of progress.</p>
+    </div>
+    <div class="ci-div"></div>
+    <div class="ci-item">
+      <h4>At Month End</h4>
+      <p>We invite you in for a parent session where your child shows you what they have been working on. Worth clearing your calendar for.</p>
+    </div>
+  </div>
+
+  <!-- MONTHLY JOURNEY -->
+  <div class="sh" style="padding-top: 60px;">
+    <div>
+      <div class="sh-label">Monthly Curriculum</div>
+      <h2>What Happens Each Week</h2>
+    </div>
+    <p class="sh-note">Each week builds on the last, so by week four your child is in a genuinely different place.</p>
+  </div>
+
+  <div class="journey">
+    <div class="jw">
+      <div class="jw-wk">Week 1</div>
+      <div class="jw-theme">Theme: My Body</div>
+      <div class="jw-title">Getting Comfortable Here</div>
+      <ul class="jw-list">
+        <li>Learning the daily routine</li>
+        <li>Responding when called by name</li>
+        <li>Following a one-step request</li>
+        <li>Finding personal calm strategies</li>
+      </ul>
+      <div class="jw-act">
+        <div class="jw-act-lbl">How</div>
+        <p>Sensory bins, simple imitation games, short sit-and-do tasks that get a little longer each day.</p>
+      </div>
+    </div>
+    <div class="jw">
+      <div class="jw-wk">Week 2</div>
+      <div class="jw-theme">Theme: My Family</div>
+      <div class="jw-title">Starting to Communicate</div>
+      <ul class="jw-list">
+        <li>Asking for what they want</li>
+        <li>Making eye contact with familiar adults</li>
+        <li>Moving from gestures to words</li>
+        <li>Understanding give and take</li>
+      </ul>
+      <div class="jw-act">
+        <div class="jw-act-lbl">How</div>
+        <p>Choice boards, picture-based communication, turn-taking circle games.</p>
+      </div>
+    </div>
+    <div class="jw">
+      <div class="jw-wk">Week 3</div>
+      <div class="jw-theme">Theme: My School</div>
+      <div class="jw-title">Playing With Others</div>
+      <ul class="jw-list">
+        <li>Playing alongside, then with, peers</li>
+        <li>Sharing and taking turns</li>
+        <li>Waiting comfortably</li>
+        <li>Joining group activities</li>
+      </ul>
+      <div class="jw-act">
+        <div class="jw-act-lbl">How</div>
+        <p>Ball passing circles, simple board games, guided role play.</p>
+      </div>
+    </div>
+    <div class="jw">
+      <div class="jw-wk">Week 4</div>
+      <div class="jw-theme">Theme: My World</div>
+      <div class="jw-title">Ready for What's Next</div>
+      <ul class="jw-list">
+        <li>Managing routines with less prompting</li>
+        <li>Completing tasks start to finish</li>
+        <li>Moving between activities without a fuss</li>
+        <li>Pre-writing and fine motor practice</li>
+      </ul>
+      <div class="jw-act">
+        <div class="jw-act-lbl">How</div>
+        <p>Bag packing sequences, tracing practice, independent structured tasks.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT THEY GAIN -->
+  <div class="sh" style="padding-top: 60px;">
+    <div>
+      <div class="sh-label">By End of Month</div>
+      <h2>What Most Parents Notice After the Summer Camp</h2>
+    </div>
+  </div>
+
+  <div class="gains">
+    <div class="gain">
+      <div class="gn">01</div>
+      <h4>Easier mornings</h4>
+      <p>When children know what to expect, they fight transitions less. The routines practised here tend to carry home.</p>
+    </div>
+    <div class="gain">
+      <div class="gn">02</div>
+      <h4>More ways to say what they need</h4>
+      <p>Words, gestures, or pictures. Children leave with more tools for communicating what they want.</p>
+    </div>
+    <div class="gain">
+      <div class="gn">03</div>
+      <h4>More comfortable with peers</h4>
+      <p>The group is small enough that most children find at least one peer interaction they enjoy. That matters more than it sounds.</p>
+    </div>
+    <div class="gain">
+      <div class="gn">04</div>
+      <h4>Doing more on their own</h4>
+      <p>Eating, packing, washing. Small things that add up to real relief at home by end of month.</p>
+    </div>
+    <div class="gain">
+      <div class="gn">05</div>
+      <h4>Better prepared for school</h4>
+      <p>Sitting, listening, completing tasks. The building blocks of a classroom day, practised here in a low-pressure setting.</p>
+    </div>
+    <div class="gain">
+      <div class="gn">06</div>
+      <h4>A child who had a good summer</h4>
+      <p>Children who experience success in a safe place come back wanting more of it. That is worth something.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CODING full-width dark block -->
+<div class="page" style="padding-top: 0;">
+  <div class="coding-wrap">
+    <div class="coding-inner">
+      <div class="sh-label" style="color: var(--pink); margin-bottom: 10px;">Add-On or Standalone</div>
+      <h2>Programming Basics<br>for <em>Young Thinkers</em></h2>
+      <p class="coding-lead">For children aged 4–12. No reading needed. Every session is hands-on and laptop-based, building logical thinking and problem-solving through games, puzzles, and creative projects.</p>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <div class="prog-wk">Week 1</div>
+          <h4>Patterns and Logic</h4>
+          <ul>
+            <li>Visual pattern recognition on screen</li>
+            <li>Sequencing puzzles and ordering games</li>
+            <li>Drag-and-drop sorting challenges</li>
+          </ul>
+          <div class="prog-apps">
+            <span class="prog-app">Code.org</span>
+            <span class="prog-app">Lightbot Jr</span>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-wk">Week 2</div>
+          <h4>Commands and Sequences</h4>
+          <ul>
+            <li>Giving a character step-by-step instructions</li>
+            <li>Solving navigation puzzles</li>
+            <li>Spotting and fixing errors in a sequence</li>
+          </ul>
+          <div class="prog-apps">
+            <span class="prog-app">Lightbot Jr</span>
+            <span class="prog-app">Code.org</span>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-wk">Week 3</div>
+          <h4>Bringing Things to Life</h4>
+          <ul>
+            <li>Making characters move and react</li>
+            <li>Loops and repeating actions</li>
+            <li>Adding sounds and animations</li>
+          </ul>
+          <div class="prog-apps">
+            <span class="prog-app">ScratchJr</span>
+            <span class="prog-app">Scratch</span>
+          </div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-wk">Week 4</div>
+          <h4>Build and Show</h4>
+          <ul>
+            <li>Create an original game or animation</li>
+            <li>Present it to the group</li>
+            <li>Take the project home on their profile</li>
+          </ul>
+          <div class="prog-apps">
+            <span class="prog-app">Mini Project</span>
+            <span class="prog-app">Certificate</span>
+          </div>
+        </div>
+      </div>
+      <div class="coding-note">
+        <strong>Open to neurotypical children and siblings too.</strong> No prior experience needed. Children work at their own pace and every step forward is recognised.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="page" style="padding-top:0">
+  <div class="sh" style="padding-top:60px">
+    <div>
+      <div class="sh-label">Programme Fees</div>
+      <h2>Simple, Transparent Pricing</h2>
+    </div>
+    <p class="sh-note">One month, one fee. No hidden charges.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card featured">
+      <div class="price-header">
+        <div class="price-label">Most Popular</div>
+        <div class="price-name">Therapy Programme</div>
+        <div class="price-amount">
+          <span class="price-currency">&#8377;</span>
+          <span class="price-number">5,000</span>
+          <span class="price-per">/ child / month</span>
+        </div>
+      </div>
+      <div class="price-body">
+        <p class="price-desc">Full month of structured therapeutic activities, 10 AM to 3 PM.</p>
+        <ul class="price-includes">
+          <li>Daily schedule across 9 structured blocks</li>
+          <li>Life skills and independence training</li>
+          <li>Social play and communication work</li>
+          <li>Creative corner and free play</li>
+          <li>Skill of the week focused monthly curriculum</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-header">
+        <div class="price-label">Add-On</div>
+        <div class="price-name">Programming Add-On</div>
+        <div class="price-amount">
+          <span class="price-currency">&#8377;</span>
+          <span class="price-number">2,000</span>
+          <span class="price-per">/ child / month</span>
+        </div>
+      </div>
+      <div class="price-body">
+        <p class="price-desc">Optional add-on session for children already enrolled in the therapy programme.</p>
+        <ul class="price-includes">
+          <li>Logical thinking through play-based activities</li>
+          <li>Laptop-based coding with ScratchJr and Code.org</li>
+          <li>Week 4 mini project and certificate</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-header">
+        <div class="price-label">Standalone</div>
+        <div class="price-name">Programming Only</div>
+        <div class="price-amount">
+          <span class="price-currency">&#8377;</span>
+          <span class="price-number">3,000</span>
+          <span class="price-per">/ child / month</span>
+        </div>
+      </div>
+      <div class="price-body">
+        <p class="price-desc">Enroll only for programming if therapy is not required. Open to all children including neurotypical siblings.</p>
+        <ul class="price-includes">
+          <li>ScratchJr, Code.org, and Lightbot Jr</li>
+          <li>Suits ages 4 to 12, no prior experience needed</li>
+          <li>Week 4 mini project and certificate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="page">
+  <div class="faq">
+    <div class="sh" style="padding-top: 0;">
+      <div>
+        <div class="sh-label">Common Questions</div>
+        <h2>Things Parents Usually Ask</h2>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">My child has never been in a group setting before. Will they manage?</div>
+      <div class="faq-a">That is quite common for children who come to us. The first few days are slower and more about comfort than activities. We do not rush the settling-in. Most children who were very hesitant in week one surprise their parents by week two.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What should my child bring each day?</div>
+      <div class="faq-a">A lunch box, a water bottle, and a small bag with a spare set of clothes. We will send you a welcome note before the programme starts with everything you need to know.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can my child join only the Programming session?</div>
+      <div class="faq-a">Yes. The programming session is available as a standalone enrolment at ₹3,000 per month. No need to join the full therapy programme. It is open to all children aged 4–12.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this only for children with autism or ADHD?</div>
+      <div class="faq-a">The therapy programme is designed for children who benefit from structured, sensory-aware support. The programming session is open to all children, including neurotypical siblings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">If I enrol in both therapy and programming, what is the total fee?</div>
+      <div class="faq-a">₹5,000 for the therapy programme plus ₹2,000 for the programming add-on, totalling ₹7,000 per child for the full programme.</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Questions? Just<br><em>Message Us</em></h2>
+  <p>Tell us your child's age and what you are looking for. We will take it from there.</p>
+  <a
+    class="wa-btn"
+    href="https://wa.me/917416848323?text=Hi%2C%20I%20came%20across%20the%20Heal%20%26%20Heed%20Summer%20Program%202025.%20I%27d%20like%20to%20know%20more%20about%20enrolling%20my%20child.%20Could%20you%20please%20share%20the%20details%3F"
+    target="_blank" rel="noopener noreferrer"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Message Us on WhatsApp
+  </a>
+  <div class="cta-sub">Heal &amp; Heed · L.B. Nagar, Hyderabad · +91 74168 48323</div>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Heal <span>&amp;</span> Heed</div>
+  <div class="foot-copy">Summer Program 2025 · Behaviour · Occupational · Speech Therapy · Hyderabad</div>
+</footer>
+
+</body>
+</html>
