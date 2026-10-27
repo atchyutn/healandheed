@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     quote:
-      'I want to rate Pushp and her team with all my confidence as a firm believer of their skills. They are great at therapy. Suggestions, therapy and the way they deal with kids are amazing. They make you feel at home always.',
+      'I want to rate Pushp and her team with all my confidence as a firm believer of their skills. They are great at therapy. Suggestions, therapy and the way they deal with kids are amazing.',
     name: 'Nikita Singh',
     context: 'Parent',
   },

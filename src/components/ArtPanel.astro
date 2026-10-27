@@ -16,6 +16,7 @@ interface Props {
   title?: string;
   badge?: string;
   showLabels?: boolean;
+  size?: 'default' | 'lg';
   class?: string;
 }
 
@@ -28,12 +29,19 @@ const {
   title,
   badge,
   showLabels = true,
+  size = 'default',
   class: className = '',
 } = Astro.props;
 ---
 
 <div
-  class:list={['art-panel', `art-panel--${tone}`, `art-panel--${layout}`, className]}
+  class:list={[
+    'art-panel',
+    `art-panel--${tone}`,
+    `art-panel--${layout}`,
+    size === 'lg' && 'art-panel--lg',
+    className,
+  ]}
   aria-hidden="true"
 >
   {
@@ -456,6 +464,123 @@ const {
     color: var(--art-accent);
     font-size: 0.6rem;
     line-height: 1.35;
+  }
+
+  /* Featured list */
+  .art-panel--lg {
+    padding: clamp(1.5rem, 4.4vw, 2.4rem);
+  }
+  .art-panel--lg.art-panel--list {
+    gap: 1.6rem;
+  }
+  .art-panel--lg .art-panel__head {
+    gap: 0.45rem;
+    max-width: 22ch;
+  }
+  .art-panel--lg .art-panel__head small {
+    font-size: clamp(0.66rem, 1vw, 0.74rem);
+    letter-spacing: 0.15em;
+  }
+  .art-panel--lg .art-panel__head strong {
+    font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+  .art-panel--lg .art-panel__list {
+    gap: 0.95rem;
+  }
+  .art-panel--lg .art-panel__list::before {
+    top: 18px;
+    bottom: 18px;
+    left: 25px;
+  }
+  .art-panel--lg .art-panel__row {
+    gap: 1.05rem;
+    padding: 0.8rem 0.8rem 0.8rem 0;
+  }
+  .art-panel--lg .art-panel__row-icon {
+    width: 52px;
+    height: 52px;
+  }
+  .art-panel--lg .art-panel__row-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  .art-panel--lg .art-panel__row-copy strong {
+    font-size: clamp(0.95rem, 1.35vw, 1.06rem);
+    line-height: 1.35;
+  }
+  .art-panel--lg .art-panel__row-copy small {
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 520px) {
+    .art-panel--lg {
+      padding: 1.35rem;
+    }
+    .art-panel--lg.art-panel--list {
+      gap: 1.15rem;
+    }
+    .art-panel--lg .art-panel__head strong {
+      font-size: 1.5rem;
+    }
+    .art-panel--lg .art-panel__list {
+      gap: 0.7rem;
+    }
+    .art-panel--lg .art-panel__row {
+      gap: 0.8rem;
+      padding-block: 0.55rem;
+    }
+    .art-panel--lg .art-panel__row-icon {
+      width: 44px;
+      height: 44px;
+    }
+    .art-panel--lg .art-panel__row-icon :global(svg) {
+      width: 21px;
+      height: 21px;
+    }
+    .art-panel--lg .art-panel__row-copy strong {
+      font-size: 0.9rem;
+    }
+    .art-panel--lg .art-panel__list::before {
+      left: 21px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .art-panel--lg {
+      padding: 1.2rem;
+    }
+    .art-panel--lg.art-panel--list {
+      gap: 1rem;
+    }
+    .art-panel--lg .art-panel__head small {
+      font-size: 0.62rem;
+    }
+    .art-panel--lg .art-panel__head strong {
+      font-size: 1.35rem;
+    }
+    .art-panel--lg .art-panel__list {
+      gap: 0.55rem;
+    }
+    .art-panel--lg .art-panel__list::before {
+      left: 19px;
+    }
+    .art-panel--lg .art-panel__row {
+      gap: 0.7rem;
+      padding-block: 0.45rem;
+    }
+    .art-panel--lg .art-panel__row-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .art-panel--lg .art-panel__row-icon :global(svg) {
+      width: 19px;
+      height: 19px;
+    }
+    .art-panel--lg .art-panel__row-copy strong {
+      font-size: 0.84rem;
+    }
   }
 
   @media (max-width: 420px) {

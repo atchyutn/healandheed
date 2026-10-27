@@ -66,7 +66,7 @@ Page-specific copy sits directly in the matching `.astro` file.
 
 Tokens are defined once in `src/styles/global.css` (`:root`): cream/pink/sage/purple palette, Playfair Display + Sora, spacing, radii and shadows. Fonts are self-hosted through `@fontsource` packages, so no Google Fonts request is made at runtime.
 
-The header uses the white-background logo mark on a purple plate. Page and section visuals are built with `ArtPanel.astro` (icon-led compositions) so the character illustrations stay reserved for a few high-value spots instead of being repeated on every section.
+The header uses the original transparent brand logo on a soft lavender background (`#e8e1f8`), the same colour used behind page heroes. Page and section visuals are built with `ArtPanel.astro` (icon-led compositions) so the character illustrations stay reserved for a few high-value spots instead of being repeated on every section. The two brain mascots from the favicon artwork appear as small brand accents in the team and approach panels.
 
 ## SEO
 

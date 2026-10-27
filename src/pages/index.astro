@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArtPanel from '../components/ArtPanel.astro';
 import BrandMarquee from '../components/BrandMarquee.astro';
@@ -381,11 +382,6 @@ const pageSchema = {
             badge="Skills for real life"
           />
         </div>
-        <blockquote class="why__quote">
-          <span aria-hidden="true">“</span>
-          They make you feel at home always.
-          <cite>— Nikita Singh, parent</cite>
-        </blockquote>
         <Doodle type="flower" class="why__flower" />
       </div>
 
@@ -519,11 +515,17 @@ const pageSchema = {
             ]}
           />
         </div>
-        <div class="team-section__quote">
-          <span class="team-section__quote-mark" aria-hidden="true">“</span>
-          <p>They make you feel at home always.</p>
-          <span>Parent of a child at Heal &amp; Heed</span>
-        </div>
+        <span class="team-section__mascot">
+          <Image
+            src={images.brainCrown}
+            alt=""
+            width={180}
+            height={180}
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
         <div class="team-section__sticker">
           <Icon name="heart" size={18} />
           <span>Care that<br />sees the whole child</span>
@@ -540,6 +542,7 @@ const pageSchema = {
           <ArtPanel
             layout="list"
             tone="plum"
+            size="lg"
             items={[
               { icon: 'check', label: 'Goals that matter to your family' },
               { icon: 'home', label: 'Strategies for home and school' },
@@ -549,6 +552,17 @@ const pageSchema = {
             title="A plan that keeps learning."
           />
         </div>
+        <span class="evidence__mascot">
+          <Image
+            src={images.brainWave}
+            alt=""
+            width={180}
+            height={180}
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
         <div class="evidence__tag">
           <Icon name="check" size={15} />
           <span>Evidence-based<br /><strong>and human-first</strong></span>
@@ -779,7 +793,7 @@ const pageSchema = {
   .home-hero {
     position: relative;
     padding-block: clamp(2.6rem, 5.5vw, 4.6rem) clamp(3rem, 6vw, 5.5rem);
-    background: var(--cream);
+    background: var(--lavender);
     overflow: clip;
   }
 .home-hero__blob--pink {
@@ -1389,42 +1403,6 @@ const pageSchema = {
     object-fit: cover;
     object-position: 50% 35%;
   }
-.why__quote {
-    position: absolute;
-    z-index: 2;
-    right: -1%;
-    bottom: 1.5rem;
-    max-width: 240px;
-    padding: 1rem 1.1rem;
-    border-radius: 16px;
-    background: var(--cream-light);
-    box-shadow: var(--shadow);
-    color: var(--ink-soft);
-    font-family: var(--font-serif);
-    font-size: 0.98rem;
-    font-style: italic;
-    line-height: 1.5;
-    transform: rotate(2deg);
-  }
-.why__quote > span {
-    position: absolute;
-    top: -0.2rem;
-    left: 0.5rem;
-    color: var(--pink);
-    font-family: var(--font-serif);
-    font-size: 2.8rem;
-    line-height: 1;
-    opacity: 0.4;
-  }
-.why__quote cite {
-    display: block;
-    margin-top: 0.5rem;
-    color: var(--muted);
-    font-family: var(--font-sans);
-    font-size: 0.62rem;
-    font-style: normal;
-    letter-spacing: 0.03em;
-  }
 :global(.why__flower) {
     width: clamp(50px, 6vw, 86px);
     left: -5%;
@@ -1661,38 +1639,26 @@ const pageSchema = {
     object-fit: cover;
     object-position: 50% 35%;
   }
-.team-section__quote {
+.team-section__mascot {
     position: absolute;
-    right: -0.5rem;
-    bottom: 0.5rem;
-    max-width: 220px;
-    padding: 1rem;
-    border-radius: 16px;
-    background: var(--pink-soft);
-    box-shadow: var(--shadow-sm);
-    transform: rotate(-2deg);
+    right: -0.25rem;
+    bottom: 0.25rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: clamp(116px, 16vw, 158px);
+    aspect-ratio: 1;
+    padding: 0.55rem 0.55rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    background: var(--cream-light);
+    box-shadow: var(--shadow);
+    transform: rotate(3deg);
   }
-.team-section__quote-mark {
-    display: block;
-    color: var(--pink-deep);
-    font-family: var(--font-serif);
-    font-size: 2.2rem;
-    line-height: 0.6;
-    opacity: 0.55;
-  }
-.team-section__quote p {
-    margin-top: 0.2rem;
-    color: var(--purple);
-    font-family: var(--font-serif);
-    font-size: 0.92rem;
-    font-style: italic;
-    line-height: 1.45;
-  }
-.team-section__quote span:last-child {
-    display: block;
-    margin-top: 0.4rem;
-    color: var(--muted);
-    font-size: 0.6rem;
+.team-section__mascot img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 .team-section__sticker {
     position: absolute;
@@ -1783,6 +1749,27 @@ const pageSchema = {
     font-size: 0.82rem;
     font-style: italic;
     font-weight: 500;
+  }
+.evidence__mascot {
+    position: absolute;
+    z-index: 2;
+    right: 0.2rem;
+    bottom: 0.2rem;
+    display: grid;
+    place-items: center;
+    width: clamp(88px, 22%, 112px);
+    aspect-ratio: 1;
+    padding: 0.4rem 0.4rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    background: var(--cream-light);
+    box-shadow: var(--shadow);
+    transform: rotate(-3deg);
+  }
+.evidence__mascot img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 :global(.evidence__giraffe) {
     width: clamp(60px, 8vw, 110px);
@@ -2292,6 +2279,9 @@ const pageSchema = {
   }
 
   @media (max-width: 760px) {
+.evidence__portrait {
+      border-radius: 50% 50% var(--radius) var(--radius) / 13% 13% var(--radius) var(--radius);
+    }
 .intro {
       grid-template-columns: 1fr;
       gap: 1.25rem;
@@ -2358,6 +2348,16 @@ const pageSchema = {
     }
   }
 
+  @media (max-width: 380px) {
+.evidence__mascot {
+      display: none;
+    }
+.evidence__tag {
+      left: 0;
+      bottom: -1.25rem;
+    }
+  }
+
   @media (max-width: 560px) {
 .home-hero__blob--pink {
       top: -18%;
@@ -2415,13 +2415,6 @@ const pageSchema = {
       font-size: 0.62rem;
       padding: 0.5rem 0.65rem;
     }
-.why__quote {
-      position: relative;
-      right: auto;
-      bottom: auto;
-      margin: -1.2rem 0.5rem 0 auto;
-      max-width: 220px;
-    }
 .impact__stats {
       grid-template-columns: 1fr;
     }
@@ -2441,10 +2434,6 @@ const pageSchema = {
     }
 .mission__visual, .evidence__visual, .why__visual {
       max-width: 380px;
-    }
-.team-section__quote {
-      right: 0;
-      bottom: 0;
     }
 .team-section__sticker {
       left: 0;

@@ -11,9 +11,7 @@ const isActive = (href: string) =>
 <header class="site-header" data-site-header>
   <div class="site-header__inner container">
     <a class="brand" href="/" aria-label="Heal & Heed home">
-      <span class="brand__plate">
-        <Logo width={250} variant="white" eager />
-      </span>
+      <Logo width={260} eager />
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -149,17 +147,15 @@ const isActive = (href: string) =>
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(250, 244, 233, 0.88);
+    background: var(--lavender);
     border-bottom: 1px solid transparent;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
     transition:
       background-color 0.25s var(--ease),
       border-color 0.25s var(--ease),
       box-shadow 0.25s var(--ease);
   }
 .site-header.is-scrolled, .site-header.is-open {
-    background: rgba(250, 244, 233, 0.97);
+    background: var(--lavender);
     border-bottom-color: var(--line);
     box-shadow: 0 10px 30px -22px rgba(45, 22, 116, 0.35);
   }
@@ -173,32 +169,13 @@ const isActive = (href: string) =>
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    padding-block: 0.4rem;
+    padding-block: 0.35rem;
     text-decoration: none;
-  }
-.brand__plate {
-    display: inline-flex;
-    padding: 6px;
-    border-radius: 17px;
-    background:
-      radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.22), transparent 42%),
-      linear-gradient(135deg, #43239e 0%, var(--purple) 58%, #211056 100%);
-    box-shadow:
-      0 14px 26px -16px rgba(45, 22, 116, 0.75),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  }
-.brand:hover .brand__plate {
-    transform: translateY(-1px);
-    box-shadow:
-      0 18px 32px -16px rgba(45, 22, 116, 0.8),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.26);
   }
 .brand :global(img) {
     display: block;
-    width: clamp(166px, 18vw, 250px);
+    width: clamp(172px, 19vw, 260px);
     height: auto;
-    border-radius: 12px;
   }
 .desktop-nav {
     margin-left: auto;
@@ -310,7 +287,7 @@ const isActive = (href: string) =>
     right: 0;
     display: none;
     padding: 1rem var(--gutter) 2rem;
-    background: var(--cream);
+    background: var(--lavender);
     border-bottom: 1px solid var(--line);
     box-shadow: 0 30px 50px -30px rgba(45, 22, 116, 0.4);
   }
@@ -395,14 +372,7 @@ const isActive = (href: string) =>
       display: none;
     }
 .brand :global(img) {
-      width: 150px;
-    }
-.brand__plate {
-      padding: 5px;
-      border-radius: 15px;
-    }
-.brand :global(img) {
-      border-radius: 10px;
+      width: 156px;
     }
   }
 
@@ -411,7 +381,7 @@ const isActive = (href: string) =>
       gap: 0.65rem;
     }
 .brand :global(img) {
-      width: 134px;
+      width: 142px;
     }
 .menu-toggle {
       padding: 0.55rem 0.65rem;
