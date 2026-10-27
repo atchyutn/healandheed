@@ -1,0 +1,187 @@
+---
+import Icon from './Icon.astro';
+import Doodle from './Doodle.astro';
+import { site } from '../data/site';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  accent?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  background?: 'purple' | 'pink' | 'sage';
+}
+
+const {
+  eyebrow = 'Ready when you are',
+  title = 'Let’s take the next step,',
+  accent = 'together.',
+  text = 'Tell us a little about your child and what you are looking for. We will listen, answer your questions and help you find the right next step.',
+  primaryLabel = 'Book an appointment',
+  primaryHref = '/online-sessions/',
+  secondaryLabel = 'Call our team',
+  secondaryHref = site.phoneHref,
+  background = 'purple',
+} = Astro.props;
+---
+
+<section class:list={['cta-band', `cta-band--${background}`]}>
+  <div class="cta-band__inner container">
+    <Doodle type="sparkle" class="cta-band__doodle cta-band__doodle--one" />
+    <Doodle type="flower" class="cta-band__doodle cta-band__doodle--two" />
+    <div class="cta-band__content">
+      <span class="eyebrow eyebrow--center">{eyebrow}</span>
+      <h2>
+        {title} {accent && <em>{accent}</em>}
+      </h2>
+      <p>{text}</p>
+      <div class="button-row">
+        <a class="btn btn--large" href={primaryHref}>
+          {primaryLabel}
+          <Icon name="arrow" size={16} />
+        </a>
+        <a class="btn btn--large btn--ghost" href={secondaryHref}>
+          <Icon name="phone" size={16} />
+          {secondaryLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cta-band {
+    position: relative;
+    padding-block: clamp(3rem, 6vw, 5.5rem);
+    overflow: clip;
+    background: var(--cream);
+  }
+.cta-band__inner {
+    position: relative;
+    padding: clamp(2.75rem, 6vw, 5.5rem) var(--gutter);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    overflow: hidden;
+  }
+.cta-band--purple .cta-band__inner {
+    background: var(--purple);
+    color: var(--cream-light);
+  }
+.cta-band--pink .cta-band__inner {
+    background: var(--pink-soft);
+    color: var(--ink);
+  }
+.cta-band--sage .cta-band__inner {
+    background: var(--sage);
+    color: var(--ink);
+  }
+.cta-band__inner::before {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    top: -220px;
+    left: -140px;
+    border-radius: 50%;
+    background: rgba(227, 108, 138, 0.18);
+    pointer-events: none;
+  }
+.cta-band__inner::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: -140px;
+    bottom: -190px;
+    border-radius: 50%;
+    background: rgba(201, 220, 187, 0.2);
+    pointer-events: none;
+  }
+.cta-band__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 1.2rem;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+.cta-band .eyebrow {
+    color: var(--pink-soft);
+  }
+.cta-band--pink .eyebrow, .cta-band--sage .eyebrow {
+    color: var(--pink-deep);
+  }
+.cta-band h2 {
+    color: var(--cream-light);
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1;
+  }
+.cta-band--pink h2, .cta-band--sage h2 {
+    color: var(--purple);
+  }
+.cta-band h2 em {
+    color: var(--pink);
+    font-style: italic;
+  }
+.cta-band--pink h2 em, .cta-band--sage h2 em {
+    color: var(--pink-deep);
+  }
+.cta-band p {
+    max-width: 54ch;
+    color: rgba(255, 250, 242, 0.72);
+    font-size: 0.96rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+.cta-band--pink p, .cta-band--sage p {
+    color: var(--ink-soft);
+  }
+.cta-band .button-row {
+    justify-content: center;
+    margin-top: 0.6rem;
+  }
+.cta-band--pink .btn--ghost, .cta-band--sage .btn--ghost {
+    border-color: rgba(45, 22, 116, 0.25);
+    color: var(--purple);
+  }
+.cta-band--pink .btn--ghost:hover, .cta-band--sage .btn--ghost:hover {
+    background: var(--purple);
+    color: var(--cream-light);
+  }
+:global(.cta-band__doodle) {
+    opacity: 0.55;
+  }
+:global(.cta-band__doodle--one) {
+    width: clamp(55px, 8vw, 92px);
+    top: 11%;
+    left: 7%;
+    color: var(--pink);
+  }
+:global(.cta-band__doodle--two) {
+    width: clamp(45px, 7vw, 76px);
+    right: 8%;
+    bottom: 11%;
+    color: var(--sage);
+  }
+:global(.cta-band--pink .cta-band__doodle--one), :global(.cta-band--sage .cta-band__doodle--one) {
+    color: var(--pink-deep);
+  }
+
+  @media (max-width: 640px) {
+.cta-band__inner {
+      border-radius: var(--radius-lg);
+    }
+:global(.cta-band__doodle--one) {
+      left: 4%;
+      top: 6%;
+    }
+:global(.cta-band__doodle--two) {
+      right: 4%;
+      bottom: 4%;
+    }
+  }
+</style>

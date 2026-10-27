@@ -1,0 +1,753 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Doodle from '../components/Doodle.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
+import { images } from '../lib/images';
+import { approach, team, values } from '../data/content';
+import { breadcrumbSchema, webPageSchema } from '../lib/schema';
+
+const description =
+  'Meet Heal & Heed, a child development and rehabilitation centre in L.B. Nagar, Hyderabad. Learn about our mission, values and the team behind our care.';
+
+const schemas = [
+  webPageSchema({
+    name: 'About Heal & Heed',
+    description,
+    path: '/about/',
+    type: 'AboutPage',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'About us', path: '/about/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="About us — Care that sees the whole child"
+  description={description}
+  jsonLd={schemas}
+>
+  <PageHero
+    eyebrow="Our story"
+    title="Care that begins"
+    accent="with listening."
+    lead="Heal & Heed is a child development and rehabilitation centre in L.B. Nagar, Hyderabad. We bring therapy, learning and family support together — so children can take part in the everyday moments that matter."
+    image={images.doctor}
+    imageAlt="Illustration of a doctor holding a heart, representing compassionate care"
+    imageTone="sage"
+    imagePosition="24% center"
+    badge="L.B. Nagar, Hyderabad"
+  >
+    <div class="button-row hero-actions">
+      <a class="btn" href="#team">
+        Meet our team
+        <Icon name="arrow" size={15} />
+      </a>
+      <a class="btn btn--secondary" href="/online-sessions/">Book a visit</a>
+    </div>
+  </PageHero>
+
+  <!-- Story -->
+  <section class="section section--white story">
+    <div class="container story__grid">
+      <div class="story__visual reveal">
+        <div class="story__blob"></div>
+        <div class="story__frame story__frame--main">
+          <img
+            src={images.kid.src}
+            alt="Illustration of a child playing with a toy car"
+            width="1094"
+            height="811"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div class="story__frame story__frame--small">
+          <img
+            src={images.logo.src}
+            alt="Heal and Heed crowned brain mascot"
+            width="500"
+            height="500"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="story__note">
+          <Icon name="heart" size={18} />
+          <span>
+            <strong>Heal with care,</strong>
+            <small>heed with heart.</small>
+          </span>
+        </div>
+        <Doodle type="butterfly" class="story__butterfly" />
+        <Doodle type="rainbow" class="story__rainbow" />
+      </div>
+
+      <div class="story__copy reveal" style="--reveal-delay:120ms">
+        <span class="eyebrow">Who we are</span>
+        <h2>A centre built around <em>the child.</em></h2>
+        <p class="lead">
+          We are a team of dedicated professionals offering compassionate,
+          comprehensive care for children and their families.
+        </p>
+        <p>
+          Our approach is personal, not packaged. We take time to understand how
+          your child experiences the world, what feels hard and what already
+          works. Then we build a plan that fits their age, strengths and the
+          goals that matter most to your family.
+        </p>
+        <p>
+          Progress is rarely a straight line. We stay curious, review what is
+          working and keep parents close — because the best outcomes happen when
+          home and therapy move in the same direction.
+        </p>
+
+        <div class="story__facts">
+          <div>
+            <strong>04</strong>
+            <span>core therapies under one roof</span>
+          </div>
+          <div>
+            <strong>01</strong>
+            <span>connected team around your child</span>
+          </div>
+          <div>
+            <strong>2–12</strong>
+            <span>ages in our summer programme</span>
+          </div>
+        </div>
+
+        <a class="btn" href="/services/">
+          Explore our services
+          <Icon name="arrow" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission and vision -->
+  <section class="section section--cream">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What guides us"
+        title="A clear purpose,"
+        accent="held with care."
+        lead="Our mission and vision are simple to say and steady in practice. They shape how we listen, plan and show up for families."
+      />
+
+      <div class="mission-grid">
+        <article class="mission-card mission-card--purple reveal">
+          <div class="mission-card__top">
+            <span class="mission-card__icon"><Icon name="heart" size={20} /></span>
+            <span class="mission-card__label">Our mission</span>
+          </div>
+          <h3>Care that starts with understanding.</h3>
+          <p>
+            “Heal and Heed” is our guiding principle. Dedicated to holistic child
+            development, we offer a parent-friendly approach grounded in empathy
+            and integrity. In a world where it is tempting to take shortcuts, we
+            choose what is right over what is easy — and we live our values
+            rather than just voice them.
+          </p>
+          <Doodle type="sparkle" class="mission-card__doodle" />
+        </article>
+
+        <article class="mission-card mission-card--pink reveal" style="--reveal-delay:120ms">
+          <div class="mission-card__top">
+            <span class="mission-card__icon"><Icon name="star" size={20} /></span>
+            <span class="mission-card__label">Our vision</span>
+          </div>
+          <h3>Care that raises the standard.</h3>
+          <p>
+            Our vision is to be recognised as a leading child development and
+            rehabilitation service — known for the highest standards of care,
+            thoughtful practice and a real contribution to the well-being of our
+            community.
+          </p>
+          <Doodle type="flower" class="mission-card__doodle mission-card__doodle--flower" />
+        </article>
+      </div>
+
+      <blockquote class="promise reveal">
+        <span class="promise__mark" aria-hidden="true">“</span>
+        Heal with care, heed with heart.
+        <cite>The promise behind our name</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our core values"
+        title="The way we care"
+        accent="matters."
+        lead="Four values guide the small decisions as much as the big ones."
+      />
+
+      <div class="values-grid">
+        {values.map((value, index) => (
+          <article class="value-card reveal" style={`--reveal-delay:${index * 65}ms`}>
+            <span class:list={['value-card__icon', `value-card__icon--${index % 4}`]}>
+              <Icon name={value.icon} size={21} />
+            </span>
+            <div>
+              <h3>{value.title}</h3>
+              <p>{value.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section--sage team" id="team">
+    <Doodle type="giraffe" class="team__giraffe" />
+    <Doodle type="leaf" class="team__leaf" />
+    <div class="container">
+      <SectionHeading
+        eyebrow="Meet the team"
+        title="Different specialisms."
+        accent="One shared plan."
+        lead="Occupational therapy, behaviour therapy, speech therapy and special education — working together so support feels consistent, not fragmented."
+      />
+
+      <div class="team-grid">
+        {team.map((member, index) => (
+          <article class="team-card reveal" style={`--reveal-delay:${index * 65}ms`}>
+            <span class="team-card__icon"><Icon name={member.icon} size={22} /></span>
+            <h3>{member.role}</h3>
+            <p>{member.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="team__footer reveal">
+        <p>
+          Not sure which professional your child needs? You do not have to
+          decide alone. Start with a conversation and we will guide the next
+          step.
+        </p>
+        <a class="btn btn--secondary" href="/online-sessions/">
+          Talk to our team
+          <Icon name="arrow" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="section section--cream approach">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our approach"
+        title="Steady steps,"
+        accent="taken together."
+        lead="From the first phone call to the strategies you use at home, here is what working with us looks like."
+      />
+
+      <div class="steps">
+        {approach.map((step, index) => (
+          <article class="step reveal" style={`--reveal-delay:${index * 55}ms`}>
+            <span class="step__number">{step.number}</span>
+            <span class="step__icon"><Icon name={step.icon} size={19} /></span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Parent stories"
+        title="Trusted by"
+        accent="families."
+        lead="The most meaningful measure of our work is how families feel about the care they receive."
+      />
+      <TestimonialSlider />
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Come and see"
+    title="A calmer next step"
+    accent="starts here."
+    text="Visit our centre in L.B. Nagar or book an online conversation. We will listen first, answer your questions and help you decide what comes next."
+    primaryLabel="Book a consultation"
+    secondaryLabel="Call our team"
+  />
+</BaseLayout>
+
+<style>
+.hero-actions {
+    margin-top: 0.6rem;
+  }
+/* Story */
+  .story__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+.story__visual {
+    position: relative;
+    min-height: clamp(420px, 48vw, 570px);
+    isolation: isolate;
+  }
+.story__blob {
+    position: absolute;
+    inset: 6% 4% 4% 6%;
+    z-index: -1;
+    border-radius: 46% 54% 52% 48% / 44% 42% 58% 56%;
+    background: var(--pink-soft);
+    transform: rotate(-4deg);
+  }
+.story__frame {
+    position: absolute;
+    overflow: hidden;
+    border: 6px solid var(--cream-light);
+    background: var(--cream-light);
+    box-shadow: var(--shadow);
+  }
+.story__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.story__frame--main {
+    inset: 0 10% 14% 0;
+    z-index: 1;
+    border-radius: 999px 999px 34px 34px;
+    transform: rotate(-2deg);
+  }
+.story__frame--main img {
+    object-position: 62% 56%;
+    transform: scale(1.08);
+  }
+.story__frame--small {
+    width: 42%;
+    aspect-ratio: 1;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    border-radius: 26px;
+    background: var(--gold-soft);
+    transform: rotate(4deg);
+  }
+.story__note {
+    position: absolute;
+    z-index: 3;
+    left: -1rem;
+    bottom: 18%;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem 0.95rem;
+    border-radius: 14px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    transform: rotate(-3deg);
+  }
+.story__note :global(svg) {
+    color: var(--pink-deep);
+  }
+.story__note strong, .story__note small {
+    display: block;
+  }
+.story__note strong {
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+.story__note small {
+    color: var(--muted);
+    font-size: 0.66rem;
+  }
+:global(.story__butterfly) {
+    width: clamp(48px, 6vw, 82px);
+    top: -3%;
+    right: 3%;
+    color: var(--pink-deep);
+    opacity: 0.6;
+  }
+:global(.story__rainbow) {
+    width: clamp(58px, 7vw, 96px);
+    left: 2%;
+    top: 4%;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+.story__copy {
+    display: grid;
+    justify-items: start;
+    gap: 1.05rem;
+    max-width: 600px;
+  }
+.story__copy h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.story__copy p:not(.lead) {
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+.story__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin-block: 0.7rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+  }
+.story__facts strong {
+    display: block;
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+.story__facts span {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.66rem;
+    line-height: 1.5;
+  }
+/* Mission and vision */
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+.mission-card {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: clamp(1.6rem, 3.2vw, 2.8rem);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+.mission-card--purple {
+    background: var(--purple);
+    color: var(--cream-light);
+  }
+.mission-card--pink {
+    background: var(--pink-soft);
+  }
+.mission-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+.mission-card__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 250, 242, 0.14);
+    color: var(--pink);
+  }
+.mission-card--pink .mission-card__icon {
+    background: rgba(255, 253, 249, 0.7);
+    color: var(--pink-deep);
+  }
+.mission-card__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+.mission-card h3 {
+    max-width: 20ch;
+    font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+  }
+.mission-card--purple h3 {
+    color: var(--cream-light);
+  }
+.mission-card p {
+    position: relative;
+    z-index: 1;
+    max-width: 52ch;
+    color: var(--sage-ink);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+.mission-card--purple p {
+    color: rgba(255, 250, 242, 0.74);
+  }
+:global(.mission-card__doodle) {
+    width: clamp(60px, 8vw, 100px);
+    right: 1rem;
+    bottom: 1rem;
+    opacity: 0.22;
+    color: var(--pink);
+  }
+:global(.mission-card__doodle--flower) {
+    width: clamp(55px, 7vw, 90px);
+    color: var(--pink-deep);
+    opacity: 0.24;
+  }
+.promise {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 0.6rem;
+    max-width: 900px;
+    margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 3.4vw, 2.9rem);
+    font-style: italic;
+    line-height: 1.2;
+    text-align: center;
+  }
+.promise__mark {
+    color: var(--pink);
+    font-size: 3rem;
+    line-height: 0.5;
+    opacity: 0.5;
+  }
+.promise cite {
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+/* Values */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.value-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.1rem;
+    align-items: start;
+    padding: clamp(1.3rem, 2.6vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+.value-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+  }
+.value-card__icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.value-card__icon--1 {
+    background: var(--sage);
+    color: var(--sage-ink);
+  }
+.value-card__icon--2 {
+    background: rgba(45, 22, 116, 0.08);
+    color: var(--purple);
+  }
+.value-card__icon--3 {
+    background: var(--gold-soft);
+    color: #7f5a1f;
+  }
+.value-card h3 {
+    font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  }
+.value-card p {
+    margin-top: 0.45rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+/* Team */
+  .team {
+    position: relative;
+    overflow: clip;
+  }
+.team :global(.section-head h2) {
+    color: var(--purple);
+  }
+.team-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.team-card {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: clamp(1.3rem, 2.4vw, 1.9rem);
+    border-radius: var(--radius);
+    background: rgba(255, 253, 249, 0.62);
+    transition: background-color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+.team-card:hover {
+    background: var(--cream-light);
+    transform: translateY(-3px);
+  }
+.team-card__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.team-card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.team-card p {
+    color: var(--sage-ink);
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+.team__footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+    border-top: 1px solid rgba(45, 22, 116, 0.16);
+  }
+.team__footer p {
+    max-width: 58ch;
+    color: var(--sage-ink);
+    font-size: 0.9rem;
+  }
+:global(.team__giraffe) {
+    width: clamp(90px, 12vw, 160px);
+    right: 1%;
+    bottom: 1%;
+    color: var(--sage-ink);
+    opacity: 0.28;
+  }
+:global(.team__leaf) {
+    width: clamp(55px, 7vw, 95px);
+    left: 2%;
+    top: 8%;
+    color: var(--sage-ink);
+    opacity: 0.35;
+  }
+/* Approach */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.step {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    padding: clamp(1.35rem, 2.6vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+.step__number {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.2rem;
+    color: rgba(45, 22, 116, 0.18);
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    font-style: italic;
+    line-height: 1;
+  }
+.step__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.step h3 {
+    max-width: 20ch;
+    margin-top: 0.3rem;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+.step p {
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1024px) {
+.team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+.story__grid, .mission-grid {
+      grid-template-columns: 1fr;
+    }
+.story__visual {
+      max-width: 520px;
+      margin-inline: auto;
+      width: 100%;
+    }
+.story__copy {
+      max-width: none;
+    }
+.steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+.values-grid, .team-grid, .steps {
+      grid-template-columns: 1fr;
+    }
+.story__facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 1.25rem;
+    }
+.story__note {
+      left: 0;
+    }
+.team__footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

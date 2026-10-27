@@ -1,0 +1,1382 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Doodle from '../components/Doodle.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { images } from '../lib/images';
+import {
+  codingWeeks,
+  summer,
+  summerCoding,
+  summerEveryday,
+  summerFaqs,
+  summerGains,
+  summerParentUpdates,
+  summerPromises,
+  summerSchedule,
+  summerWeeks,
+} from '../data/summer';
+import { site } from '../data/site';
+import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
+
+const coreSchedule = summerSchedule.filter(
+  (block) => block.badge !== 'Closes every day'
+);
+const closingBlock = summerSchedule.find(
+  (block) => block.badge === 'Closes every day'
+);
+
+const description =
+  'Heal & Heed Summer Programme 2026 in L.B. Nagar, Hyderabad. Five weeks of therapeutic play, life skills and social learning for children aged 2–12, with an optional coding add-on.';
+
+const summerServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Heal & Heed Summer Programme 2026',
+  description,
+  provider: { '@id': `${site.url}/#organization` },
+  areaServed: { '@type': 'City', name: 'Hyderabad' },
+  audience: {
+    '@type': 'PeopleAudience',
+    suggestedMinAge: 2,
+    suggestedMaxAge: 12,
+  },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Therapy Programme',
+      price: '5000',
+      priceCurrency: 'INR',
+      description: 'Five weeks of structured therapeutic activities, Monday to Friday, 10:00 AM to 3:00 PM.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Programming Add-On',
+      price: '3000',
+      priceCurrency: 'INR',
+      description: 'Optional coding session, 3:00 PM to 4:00 PM, or standalone enrolment for children aged 4–12.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Therapy and Programming',
+      price: '8000',
+      priceCurrency: 'INR',
+      description: 'The full programme, including the therapy day and the coding add-on.',
+    },
+  ],
+};
+
+const schemas = [
+  webPageSchema({
+    name: 'Summer Programme 2026',
+    description,
+    path: '/summer-program/',
+  }),
+  summerServiceSchema,
+  faqSchema(summerFaqs),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Summer Programme 2026', path: '/summer-program/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Summer Programme 2026 — Five weeks of play and progress"
+  description={description}
+  jsonLd={schemas}
+>
+  <PageHero
+    eyebrow="Summer Programme 2026"
+    title="A summer of play,"
+    accent="practice and progress."
+    lead={summer.intro}
+    image={images.kid}
+    imageAlt="Illustration of a child playing with a toy car"
+    imageTone="gold"
+    badge="Five weeks · Ages 2–12 · L.B. Nagar"
+  >
+    <div class="summer-facts" aria-label="Programme at a glance">
+      <div>
+        <span>Ages</span>
+        <strong>2–12 years</strong>
+      </div>
+      <div>
+        <span>Dates</span>
+        <strong>Five weeks · Mon–Fri</strong>
+      </div>
+      <div>
+        <span>Core day</span>
+        <strong>10:00 AM – 3:00 PM</strong>
+      </div>
+      <div>
+        <span>Optional add-on</span>
+        <strong>Coding · 3:00 – 4:00 PM</strong>
+      </div>
+    </div>
+
+    <div class="button-row summer-actions">
+      <a
+        class="btn"
+        href={site.whatsappSummer}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ask about enrolling
+        <Icon name="arrow" size={15} />
+      </a>
+      <a class="btn btn--secondary" href="#schedule">See a typical day</a>
+    </div>
+  </PageHero>
+
+  <!-- Pull quote -->
+  <section class="section section--cream section--tight summer-intro">
+    <div class="container summer-intro__inner">
+      <Doodle type="sun" class="summer-intro__sun" />
+      <Doodle type="squiggle" class="summer-intro__squiggle" />
+      <blockquote>
+        “Most children do better with <em>structure, not less of it.</em>”
+      </blockquote>
+      <p>
+        This programme gives children a safe place to practise the skills that
+        make school and home life easier, in a group small enough to be noticed.
+      </p>
+      <cite>The Heal &amp; Heed team</cite>
+
+      <div class="summer-intro__stats">
+        <div><strong>5</strong><span>themed weeks</span></div>
+        <div><strong>10</strong><span>planned daily blocks</span></div>
+        <div><strong>2–12</strong><span>years old</span></div>
+        <div><strong>1</strong><span>summer well spent</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Daily promises -->
+  <section class="section section--white promises">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Every single day"
+        title="What your child"
+        accent="does here."
+        lead="Five themed weeks, ten planned blocks each day, none too long — so your child never runs out of steam or patience."
+      />
+
+      <div class="promise-grid">
+        {summerPromises.map((promise, index) => (
+          <article class="promise-card reveal" style={`--reveal-delay:${index * 55}ms`}>
+            <div class="promise-card__top">
+              <span class="promise-card__number">{promise.number}</span>
+              <span class="promise-card__line" aria-hidden="true"></span>
+            </div>
+            <h3>{promise.title}</h3>
+            <p>{promise.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section class="section section--cream schedule" id="schedule">
+    <div class="container schedule__grid">
+      <div class="schedule__intro reveal">
+        <span class="eyebrow">A day at the programme</span>
+        <h2>Predictable, purposeful, <em>paced.</em></h2>
+        <p class="lead">
+          The day has a rhythm. Your child knows what comes next, which makes it
+          easier to settle, join in and try something new.
+        </p>
+        <p>
+          Times are for the core therapy programme. Children staying for the
+          optional coding session continue from 3:00 PM.
+        </p>
+        <div class="schedule__legend">
+          <span><i class="dot dot--pink"></i> Core learning</span>
+          <span><i class="dot dot--sage"></i> Weekly focus</span>
+          <span><i class="dot dot--gold"></i> Optional add-on</span>
+        </div>
+        <a class="text-link" href="#curriculum">
+          See the five-week curriculum
+          <Icon name="arrow" size={14} />
+        </a>
+      </div>
+
+      <ol class="summer-schedule">
+        {coreSchedule.map((block, index) => (
+          <li
+            class:list={[
+              'schedule-row',
+              block.badge === 'Optional add-on' && 'schedule-row--addon',
+            ]}
+            style={`--reveal-delay:${Math.min(index * 35, 280)}ms`}
+          >
+            <div class="schedule-row__time">
+              <span>{block.time}</span>
+              {block.badge && <small>{block.badge}</small>}
+            </div>
+            <div class="schedule-row__body">
+              <h3>{block.title}</h3>
+              <p>{block.text}</p>
+              <span class="schedule-row__outcome">
+                <Icon name="check" size={12} />
+                {block.outcome}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    {closingBlock && (
+      <div class="container">
+        <p class="schedule__closing reveal">
+          <Icon name="sun" size={16} />
+          <span>{closingBlock.text}</span>
+          <strong>Pick-up at 3:00 PM · 4:00 PM after coding.</strong>
+        </p>
+      </div>
+    )}
+  </section>
+
+  <!-- Parent updates -->
+  <section class="section section--sage parent-updates">
+    <Doodle type="giraffe" class="parent-updates__giraffe" />
+    <div class="container">
+      <SectionHeading
+        eyebrow="You are kept close"
+        title="You will know"
+        accent="how it is going."
+        lead="You are not handing your child over and waiting for a report. Updates happen in small, useful moments."
+      />
+
+      <div class="parent-grid">
+        {summerParentUpdates.map((update, index) => (
+          <article class="parent-card reveal" style={`--reveal-delay:${index * 65}ms`}>
+            <span class="parent-card__number">0{index + 1}</span>
+            <h3>{update.title}</h3>
+            <p>{update.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="section section--white curriculum" id="curriculum">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Five-week curriculum"
+        title="A different world"
+        accent="each week."
+        lead="Every theme is chosen to connect with what children already know and love, while building skills that carry into school and home."
+      />
+
+      <div class="weeks-grid">
+        {summerWeeks.map((week, index) => (
+          <article class:list={['week-card', index === 0 && 'week-card--feature']} style={`--reveal-delay:${index * 55}ms`}>
+            <div class="week-card__top">
+              <span class="week-card__week">{week.week}</span>
+              <span class="week-card__theme">{week.theme}</span>
+            </div>
+            <h3>{week.title}</h3>
+            <ul class="week-card__activities">
+              {week.activities.map((activity) => (
+                <li>{activity}</li>
+              ))}
+            </ul>
+            <p class="week-card__skills">
+              <span>Skills built</span>
+              {week.skills}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Everyday extras -->
+  <section class="section section--pink-solid everyday">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Every day, all five weeks"
+        title="The foundations,"
+        accent="built in."
+        lead="These run alongside the weekly themes, not as extras but as the ground the rest of the day stands on."
+      />
+
+      <div class="everyday-grid">
+        {summerEveryday.map((item, index) => (
+          <article class="everyday-card reveal" style={`--reveal-delay:${index * 60}ms`}>
+            <span class="everyday-card__numeral">{item.numeral}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gains -->
+  <section class="section section--white gains">
+    <div class="container">
+      <SectionHeading
+        eyebrow="By the end of the programme"
+        title="What parents"
+        accent="notice."
+        lead="Five weeks is long enough to see real change. These are the shifts families tell us about most often."
+      />
+
+      <div class="gains-grid">
+        {summerGains.map((gain, index) => (
+          <article class="gain reveal" style={`--reveal-delay:${index * 55}ms`}>
+            <span class="gain__number">{gain.number}</span>
+            <h3>{gain.title}</h3>
+            <p>{gain.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Coding -->
+  <section class="section coding" id="coding">
+    <div class="coding__blob coding__blob--one" aria-hidden="true"></div>
+    <div class="coding__blob coding__blob--two" aria-hidden="true"></div>
+    <Doodle type="sparkle" class="coding__doodle" />
+    <div class="container">
+      <div class="coding__head">
+        <div>
+          <span class="eyebrow coding__eyebrow">Add-on or standalone · Ages 4–12</span>
+          <h2>Programming basics<br /><em>for young thinkers.</em></h2>
+        </div>
+        <p>{summerCoding.intro}</p>
+      </div>
+
+      <div class="coding-grid">
+        {codingWeeks.map((week, index) => (
+          <article class="coding-card reveal" style={`--reveal-delay:${index * 60}ms`}>
+            <span class="coding-card__week">{week.week}</span>
+            <h3>{week.title}</h3>
+            <ul>
+              {week.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+            <div class="coding-card__tools">
+              {week.tools.map((tool) => (
+                <span>{tool}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="coding__note reveal">
+        <Icon name="sparkle" size={18} />
+        <p>{summerCoding.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section section--cream pricing" id="fees">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Programme fees"
+        title="Simple, transparent"
+        accent="pricing."
+        lead="One programme, one fee. Fees are per child, per month. Call or message us to confirm availability."
+      />
+
+      <div class="pricing-grid">
+        <article class="price-card reveal">
+          <div class="price-card__head">
+            <span class="price-card__label">Therapy programme</span>
+            <div class="price-card__amount">
+              <span>₹</span>{summer.fees.therapy}
+              <small>/ child / month</small>
+            </div>
+            <p>Five weeks of structured therapeutic activities, Monday to Friday, 10:00 AM to 3:00 PM.</p>
+          </div>
+          <ul class="price-card__list">
+            <li>Daily schedule across structured blocks</li>
+            <li>Life skills and independence practice</li>
+            <li>Social play and communication work</li>
+            <li>Creative corner and free play</li>
+            <li>Five-week themed curriculum</li>
+          </ul>
+          <a
+            class="btn btn--secondary price-card__cta"
+            href={site.whatsappSummer}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Enquire about therapy
+            <Icon name="arrow" size={15} />
+          </a>
+        </article>
+
+        <article class="price-card reveal" style="--reveal-delay:70ms">
+          <div class="price-card__head">
+            <span class="price-card__label">Programming add-on</span>
+            <div class="price-card__amount">
+              <span>₹</span>{summer.fees.coding}
+              <small>/ child / month</small>
+            </div>
+            <p>Enrol only for programming if therapy is not required. Open to all children, including neurotypical siblings.</p>
+          </div>
+          <ul class="price-card__list">
+            <li>Four-week coding curriculum</li>
+            <li>ScratchJr, Code.org and Lightbot Jr</li>
+            <li>Suits ages 4–12, no prior experience</li>
+            <li>Week 4 mini project</li>
+            <li>Certificate at the end</li>
+          </ul>
+          <a
+            class="btn btn--secondary price-card__cta"
+            href={site.whatsappSummer}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Enquire about coding
+            <Icon name="arrow" size={15} />
+          </a>
+        </article>
+
+        <article class="price-card price-card--featured reveal" style="--reveal-delay:140ms">
+          <span class="price-card__badge">Most complete</span>
+          <div class="price-card__head">
+            <span class="price-card__label">Therapy + coding</span>
+            <div class="price-card__amount">
+              <span>₹</span>{summer.fees.combined}
+              <small>/ child / month</small>
+            </div>
+            <p>The full summer experience: the therapeutic day plus the optional coding hour.</p>
+          </div>
+          <ul class="price-card__list">
+            <li>Everything in the therapy programme</li>
+            <li>Optional daily coding session, 3:00–4:00 PM</li>
+            <li>Mini project and certificate</li>
+            <li>Ideal for siblings and peers</li>
+            <li>One clear schedule for the week</li>
+          </ul>
+          <a
+            class="btn price-card__cta"
+            href={site.whatsappSummer}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Enquire about the full programme
+            <Icon name="arrow" size={15} />
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white faq-section">
+    <div class="container faq-section__inner">
+      <div class="faq-section__intro reveal">
+        <span class="eyebrow">Common questions</span>
+        <h2>Things parents <em>usually ask.</em></h2>
+        <p class="lead">
+          If your question is not here, message us with your child’s age and what
+          you are looking for. We will take it from there.
+        </p>
+        <a
+          class="btn btn--small"
+          href={site.whatsappSummer}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="whatsapp" size={15} />
+          Message us on WhatsApp
+        </a>
+      </div>
+      <div class="faq-section__list reveal" style="--reveal-delay:120ms">
+        <FaqList items={summerFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Summer 2026 · L.B. Nagar"
+    title="Let’s make this"
+    accent="a good summer."
+    text="Tell us your child’s age and what you are looking for. We will answer your questions and help you decide whether the programme is the right fit."
+    primaryLabel="Message us on WhatsApp"
+    primaryHref={site.whatsappSummer}
+    secondaryLabel="Call our team"
+    secondaryHref={site.phoneHref}
+  />
+</BaseLayout>
+
+<style>
+/* Hero */
+  .summer-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+    margin-top: 1.2rem;
+    text-align: left;
+  }
+.summer-facts > div {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid rgba(45, 22, 116, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 253, 249, 0.6);
+  }
+.summer-facts span {
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+.summer-facts strong {
+    color: var(--purple);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+.summer-actions {
+    margin-top: 0.6rem;
+  }
+/* Pull quote */
+  .summer-intro {
+    position: relative;
+    overflow: clip;
+  }
+.summer-intro__inner {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    max-width: 900px;
+    text-align: center;
+  }
+.summer-intro blockquote {
+    max-width: 860px;
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+.summer-intro blockquote em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.summer-intro p {
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+.summer-intro cite {
+    color: var(--pink-deep);
+    font-size: 0.65rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+.summer-intro__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    margin-top: 1.4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+.summer-intro__stats div {
+    display: grid;
+    gap: 0.2rem;
+    padding-inline: 0.75rem;
+    border-right: 1px solid var(--line);
+  }
+.summer-intro__stats div:last-child {
+    border-right: none;
+  }
+.summer-intro__stats strong {
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+.summer-intro__stats span {
+    color: var(--muted);
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+:global(.summer-intro__sun) {
+    width: clamp(42px, 5vw, 70px);
+    top: 8%;
+    right: 3%;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+:global(.summer-intro__squiggle) {
+    width: clamp(80px, 12vw, 150px);
+    left: 2%;
+    bottom: 14%;
+    color: var(--pink);
+    opacity: 0.4;
+  }
+/* Promises */
+  .promise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.promise-card {
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding: clamp(1.3rem, 2.5vw, 1.9rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+.promise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+.promise-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+.promise-card__number {
+    color: var(--pink-deep);
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    font-style: italic;
+    letter-spacing: 0.06em;
+  }
+.promise-card__line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+.promise-card h3 {
+    font-size: clamp(1.35rem, 1.9vw, 1.6rem);
+  }
+.promise-card p {
+    color: var(--muted);
+    font-size: 0.83rem;
+    line-height: 1.68;
+  }
+/* Schedule */
+  .schedule__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+.schedule__intro {
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 400px;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+.schedule__intro h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.schedule__intro p:not(.lead) {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+.schedule__legend {
+    display: grid;
+    gap: 0.45rem;
+    margin-block: 0.3rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+  }
+.schedule__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+.dot--pink {
+    background: var(--pink);
+  }
+.dot--sage {
+    background: var(--sage-deep);
+  }
+.dot--gold {
+    background: var(--gold);
+  }
+.summer-schedule {
+    display: grid;
+    gap: 0.65rem;
+  }
+.schedule-row {
+    display: grid;
+    grid-template-columns: 128px 1fr;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    overflow: hidden;
+  }
+.schedule-row__time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 1rem;
+    border-right: 1px solid var(--line);
+    background: rgba(227, 108, 138, 0.06);
+  }
+.schedule-row__time span {
+    color: var(--purple);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+.schedule-row__time small {
+    color: var(--muted);
+    font-size: 0.56rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+.schedule-row__body {
+    padding: 1rem 1.15rem;
+  }
+.schedule-row__body h3 {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.schedule-row__body p {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+.schedule-row__outcome {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.6rem;
+    color: var(--pink-deep);
+    font-size: 0.63rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+.schedule-row__outcome :global(svg) {
+    flex: 0 0 auto;
+  }
+.schedule-row--addon {
+    border-color: rgba(231, 182, 92, 0.55);
+    background: var(--gold-soft);
+  }
+.schedule-row--addon .schedule-row__time {
+    background: rgba(231, 182, 92, 0.18);
+    border-color: rgba(231, 182, 92, 0.4);
+  }
+.schedule-row--addon .schedule-row__body p {
+    color: #6f5428;
+  }
+.schedule__closing {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    max-width: 880px;
+    margin: 1.2rem 0 0 auto;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--pink-wash);
+    color: var(--muted);
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+.schedule__closing :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 0.15rem;
+    color: var(--gold);
+  }
+.schedule__closing strong {
+    color: var(--purple);
+    white-space: nowrap;
+  }
+/* Parent updates */
+  .parent-updates {
+    position: relative;
+    overflow: clip;
+  }
+.parent-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.parent-card {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    padding: clamp(1.3rem, 2.5vw, 2rem);
+    border-radius: var(--radius);
+    background: rgba(255, 253, 249, 0.62);
+  }
+.parent-card__number {
+    color: rgba(45, 22, 116, 0.24);
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1;
+  }
+.parent-card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.parent-card p {
+    color: var(--sage-ink);
+    font-size: 0.8rem;
+    line-height: 1.68;
+  }
+:global(.parent-updates__giraffe) {
+    width: clamp(80px, 11vw, 150px);
+    right: 2%;
+    bottom: 2%;
+    color: var(--sage-ink);
+    opacity: 0.3;
+  }
+/* Curriculum */
+  .weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.week-card {
+    grid-column: span 2;
+    display: grid;
+    align-content: start;
+    gap: 0.8rem;
+    padding: clamp(1.3rem, 2.4vw, 1.9rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+.week-card:nth-child(4), .week-card:nth-child(5) {
+    grid-column: span 3;
+  }
+.week-card--feature {
+    background: var(--pink-wash);
+    border-color: rgba(227, 108, 138, 0.35);
+  }
+.week-card__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+.week-card__week {
+    color: var(--pink-deep);
+    font-family: var(--font-serif);
+    font-size: 0.76rem;
+    font-style: italic;
+    letter-spacing: 0.06em;
+  }
+.week-card__theme {
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    background: var(--sage);
+    color: var(--sage-ink);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+.week-card h3 {
+    font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+  }
+.week-card__activities {
+    display: grid;
+    gap: 0.45rem;
+  }
+.week-card__activities li {
+    position: relative;
+    padding-left: 0.9rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+.week-card__activities li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--pink);
+  }
+.week-card__skills {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+.week-card__skills span {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--pink-deep);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+/* Everyday */
+  .everyday-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+.everyday-card {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: clamp(1.3rem, 2.4vw, 1.8rem);
+    border-radius: var(--radius);
+    background: rgba(255, 253, 249, 0.58);
+  }
+.everyday-card__numeral {
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1;
+  }
+.everyday-card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.everyday-card p {
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+/* Gains */
+  .gains-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+.gain {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: clamp(1.3rem, 2.4vw, 1.9rem);
+    border-top: 2px solid var(--pink-soft);
+    background: var(--cream);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+.gain__number {
+    color: var(--pink-deep);
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+.gain h3 {
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+  }
+.gain p {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+/* Coding */
+  .coding {
+    position: relative;
+    background: var(--purple);
+    color: var(--cream-light);
+    overflow: clip;
+  }
+.coding__blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+.coding__blob--one {
+    width: clamp(280px, 38vw, 520px);
+    height: clamp(280px, 38vw, 520px);
+    top: -22%;
+    left: -10%;
+    background: rgba(227, 108, 138, 0.16);
+  }
+.coding__blob--two {
+    width: clamp(240px, 33vw, 440px);
+    height: clamp(240px, 33vw, 440px);
+    right: -10%;
+    bottom: -18%;
+    background: rgba(201, 220, 187, 0.12);
+  }
+.coding__head {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3.2rem);
+  }
+.coding__eyebrow {
+    color: var(--pink);
+  }
+.coding__head h2 {
+    max-width: 16ch;
+    margin-top: 0.8rem;
+    color: var(--cream-light);
+    font-size: clamp(2.3rem, 4.4vw, 3.9rem);
+  }
+.coding__head h2 em {
+    color: var(--pink);
+    font-style: italic;
+  }
+.coding__head > p {
+    color: rgba(255, 250, 242, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+.coding-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+.coding-card {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    padding: clamp(1.2rem, 2.2vw, 1.7rem);
+    border: 1px solid rgba(255, 250, 242, 0.14);
+    border-radius: var(--radius);
+    background: rgba(255, 250, 242, 0.05);
+  }
+.coding-card__week {
+    color: var(--pink);
+    font-family: var(--font-serif);
+    font-size: 0.74rem;
+    font-style: italic;
+  }
+.coding-card h3 {
+    color: var(--cream-light);
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.coding-card ul {
+    display: grid;
+    gap: 0.4rem;
+  }
+.coding-card li {
+    position: relative;
+    padding-left: 0.85rem;
+    color: rgba(255, 250, 242, 0.68);
+    font-size: 0.74rem;
+    line-height: 1.55;
+  }
+.coding-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--pink);
+  }
+.coding-card__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.3rem;
+  }
+.coding-card__tools span {
+    padding: 0.22rem 0.5rem;
+    border: 1px solid rgba(255, 250, 242, 0.18);
+    border-radius: 999px;
+    color: rgba(255, 250, 242, 0.7);
+    font-size: 0.56rem;
+  }
+.coding__note {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    max-width: 780px;
+    margin-top: 1.8rem;
+    padding: 0.9rem 1rem;
+    border-left: 2px solid var(--pink);
+    border-radius: 0 12px 12px 0;
+    background: rgba(255, 250, 242, 0.05);
+  }
+.coding__note :global(svg) {
+    flex: 0 0 auto;
+    margin-top: 0.1rem;
+    color: var(--pink);
+  }
+.coding__note p {
+    color: rgba(255, 250, 242, 0.72);
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+:global(.coding__doodle) {
+    width: clamp(44px, 6vw, 80px);
+    top: 8%;
+    right: 5%;
+    color: var(--pink);
+    opacity: 0.4;
+  }
+/* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+  }
+.price-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.4rem, 2.6vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+.price-card--featured {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: var(--cream-light);
+    box-shadow: var(--shadow);
+  }
+.price-card__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: var(--pink);
+    color: var(--white);
+    font-size: 0.54rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+.price-card__head {
+    display: grid;
+    gap: 0.5rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+.price-card--featured .price-card__head {
+    border-color: rgba(255, 250, 242, 0.16);
+  }
+.price-card__label {
+    color: var(--pink-deep);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+.price-card--featured .price-card__label {
+    color: var(--pink);
+  }
+.price-card__amount {
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 4vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+.price-card--featured .price-card__amount {
+    color: var(--cream-light);
+    padding-right: 4.6rem;
+  }
+.price-card__amount > span {
+    font-size: 0.45em;
+    vertical-align: top;
+    margin-right: 0.1em;
+  }
+.price-card__amount small {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+.price-card--featured .price-card__amount small {
+    color: rgba(255, 250, 242, 0.55);
+  }
+.price-card__head p {
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+.price-card--featured .price-card__head p {
+    color: rgba(255, 250, 242, 0.66);
+  }
+.price-card__list {
+    display: grid;
+    gap: 0.55rem;
+    margin-block: 1.1rem;
+  }
+.price-card__list li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 0.5rem;
+    align-items: start;
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+.price-card__list li::before {
+    content: '✓';
+    color: var(--pink-deep);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+.price-card--featured .price-card__list li {
+    color: rgba(255, 250, 242, 0.78);
+  }
+.price-card--featured .price-card__list li::before {
+    color: var(--pink);
+  }
+.price-card__cta {
+    margin-top: auto;
+    justify-content: center;
+  }
+/* FAQ */
+  .faq-section__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+.faq-section__intro {
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 430px;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+.faq-section__intro h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.faq-section__list :global(.faq-list) {
+    margin-inline: 0;
+  }
+
+  @media (max-width: 1024px) {
+.promise-grid, .gains-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+.everyday-grid, .coding-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+.pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 620px;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 900px) {
+.schedule__grid, .coding__head, .faq-section__inner {
+      grid-template-columns: 1fr;
+    }
+.schedule__intro, .faq-section__intro {
+      position: static;
+      max-width: none;
+    }
+.summer-intro__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 1.2rem;
+    }
+.summer-intro__stats div:nth-child(2) {
+      border-right: none;
+    }
+.coding__head h2 {
+      max-width: 22ch;
+    }
+  }
+
+  @media (max-width: 720px) {
+.promise-grid, .parent-grid, .everyday-grid, .gains-grid, .coding-grid {
+      grid-template-columns: 1fr;
+    }
+.weeks-grid {
+      grid-template-columns: 1fr;
+    }
+.week-card, .week-card:nth-child(4), .week-card:nth-child(5) {
+      grid-column: auto;
+    }
+.schedule-row {
+      grid-template-columns: 1fr;
+    }
+.schedule-row__time {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 0.65rem 1rem;
+    }
+.schedule__closing {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 560px) {
+.summer-facts {
+      grid-template-columns: 1fr;
+    }
+.summer-intro__stats {
+      grid-template-columns: 1fr;
+    }
+.summer-intro__stats div {
+      border-right: none;
+    }
+  }
+</style>

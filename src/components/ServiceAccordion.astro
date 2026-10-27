@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+
+interface Props {
+  openFirst?: boolean;
+}
+const { openFirst = false } = Astro.props;
+---
+
+<div class="service-accordion accordion">
+  {
+    services.map((service, index) => (
+      <details open={openFirst && index === 0}>
+        <summary>
+          <span class="service-accordion__summary">
+            <span class:list={['service-accordion__icon', `service-accordion__icon--${service.accent}`]}>
+              <Icon name={service.icon} size={18} />
+            </span>
+            <span>{service.title}</span>
+          </span>
+        </summary>
+        <div class="accordion__body">
+          <p>{service.summary}</p>
+          <ul>
+            {service.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+.service-accordion__summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+.service-accordion__icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.service-accordion__icon--sage {
+    background: var(--sage);
+    color: var(--sage-ink);
+  }
+.service-accordion__icon--gold {
+    background: var(--gold-soft);
+    color: #7f5a1f;
+  }
+.service-accordion__icon--plum {
+    background: rgba(45, 22, 116, 0.09);
+    color: var(--purple);
+  }
+.accordion__body p {
+    margin-bottom: 0.8rem;
+  }
+</style>

@@ -1,0 +1,17 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# QA artifacts
+screens/
+.code-review-graph/
+
+# Local files
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log

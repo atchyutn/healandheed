@@ -1,0 +1,42 @@
+---
+interface Props {
+  items?: string[];
+}
+const {
+  items = [
+    'Heal with care',
+    'Heed with heart',
+    'Parent-friendly care',
+    'Small steps, real progress',
+    'Occupational therapy',
+    'Behaviour therapy',
+    'Speech therapy',
+    'Special education',
+  ],
+} = Astro.props;
+---
+
+<div class="brand-marquee" aria-hidden="true">
+  <div class="marquee">
+    <div class="marquee__track">
+      {items.map((item) => <span class="marquee__item">{item}</span>)}
+    </div>
+    <div class="marquee__track">
+      {items.map((item) => <span class="marquee__item">{item}</span>)}
+    </div>
+  </div>
+</div>
+
+<style>
+.brand-marquee {
+    padding-block: 1.05rem;
+    border-block: 1px solid var(--line);
+    background: var(--cream-light);
+    overflow: hidden;
+  }
+.brand-marquee .marquee__item {
+    color: var(--purple);
+    font-size: 0.67rem;
+    letter-spacing: 0.15em;
+  }
+</style>

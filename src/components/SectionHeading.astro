@@ -1,0 +1,48 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  accent?: string;
+  lead?: string;
+  note?: string;
+  align?: 'center' | 'left' | 'row';
+  class?: string;
+  titleId?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  accent,
+  lead,
+  note,
+  align = 'center',
+  class: className = '',
+  titleId,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'section-head',
+    align === 'left' && 'section-head--left',
+    align === 'row' && 'section-head--row',
+    className,
+  ]}
+>
+  <div class="section-head__title">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h2 id={titleId}>
+      {title}{accent && <> <em class="section-head__accent">{accent}</em></>}
+    </h2>
+  </div>
+  {lead && <p class="lead">{lead}</p>}
+  {note && <p class="section-head__note">{note}</p>}
+  <slot />
+</div>
+
+<style>
+.section-head__accent {
+    color: var(--pink-deep);
+  }
+</style>

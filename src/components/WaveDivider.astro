@@ -1,0 +1,34 @@
+---
+interface Props {
+  color?: string;
+  flip?: boolean;
+  className?: string;
+}
+const { color = 'var(--cream)', flip = false, className = '' } = Astro.props;
+---
+
+<svg
+  class:list={['wave', flip && 'wave--flip', className]}
+  viewBox="0 0 1440 90"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+  style={`color:${color}`}
+>
+  <path
+    d="M0 48C120 22 230 8 362 14c151 7 206 50 352 49 149-1 218-46 365-49 138-2 242 11 361 34v42H0V48Z"
+    fill="currentColor"
+  />
+</svg>
+
+<style>
+.wave {
+    display: block;
+    width: 100%;
+    height: clamp(42px, 6vw, 88px);
+    margin-block: -1px;
+  }
+.wave--flip {
+    transform: scaleY(-1);
+  }
+</style>

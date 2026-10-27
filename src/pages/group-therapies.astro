@@ -1,0 +1,699 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Doodle from '../components/Doodle.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { images } from '../lib/images';
+import { site } from '../data/site';
+import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
+
+const description =
+  'Saturday group therapy at Heal & Heed in L.B. Nagar, Hyderabad. A small, structured group where children practise movement, communication, turn-taking and social confidence.';
+
+const groupFaqs = [
+  {
+    q: 'Is group therapy every Saturday?',
+    a: 'Group sessions are scheduled on Saturdays. Dates can vary, so message or call us to confirm the next session before you plan your visit.',
+  },
+  {
+    q: 'What ages attend the group?',
+    a: 'The group is mixed by age and need. Tell us your child’s age and what you would like them to practise, and we will let you know whether the next session is a good fit.',
+  },
+  {
+    q: 'Do parents stay during the session?',
+    a: 'Yes. A parent or caregiver stays close and may be asked to join in and guide their child. The session is designed to be shared, not a drop-off.',
+  },
+  {
+    q: 'Is group therapy a replacement for one-to-one therapy?',
+    a: 'No. It complements individual therapy. One-to-one sessions build specific skills; group sessions give children a real, supportive place to use them with other people.',
+  },
+  {
+    q: 'What should we bring?',
+    a: 'Comfortable clothes and a water bottle. We provide the equipment for the activities. If your child has any particular sensory or movement needs, tell us in advance so we can prepare.',
+  },
+  {
+    q: 'How do I find out the fee and availability?',
+    a: 'Message or call us with your child’s age. We will share the current fee, the next available date and anything else you need to know.',
+  },
+];
+
+const groupServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Saturday Group Therapy',
+  description,
+  provider: { '@id': `${site.url}/#organization` },
+  areaServed: { '@type': 'City', name: 'Hyderabad' },
+  serviceType: 'Group therapy for children',
+};
+
+const schemas = [
+  webPageSchema({
+    name: 'Saturday group therapy',
+    description,
+    path: '/group-therapies/',
+  }),
+  groupServiceSchema,
+  faqSchema(groupFaqs),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Group therapy', path: '/group-therapies/' },
+  ]),
+];
+
+const sessionSteps = [
+  {
+    number: '01',
+    title: 'Welcome circle',
+    text: 'We begin together with a greeting, a check-in and a look at the plan for the session. Knowing what comes next helps children settle and join in.',
+    goals: ['Greeting', 'Group belonging', 'Routine'],
+  },
+  {
+    number: '02',
+    title: 'Visual tracking path',
+    text: 'A wide tape line runs across the floor, starting straight and turning into a zigzag. Each child follows the path with a stick and disc cone, with a parent close by for gentle guidance.',
+    goals: ['Hand-eye coordination', 'Body balance', 'Visual tracking', 'Focus'],
+  },
+  {
+    number: '03',
+    title: 'Point-to-point foot coordination',
+    text: 'Colourful sponge balls are placed beside plastic glasses. Children use their feet to pick up each ball and drop it into the matching glass — a playful challenge that asks for balance and planning.',
+    goals: ['Foot grasp', 'Bilateral coordination', 'Balance', 'Problem-solving'],
+  },
+  {
+    number: '04',
+    title: 'Rhyme time',
+    text: 'We sing a familiar rhyme and swap in different animals — lion, tiger, horse — inviting children to join in, remember the order and add their own ideas.',
+    goals: ['Memory', 'Language', 'Rhythm', 'Group participation'],
+  },
+  {
+    number: '05',
+    title: 'Calm close',
+    text: 'A short recap of what we did, a goodbye routine and a handover to parents. Children leave knowing what they achieved and what comes next.',
+    goals: ['Reflection', 'Transition', 'Confidence'],
+  },
+];
+
+const skills = [
+  { label: 'Hand-eye coordination', icon: 'hands' },
+  { label: 'Visual tracking', icon: 'star' },
+  { label: 'Body balance', icon: 'sprout' },
+  { label: 'Foot and toe control', icon: 'puzzle' },
+  { label: 'Bilateral coordination', icon: 'link' },
+  { label: 'Focus and attention', icon: 'brain' },
+  { label: 'Memory and language', icon: 'chat' },
+  { label: 'Problem-solving', icon: 'blocks' },
+  { label: 'Confidence with peers', icon: 'users' },
+];
+---
+
+<BaseLayout
+  title="Saturday group therapy — Movement, play and connection"
+  description={description}
+  jsonLd={schemas}
+>
+  <PageHero
+    eyebrow="Saturday group therapy"
+    title="Connection is a skill."
+    accent="Here, it is practised."
+    lead="A small, structured group where children can move, play, sing and practise being with others — with a parent or caregiver close by."
+    image={images.kid}
+    imageAlt="Illustration of a child playing with a toy car"
+    imageTone="sage"
+    badge="Saturdays · L.B. Nagar, Hyderabad"
+  >
+    <div class="group-facts" aria-label="Session at a glance">
+      <div>
+        <span>When</span>
+        <strong>Saturdays</strong>
+      </div>
+      <div>
+        <span>Typical session</span>
+        <strong>11:00 AM – 12:30 PM</strong>
+      </div>
+      <div>
+        <span>Where</span>
+        <strong>L.B. Nagar centre</strong>
+      </div>
+      <div>
+        <span>Parent</span>
+        <strong>Stays close by</strong>
+      </div>
+    </div>
+
+    <div class="button-row group-actions">
+      <a
+        class="btn"
+        href={site.whatsappGroup}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ask about the next session
+        <Icon name="arrow" size={15} />
+      </a>
+      <a class="btn btn--secondary" href={site.phoneHref}>
+        <Icon name="phone" size={15} />
+        {site.phone}
+      </a>
+    </div>
+  </PageHero>
+
+  <!-- Why group -->
+  <section class="section section--cream group-why">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Why group therapy"
+        title="Skills need"
+        accent="a real audience."
+        lead="Children can practise a skill in a session room and still find it hard with other children around. A small group closes that gap."
+      />
+
+      <div class="why-grid">
+        <article class="why-card reveal">
+          <span class="why-card__icon"><Icon name="users" size={22} /></span>
+          <h3>Practice with peers</h3>
+          <p>Turn-taking, waiting, sharing and joining in — practised with real children, not just talked about.</p>
+        </article>
+        <article class="why-card reveal" style="--reveal-delay:70ms">
+          <span class="why-card__icon why-card__icon--sage"><Icon name="puzzle" size={22} /></span>
+          <h3>Movement with purpose</h3>
+          <p>Balance, coordination and body awareness are built through activities that feel like play.</p>
+        </article>
+        <article class="why-card reveal" style="--reveal-delay:140ms">
+          <span class="why-card__icon why-card__icon--gold"><Icon name="chat" size={22} /></span>
+          <h3>Communication in context</h3>
+          <p>Songs, rhymes and group routines give children a reason to listen, remember and respond.</p>
+        </article>
+        <article class="why-card reveal" style="--reveal-delay:210ms">
+          <span class="why-card__icon why-card__icon--plum"><Icon name="heart" size={22} /></span>
+          <h3>Confidence that carries</h3>
+          <p>Small successes in front of others build the kind of confidence that shows up at school and home.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Session -->
+  <section class="section section--white session" id="session">
+    <div class="container session__grid">
+      <div class="session__intro reveal">
+        <span class="eyebrow">A session, step by step</span>
+        <h2>Structured enough to feel safe. <em>Playful enough to join in.</em></h2>
+        <p class="lead">
+          Every session has a clear beginning, middle and end. The activities
+          change, but the rhythm stays familiar.
+        </p>
+        <p>
+          Parents and caregivers are part of the room. You may be asked to guide
+          a hand, cheer a try or simply stay close so your child feels steady.
+        </p>
+        <a
+          class="btn"
+          href={site.whatsappGroup}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ask about the next date
+          <Icon name="arrow" size={15} />
+        </a>
+        <Doodle type="butterfly" class="session__butterfly" />
+      </div>
+
+      <ol class="session-steps">
+        {sessionSteps.map((step, index) => (
+          <li class="session-step reveal" style={`--reveal-delay:${index * 55}ms`}>
+            <span class="session-step__number">{step.number}</span>
+            <div class="session-step__body">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              <div class="session-step__goals">
+                {step.goals.map((goal) => <span>{goal}</span>)}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section section--sage skills">
+    <Doodle type="sun" class="skills__sun" />
+    <Doodle type="leaf" class="skills__leaf" />
+    <div class="container">
+      <SectionHeading
+        eyebrow="Skills in the room"
+        title="What children"
+        accent="practise."
+        lead="Group therapy is not a performance. It is a place to try, wobble, try again and discover what is possible."
+      />
+
+      <div class="skills-grid">
+        {skills.map((skill, index) => (
+          <div class="skill reveal" style={`--reveal-delay:${index * 40}ms`}>
+            <span class="skill__icon"><Icon name={skill.icon} size={19} /></span>
+            <span>{skill.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="skills__note reveal">
+        Have a specific goal in mind? Tell us. We will be honest about whether
+        the group or one-to-one therapy is the better fit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Practical details -->
+  <section class="section section--cream practical">
+    <div class="container practical__grid">
+      <div class="practical__copy reveal">
+        <span class="eyebrow">Practical details</span>
+        <h2>What to expect <em>before you come.</em></h2>
+        <p class="lead">
+          Group sessions are kept small so every child has room to take part.
+          Message us before your first visit so we can plan for your child.
+        </p>
+        <a
+          class="btn"
+          href={site.whatsappGroup}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="whatsapp" size={16} />
+          Message us on WhatsApp
+        </a>
+      </div>
+
+      <div class="practical-grid reveal" style="--reveal-delay:120ms">
+        <article>
+          <span><Icon name="calendar" size={18} /></span>
+          <h3>When</h3>
+          <p>Saturdays. The typical session runs 11:00 AM–12:30 PM. Dates can vary, so confirm before you come.</p>
+        </article>
+        <article>
+          <span><Icon name="pin" size={18} /></span>
+          <h3>Where</h3>
+          <p>Heal &amp; Heed, L.B. Nagar, Hyderabad. Easy to reach and close to public transport.</p>
+        </article>
+        <article>
+          <span><Icon name="users" size={18} /></span>
+          <h3>Who stays</h3>
+          <p>A parent or caregiver stays close and may join in. This is a shared session, not a drop-off.</p>
+        </article>
+        <article>
+          <span><Icon name="heart" size={18} /></span>
+          <h3>What to bring</h3>
+          <p>Comfortable clothes and a water bottle. We provide the equipment for the activities.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white faq-section">
+    <div class="container faq-section__inner">
+      <div class="faq-section__intro reveal">
+        <span class="eyebrow">Good to know</span>
+        <h2>Questions before <em>you join.</em></h2>
+        <p class="lead">
+          If you are unsure whether the group is right for your child, send us a
+          message with their age and what you would like to work on.
+        </p>
+        <a class="text-link" href="/contact/">
+          Talk to our team
+          <Icon name="arrow" size={14} />
+        </a>
+      </div>
+      <div class="faq-section__list reveal" style="--reveal-delay:120ms">
+        <FaqList items={groupFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Small group, real practice"
+    title="Let’s find the next"
+    accent="session for your child."
+    text="Tell us your child’s age and what you would like them to practise. We will share the next available date and whether the group is a good fit."
+    primaryLabel="Message us on WhatsApp"
+    primaryHref={site.whatsappGroup}
+    secondaryLabel="Call our team"
+    secondaryHref={site.phoneHref}
+  />
+</BaseLayout>
+
+<style>
+/* Hero */
+  .group-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+    margin-top: 1.2rem;
+    text-align: left;
+  }
+.group-facts > div {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid rgba(45, 22, 116, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 253, 249, 0.6);
+  }
+.group-facts span {
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+.group-facts strong {
+    color: var(--purple);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+.group-actions {
+    margin-top: 0.6rem;
+  }
+/* Why */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+.why-card {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    padding: clamp(1.3rem, 2.4vw, 1.9rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+.why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+.why-card__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.why-card__icon--sage {
+    background: var(--sage);
+    color: var(--sage-ink);
+  }
+.why-card__icon--gold {
+    background: var(--gold-soft);
+    color: #7f5a1f;
+  }
+.why-card__icon--plum {
+    background: rgba(45, 22, 116, 0.08);
+    color: var(--purple);
+  }
+.why-card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.why-card p {
+    color: var(--muted);
+    font-size: 0.79rem;
+    line-height: 1.67;
+  }
+/* Session */
+  .session__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+.session__intro {
+    display: grid;
+    justify-items: start;
+    gap: 1.05rem;
+    max-width: 430px;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+.session__intro h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.session__intro p:not(.lead) {
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+:global(.session__butterfly) {
+    width: clamp(45px, 6vw, 80px);
+    right: 6%;
+    bottom: 1%;
+    color: var(--pink);
+    opacity: 0.4;
+  }
+.session-steps {
+    position: relative;
+    display: grid;
+    gap: 0.8rem;
+    padding-left: 1.25rem;
+  }
+.session-steps::before {
+    content: '';
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    width: 1px;
+    background: var(--line);
+  }
+.session-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 0.85rem;
+    align-items: start;
+    padding: 1.15rem 1.2rem;
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+  }
+.session-step__number {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    font-style: italic;
+  }
+.session-step__body h3 {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+.session-step__body p {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+.session-step__goals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.65rem;
+  }
+.session-step__goals span {
+    padding: 0.22rem 0.5rem;
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--pink-deep);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+/* Skills */
+  .skills {
+    position: relative;
+    overflow: clip;
+  }
+.skills-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+.skill {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 0.9rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 253, 249, 0.6);
+    color: var(--purple);
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+.skill__icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.skills__note {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 1.4rem auto 0;
+    color: var(--sage-ink);
+    font-size: 0.8rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+:global(.skills__sun) {
+    width: clamp(48px, 6vw, 78px);
+    top: 8%;
+    right: 4%;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+:global(.skills__leaf) {
+    width: clamp(55px, 7vw, 95px);
+    left: 2%;
+    bottom: 6%;
+    color: var(--sage-ink);
+    opacity: 0.35;
+  }
+/* Practical */
+  .practical__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+.practical__copy {
+    display: grid;
+    justify-items: start;
+    gap: 1.05rem;
+    max-width: 450px;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+.practical__copy h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.practical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+.practical-grid article {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+  }
+.practical-grid article > span {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+.practical-grid h3 {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+.practical-grid p {
+    color: var(--muted);
+    font-size: 0.76rem;
+    line-height: 1.65;
+  }
+/* FAQ */
+  .faq-section__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+.faq-section__intro {
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 430px;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+.faq-section__intro h2 em {
+    color: var(--pink-deep);
+    font-style: italic;
+  }
+.faq-section__list :global(.faq-list) {
+    margin-inline: 0;
+  }
+
+  @media (max-width: 1024px) {
+.why-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+.session__grid, .practical__grid, .faq-section__inner {
+      grid-template-columns: 1fr;
+    }
+.session__intro, .practical__copy, .faq-section__intro {
+      position: static;
+      max-width: none;
+    }
+.skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+.why-grid, .practical-grid, .skills-grid {
+      grid-template-columns: 1fr;
+    }
+.group-facts {
+      grid-template-columns: 1fr;
+    }
+.session-steps {
+      padding-left: 0.6rem;
+    }
+.session-step {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

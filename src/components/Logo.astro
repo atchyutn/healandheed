@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../lib/images';
+
+interface Props {
+  class?: string;
+  width?: number;
+  eager?: boolean;
+}
+
+const { class: className = '', width = 220, eager = false } = Astro.props;
+---
+
+<Image
+  src={images.hLogo}
+  alt="Heal & Heed — child development and rehabilitation center"
+  widths={[160, 220, 320, 440]}
+  sizes={`(max-width: 720px) 150px, ${width}px`}
+  width={width}
+  format="webp"
+  quality={88}
+  class={className}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+/>

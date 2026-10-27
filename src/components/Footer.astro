@@ -1,0 +1,313 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__grid container">
+    <div class="footer-brand">
+      <a class="footer-logo" href="/" aria-label="Heal & Heed home">
+        <Logo width={236} />
+      </a>
+      <p class="footer-tagline">Nurturing children. Supporting families. Growing together.</p>
+      <div class="footer-socials" aria-label="Social links">
+        {
+          site.socials.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${site.name} on ${social.label}`}
+            >
+              <Icon name={social.icon} size={18} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <nav class="footer-col" aria-label="Footer navigation">
+      <h2 class="footer-heading">Explore</h2>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About us</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/summer-program/">Summer programme 2026</a></li>
+        <li><a href="/online-sessions/">Online sessions</a></li>
+        <li><a href="/group-therapies/">Group therapy</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Contact us</h2>
+      <ul class="footer-contact">
+        <li>
+          <Icon name="phone" size={17} />
+          <a href={site.phoneHref}>{site.phone}</a>
+        </li>
+        <li>
+          <Icon name="pin" size={17} />
+          <address>
+            {site.address.line1},<br />
+            {site.address.line2},<br />
+            {site.address.line3},<br />
+            {site.address.line4}, {site.address.line5}
+          </address>
+        </li>
+        <li>
+          <Icon name="clock" size={17} />
+          <span>{site.hours}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-visit">
+      <h2 class="footer-heading">Find us</h2>
+      <a
+        class="footer-map"
+        href={site.mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Heal & Heed location in Google Maps"
+      >
+        <svg viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+          <rect width="320" height="180" rx="18" fill="#f5ead9" />
+          <path d="M-10 130 74 85l63 26 58-41 135 49" fill="none" stroke="#e4d4be" stroke-width="20" />
+          <path d="M37-10 84 54l-18 50 31 86" fill="none" stroke="#e4d4be" stroke-width="12" />
+          <path d="M210-10 195 49l52 34-12 107" fill="none" stroke="#e4d4be" stroke-width="14" />
+          <path d="M-10 49 70 37l48 26 74-16 146 25" fill="none" stroke="#d8e6cc" stroke-width="8" />
+          <circle cx="161" cy="87" r="34" fill="#e36c8a" opacity=".12" />
+          <circle cx="161" cy="87" r="22" fill="#e36c8a" opacity=".19" />
+          <path
+            d="M161 65c-8.3 0-15 6.6-15 14.8 0 11 15 26.2 15 26.2s15-15.2 15-26.2c0-8.2-6.7-14.8-15-14.8Z"
+            fill="#2d1674"
+          />
+          <circle cx="161" cy="80" r="5" fill="#faf4e9" />
+        </svg>
+        <span class="footer-map__label">
+          <span>L.B. Nagar, Hyderabad</span>
+          <span>Get directions <Icon name="arrow" size={13} /></span>
+        </span>
+      </a>
+      <a class="footer-book" href="/online-sessions/">
+        Book an appointment
+        <Icon name="arrow" size={15} />
+      </a>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom container">
+    <p>© {year} {site.legalName}. All rights reserved.</p>
+    <p class="site-footer__note">Heal with care, heed with heart.</p>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+    position: relative;
+    background: var(--sage);
+    color: var(--ink);
+    padding-block: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+.site-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(45, 22, 116, 0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: linear-gradient(to bottom, transparent, black 35%);
+  }
+.site-footer__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.35fr 0.8fr 1.05fr 1.1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+.footer-brand {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 1.2rem;
+  }
+.footer-logo {
+    display: inline-flex;
+    padding: 0.7rem 0.9rem;
+    border-radius: 18px;
+    background: var(--cream-light);
+    box-shadow: var(--shadow-sm);
+  }
+.footer-logo :global(img) {
+    width: 196px;
+    height: auto;
+  }
+.footer-tagline {
+    max-width: 30ch;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+.footer-socials {
+    display: flex;
+    gap: 0.55rem;
+  }
+.footer-socials a {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(45, 22, 116, 0.18);
+    border-radius: 50%;
+    color: var(--purple);
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease),
+      transform 0.2s var(--ease);
+  }
+.footer-socials a:hover {
+    background: var(--purple);
+    color: var(--cream-light);
+    transform: translateY(-2px);
+  }
+.footer-heading {
+    margin-bottom: 1.15rem;
+    color: var(--purple);
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+.footer-links {
+    display: grid;
+    gap: 0.55rem;
+  }
+.footer-links a {
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+.footer-links a:hover {
+    color: var(--purple);
+    text-decoration: underline;
+  }
+.footer-contact {
+    display: grid;
+    gap: 0.85rem;
+  }
+.footer-contact li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 0.6rem;
+    align-items: start;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+.footer-contact :global(svg) {
+    margin-top: 0.16rem;
+    color: var(--purple);
+  }
+.footer-contact a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+.footer-contact a:hover {
+    color: var(--purple);
+  }
+.footer-visit {
+    display: grid;
+    align-content: start;
+  }
+.footer-map {
+    display: grid;
+    gap: 0.7rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+.footer-map svg {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s var(--ease);
+  }
+.footer-map:hover svg {
+    transform: translateY(-2px);
+  }
+.footer-map__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+  }
+.footer-map__label span:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--purple);
+    font-weight: 600;
+  }
+.footer-book {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1rem;
+    color: var(--purple);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(45, 22, 116, 0.25);
+    justify-self: start;
+    padding-bottom: 0.15rem;
+  }
+.footer-book:hover {
+    color: var(--pink-deep);
+    border-color: var(--pink-deep);
+  }
+.site-footer__bottom {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(45, 22, 116, 0.16);
+    color: rgba(43, 26, 51, 0.72);
+    font-size: 0.68rem;
+  }
+.site-footer__note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--purple);
+  }
+
+  @media (max-width: 980px) {
+.site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+.footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 560px) {
+.site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+.footer-brand {
+      grid-column: auto;
+    }
+.site-footer__bottom {
+      flex-direction: column;
+    }
+  }
+</style>
