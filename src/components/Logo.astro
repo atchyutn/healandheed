@@ -6,19 +6,27 @@ interface Props {
   class?: string;
   width?: number;
   eager?: boolean;
+  variant?: 'default' | 'white';
 }
 
-const { class: className = '', width = 220, eager = false } = Astro.props;
+const {
+  class: className = '',
+  width = 220,
+  eager = false,
+  variant = 'default',
+} = Astro.props;
+
+const source = variant === 'white' ? images.hLogoWhite : images.hLogo;
 ---
 
 <Image
-  src={images.hLogo}
+  src={source}
   alt="Heal & Heed — child development and rehabilitation center"
-  widths={[160, 220, 320, 440]}
-  sizes={`(max-width: 720px) 150px, ${width}px`}
+  widths={[160, 220, 280, 360, 480]}
+  sizes={`(max-width: 520px) 150px, (max-width: 980px) 190px, ${width}px`}
   width={width}
   format="webp"
-  quality={88}
+  quality={90}
   class={className}
   loading={eager ? 'eager' : 'lazy'}
   fetchpriority={eager ? 'high' : 'auto'}

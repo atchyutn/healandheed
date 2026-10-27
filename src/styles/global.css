@@ -35,7 +35,7 @@
   --container: 1180px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
   --ease: cubic-bezier(0.22, 0.72, 0.2, 1);
-  --header-h: 84px;
+  --header-h: 92px;
 }
 
 *,
@@ -493,6 +493,7 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 36px;
   color: var(--purple);
   font-size: 0.86rem;
   font-weight: 600;

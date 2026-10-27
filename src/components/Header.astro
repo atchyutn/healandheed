@@ -11,7 +11,9 @@ const isActive = (href: string) =>
 <header class="site-header" data-site-header>
   <div class="site-header__inner container">
     <a class="brand" href="/" aria-label="Heal & Heed home">
-      <Logo width={208} eager />
+      <span class="brand__plate">
+        <Logo width={250} variant="white" eager />
+      </span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -96,7 +98,7 @@ const isActive = (href: string) =>
     const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]');
     const scrim = header.querySelector<HTMLElement>('[data-menu-scrim]');
     const panel = header.querySelector<HTMLElement>('[data-mobile-menu]');
-    const closeLabel = 'Close menu';
+    const closeLabel = 'Close';
     const openLabel = 'Menu';
 
     const setMenu = (open: boolean) => {
@@ -171,11 +173,32 @@ const isActive = (href: string) =>
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    padding-block: 0.45rem;
+    padding-block: 0.4rem;
+    text-decoration: none;
+  }
+.brand__plate {
+    display: inline-flex;
+    padding: 6px;
+    border-radius: 17px;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.22), transparent 42%),
+      linear-gradient(135deg, #43239e 0%, var(--purple) 58%, #211056 100%);
+    box-shadow:
+      0 14px 26px -16px rgba(45, 22, 116, 0.75),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+.brand:hover .brand__plate {
+    transform: translateY(-1px);
+    box-shadow:
+      0 18px 32px -16px rgba(45, 22, 116, 0.8),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.26);
   }
 .brand :global(img) {
-    width: clamp(152px, 16vw, 208px);
+    display: block;
+    width: clamp(166px, 18vw, 250px);
     height: auto;
+    border-radius: 12px;
   }
 .desktop-nav {
     margin-left: auto;
@@ -225,6 +248,8 @@ const isActive = (href: string) =>
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
+    min-height: 44px;
+    padding-inline: 0.25rem;
     color: var(--ink-soft);
     font-size: 0.7rem;
     font-weight: 500;
@@ -241,6 +266,7 @@ const isActive = (href: string) =>
     display: none;
     align-items: center;
     gap: 0.6rem;
+    min-height: 44px;
     padding: 0.55rem 0.8rem;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -332,6 +358,7 @@ const isActive = (href: string) =>
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    min-height: 44px;
     color: var(--purple);
     font-size: 0.85rem;
     font-weight: 600;
@@ -368,7 +395,27 @@ const isActive = (href: string) =>
       display: none;
     }
 .brand :global(img) {
-      width: 138px;
+      width: 150px;
+    }
+.brand__plate {
+      padding: 5px;
+      border-radius: 15px;
+    }
+.brand :global(img) {
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 360px) {
+.site-header__inner {
+      gap: 0.65rem;
+    }
+.brand :global(img) {
+      width: 134px;
+    }
+.menu-toggle {
+      padding: 0.55rem 0.65rem;
+      letter-spacing: 0.02em;
     }
   }
 </style>

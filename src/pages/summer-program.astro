@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Doodle from '../components/Doodle.astro';
 import FaqList from '../components/FaqList.astro';
 import Icon from '../components/Icon.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { images } from '../lib/images';
 import {
   codingWeeks,
   summer,
@@ -30,7 +30,31 @@ const closingBlock = summerSchedule.find(
 );
 
 const description =
-  'Heal & Heed Summer Programme 2026 in L.B. Nagar, Hyderabad. Five weeks of therapeutic play, life skills and social learning for children aged 2–12, with an optional coding add-on.';
+  'Five weeks of therapeutic play, life skills and social learning for children aged 2–12 in L.B. Nagar, Hyderabad. Optional coding add-on.';
+
+const summerOffers = [
+  {
+    '@type': 'Offer',
+    name: 'Therapy Programme',
+    price: '5000',
+    priceCurrency: 'INR',
+    description: 'Five weeks of structured therapeutic activities, Monday to Friday, 10:00 AM to 3:00 PM.',
+  },
+  {
+    '@type': 'Offer',
+    name: 'Programming Add-On',
+    price: '3000',
+    priceCurrency: 'INR',
+    description: 'Optional coding session, 3:00 PM to 4:00 PM, or standalone enrolment for children aged 4–12.',
+  },
+  {
+    '@type': 'Offer',
+    name: 'Therapy and Programming',
+    price: '8000',
+    priceCurrency: 'INR',
+    description: 'The full programme, including the therapy day and the coding add-on.',
+  },
+];
 
 const summerServiceSchema = {
   '@context': 'https://schema.org',
@@ -44,29 +68,30 @@ const summerServiceSchema = {
     suggestedMinAge: 2,
     suggestedMaxAge: 12,
   },
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Therapy Programme',
-      price: '5000',
-      priceCurrency: 'INR',
-      description: 'Five weeks of structured therapeutic activities, Monday to Friday, 10:00 AM to 3:00 PM.',
+  offers: summerOffers,
+};
+
+const summerCourseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Heal & Heed Summer Programme 2026',
+  description,
+  provider: { '@id': `${site.url}/#organization` },
+  educationalLevel: 'Ages 2–12',
+  inLanguage: 'en-IN',
+  coursePrerequisites: 'No prior experience required.',
+  offers: summerOffers,
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    name: 'Summer Programme 2026 — five-week day programme',
+    courseMode: 'Onsite',
+    courseWorkload: 'PT125H',
+    location: {
+      '@type': 'Place',
+      name: site.name,
+      address: site.addressString,
     },
-    {
-      '@type': 'Offer',
-      name: 'Programming Add-On',
-      price: '3000',
-      priceCurrency: 'INR',
-      description: 'Optional coding session, 3:00 PM to 4:00 PM, or standalone enrolment for children aged 4–12.',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Therapy and Programming',
-      price: '8000',
-      priceCurrency: 'INR',
-      description: 'The full programme, including the therapy day and the coding add-on.',
-    },
-  ],
+  },
 };
 
 const schemas = [
@@ -76,6 +101,7 @@ const schemas = [
     path: '/summer-program/',
   }),
   summerServiceSchema,
+  summerCourseSchema,
   faqSchema(summerFaqs),
   breadcrumbSchema([
     { name: 'Home', path: '/' },
@@ -85,20 +111,33 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Summer Programme 2026 — Five weeks of play and progress"
+  title="Summer Programme 2026 in Hyderabad"
   description={description}
   jsonLd={schemas}
 >
   <PageHero
     eyebrow="Summer Programme 2026"
+    breadcrumb="Summer programme 2026"
     title="A summer of play,"
     accent="practice and progress."
     lead={summer.intro}
-    image={images.kid}
-    imageAlt="Illustration of a child playing with a toy car"
     imageTone="gold"
     badge="Five weeks · Ages 2–12 · L.B. Nagar"
   >
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="gold"
+      centerIcon="sun"
+      items={[
+        { icon: 'blocks' },
+        { icon: 'users' },
+        { icon: 'calendar' },
+        { icon: 'play' },
+      ]}
+      eyebrow="Five weeks · Ages 2–12"
+      title="Structure, play and room to grow."
+    />
     <div class="summer-facts" aria-label="Programme at a glance">
       <div>
         <span>Ages</span>

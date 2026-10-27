@@ -20,6 +20,7 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   canonical?: string;
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
@@ -30,6 +31,7 @@ const {
   title,
   description = site.description,
   image = `${site.url}/og-image.png`,
+  imageAlt = `${site.name} — ${site.tagline}`,
   canonical,
   type = 'website',
   noindex = false,
@@ -49,6 +51,7 @@ const organizationSchema = {
   '@id': `${site.url}/#organization`,
   name: site.legalName,
   alternateName: site.name,
+  slogan: site.tagline,
   url: site.url,
   logo: `${site.url}/android-chrome-512x512.png`,
   image: `${site.url}/og-image.png`,
@@ -57,6 +60,7 @@ const organizationSchema = {
   priceRange: '₹₹',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, UPI, Card',
+  hasMap: site.mapsUrl,
   address: {
     '@type': 'PostalAddress',
     streetAddress:
@@ -86,6 +90,29 @@ const organizationSchema = {
       closes: '18:00',
     },
   ],
+  openingHours: 'Mo-Sa 09:00-18:00',
+  knowsAbout: [
+    'Occupational therapy',
+    'Behaviour therapy',
+    'Speech therapy',
+    'Special education',
+    'Child development',
+    'Group therapy',
+  ],
+  medicalSpecialty: 'Pediatric',
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: site.calendly,
+      inLanguage: 'en-IN',
+      actionPlatform: [
+        'http://schema.org/DesktopWebPlatform',
+        'http://schema.org/MobileWebPlatform',
+      ],
+    },
+    result: { '@type': 'Reservation', name: 'Book a therapy session' },
+  },
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+917416848323',
@@ -138,14 +165,20 @@ const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
     <meta name="description" content={description} />
     <meta name="author" content={site.legalName} />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#faf4e9" />
     <meta name="format-detection" content="telephone=yes" />
     <meta name="geo.region" content="IN-TG" />
     <meta name="geo.placename" content="Hyderabad" />
+    <meta name="application-name" content={site.name} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en-in" href={canonicalUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {site.socials.map((social) => <link rel="me" href={social.href} />)}
+    <link rel="dns-prefetch" href="https://calendly.com" />
+    {import.meta.env.PROD && <link rel="preconnect" href="https://www.googletagmanager.com" />}
 
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={site.name} />
@@ -153,13 +186,21 @@ const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content={`${site.name} — ${site.tagline}`} />
+    <meta property="og:image:alt" content={imageAlt} />
+    {imageUrl.endsWith('/og-image.png') && (
+      <>
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
     <meta property="og:locale" content="en_IN" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

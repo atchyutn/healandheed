@@ -40,14 +40,14 @@ Old URLs are kept alive with meta-refresh redirect pages in `public/pages/` and 
 ```
 src/
   assets/          brand illustrations and logos (kid.svg, doctor.svg, logo.png)
-  components/      Header, Footer, PageHero, Doodle, Icon, sliders, sections
+  components/      Header, Footer, PageHero, ArtPanel, Doodle, Icon, sections
   data/            all editable copy: site.ts, services.ts, content.ts, faqs.ts, summer.ts
   layouts/         BaseLayout.astro (SEO, schema, fonts, analytics, WhatsApp button)
   lib/             image imports and JSON-LD builders
   pages/           one file per route
   styles/          global.css design tokens and shared styles
 public/            favicons, manifest, robots.txt, CNAME, OG image, legacy redirects
-scripts/           generate-og.mjs, shoot.mjs (screenshots), fix-doodle-scope.py
+scripts/           generate-og.mjs, shoot.mjs (screenshots)
 ```
 
 ## Editing content
@@ -66,10 +66,12 @@ Page-specific copy sits directly in the matching `.astro` file.
 
 Tokens are defined once in `src/styles/global.css` (`:root`): cream/pink/sage/purple palette, Playfair Display + Sora, spacing, radii and shadows. Fonts are self-hosted through `@fontsource` packages, so no Google Fonts request is made at runtime.
 
+The header uses the white-background logo mark on a purple plate. Page and section visuals are built with `ArtPanel.astro` (icon-led compositions) so the character illustrations stay reserved for a few high-value spots instead of being repeated on every section.
+
 ## SEO
 
 - Canonical, Open Graph and Twitter tags per page (`BaseLayout.astro` + `src/lib/schema.ts`)
-- `LocalBusiness`/`MedicalBusiness` and `FAQPage` JSON-LD, plus breadcrumbs
+- `LocalBusiness`/`MedicalBusiness`, `Service`, `Course` and `FAQPage` JSON-LD, plus breadcrumbs
 - `@astrojs/sitemap` generates `sitemap-index.xml` on build; `404` is excluded
 - `public/robots.txt`, web manifest and favicons are in place
 - Images ship with width/height and lazy loading except hero art

@@ -1,19 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Doodle from '../components/Doodle.astro';
 import FaqList from '../components/FaqList.astro';
 import Icon from '../components/Icon.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { images } from '../lib/images';
 import { careFormats, services } from '../data/services';
 import { servicesFaqs } from '../data/faqs';
 import { site } from '../data/site';
 import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
 
 const description =
-  'Occupational therapy, behaviour therapy, speech therapy and special education for children in L.B. Nagar, Hyderabad. Personalised plans, in-person and online support.';
+  'Occupational, behaviour, speech therapy and special education for children in L.B. Nagar, Hyderabad. Personalised in-person and online support.';
 
 const serviceListSchema = {
   '@context': 'https://schema.org',
@@ -50,20 +50,33 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Our services — Therapy and special education for children"
+  title="Child Therapy & Special Education Services"
   description={description}
   jsonLd={schemas}
 >
   <PageHero
     eyebrow="Specialised care"
+    breadcrumb="Services"
     title="The right support,"
     accent="at the right time."
     lead="Four core therapies, one connected team. We start by understanding your child, then build a practical plan that fits your family’s everyday life."
-    image={images.kid}
-    imageAlt="Illustration of a child playing with a toy car"
     imageTone="pink"
     badge="Occupational · Behaviour · Speech · Special education"
   >
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="pink"
+      centerIcon="hands"
+      items={[
+        { icon: 'brain' },
+        { icon: 'chat' },
+        { icon: 'book' },
+        { icon: 'calendar' },
+      ]}
+      eyebrow="Four core therapies"
+      title="One plan, built around your child."
+    />
     <div class="button-row hero-actions">
       <a class="btn" href="/online-sessions/">
         Book a consultation

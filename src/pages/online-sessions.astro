@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Doodle from '../components/Doodle.astro';
 import FaqList from '../components/FaqList.astro';
 import Icon from '../components/Icon.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { images } from '../lib/images';
 import { site } from '../data/site';
 import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
 
@@ -36,6 +36,21 @@ const onlineFaqs = [
   },
 ];
 
+const onlineServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Online Behaviour Therapy for Children',
+  description,
+  provider: { '@id': `${site.url}/#organization` },
+  serviceType: 'Online behaviour therapy',
+  areaServed: { '@type': 'Country', name: 'India' },
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: `${site.url}/online-sessions/`,
+    availableLanguage: ['English', 'Telugu', 'Hindi'],
+  },
+};
+
 const schemas = [
   webPageSchema({
     name: 'Online behaviour therapy sessions',
@@ -43,6 +58,7 @@ const schemas = [
     path: '/online-sessions/',
     type: 'MedicalWebPage',
   }),
+  onlineServiceSchema,
   faqSchema(onlineFaqs),
   breadcrumbSchema([
     { name: 'Home', path: '/' },
@@ -85,15 +101,27 @@ const steps = [
 >
   <PageHero
     eyebrow="Online sessions"
+    breadcrumb="Online sessions"
     title="Support that comes"
     accent="to you."
     lead="Online behaviour therapy for families who cannot travel, or who feel more comfortable at home. The same thoughtful planning and parent partnership — from wherever you are."
-    image={images.doctor}
-    imageAlt="Illustration of a doctor holding a heart"
     imageTone="gold"
-    imagePosition="24% center"
     badge="Online behaviour therapy · Hyderabad & beyond"
   >
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="gold"
+      centerIcon="video"
+      items={[
+        { icon: 'chat' },
+        { icon: 'home' },
+        { icon: 'calendar' },
+        { icon: 'shield' },
+      ]}
+      eyebrow="From your home"
+      title="The same care, on a screen."
+    />
     <div class="button-row hero-actions">
       <a class="btn" href="#book">
         Book an online session
@@ -202,7 +230,7 @@ const steps = [
           <div class="calendly-placeholder">
             <div class="calendly-placeholder__top">
               <span class="calendly-placeholder__logo">
-                <img src={images.logo.src} alt="" width="500" height="500" loading="lazy" />
+                <Icon name="calendar" size={26} strokeWidth={1.5} />
               </span>
               <span class="pill pill--pink">Booking calendar</span>
             </div>

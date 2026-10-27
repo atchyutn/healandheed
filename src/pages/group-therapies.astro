@@ -1,17 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Doodle from '../components/Doodle.astro';
 import FaqList from '../components/FaqList.astro';
 import Icon from '../components/Icon.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { images } from '../lib/images';
 import { site } from '../data/site';
 import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
 
 const description =
-  'Saturday group therapy at Heal & Heed in L.B. Nagar, Hyderabad. A small, structured group where children practise movement, communication, turn-taking and social confidence.';
+  'Small, structured Saturday group therapy in L.B. Nagar, Hyderabad. Children practise movement, communication, turn-taking and social confidence.';
 
 const groupFaqs = [
   {
@@ -111,20 +111,33 @@ const skills = [
 ---
 
 <BaseLayout
-  title="Saturday group therapy — Movement, play and connection"
+  title="Saturday Group Therapy in Hyderabad"
   description={description}
   jsonLd={schemas}
 >
   <PageHero
     eyebrow="Saturday group therapy"
+    breadcrumb="Group therapy"
     title="Connection is a skill."
     accent="Here, it is practised."
     lead="A small, structured group where children can move, play, sing and practise being with others — with a parent or caregiver close by."
-    image={images.kid}
-    imageAlt="Illustration of a child playing with a toy car"
     imageTone="sage"
     badge="Saturdays · L.B. Nagar, Hyderabad"
   >
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="sage"
+      centerIcon="users"
+      items={[
+        { icon: 'hands' },
+        { icon: 'chat' },
+        { icon: 'play' },
+        { icon: 'heart' },
+      ]}
+      eyebrow="Small group · Parent close by"
+      title="Skills practised together."
+    />
     <div class="group-facts" aria-label="Session at a glance">
       <div>
         <span>When</span>

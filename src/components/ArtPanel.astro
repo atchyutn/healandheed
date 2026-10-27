@@ -1,0 +1,504 @@
+---
+import Icon from './Icon.astro';
+
+interface ArtItem {
+  icon: string;
+  label?: string;
+  value?: string;
+}
+
+interface Props {
+  layout?: 'orbit' | 'grid' | 'list';
+  tone?: 'pink' | 'sage' | 'gold' | 'plum' | 'cream';
+  items?: ArtItem[];
+  centerIcon?: string;
+  eyebrow?: string;
+  title?: string;
+  badge?: string;
+  showLabels?: boolean;
+  class?: string;
+}
+
+const {
+  layout = 'orbit',
+  tone = 'pink',
+  items = [],
+  centerIcon = items[0]?.icon ?? 'sparkle',
+  eyebrow,
+  title,
+  badge,
+  showLabels = true,
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class:list={['art-panel', `art-panel--${tone}`, `art-panel--${layout}`, className]}
+  aria-hidden="true"
+>
+  {
+    layout === 'orbit' && (
+      <>
+        <span class="art-panel__ring art-panel__ring--one" />
+        <span class="art-panel__ring art-panel__ring--two" />
+        <span class="art-panel__dot art-panel__dot--one" />
+        <span class="art-panel__dot art-panel__dot--two" />
+        <span class="art-panel__core">
+          <Icon name={centerIcon} size={44} strokeWidth={1.3} />
+        </span>
+        {items.slice(0, 4).map((item, index) => (
+          <span class={`art-panel__orbit art-panel__orbit--${index + 1}`}>
+            <Icon name={item.icon} size={20} strokeWidth={1.6} />
+          </span>
+        ))}
+        {badge && (
+          <span class="art-panel__badge">
+            <Icon name="sparkle" size={12} />
+            {badge}
+          </span>
+        )}
+        {(eyebrow || title) && (
+          <span class="art-panel__caption">
+            {eyebrow && <small>{eyebrow}</small>}
+            {title && <strong>{title}</strong>}
+          </span>
+        )}
+      </>
+    )
+  }
+
+  {
+    layout === 'grid' && (
+      <>
+        {(eyebrow || title) && (
+          <span class="art-panel__head">
+            {eyebrow && <small>{eyebrow}</small>}
+            {title && <strong>{title}</strong>}
+          </span>
+        )}
+        <span class="art-panel__grid">
+          {items.slice(0, 6).map((item) => (
+            <span class="art-panel__cell">
+              <span class="art-panel__cell-icon">
+                <Icon name={item.icon} size={22} strokeWidth={1.55} />
+              </span>
+              {showLabels && item.label && (
+                <span class="art-panel__cell-label">
+                  <strong>{item.label}</strong>
+                  {item.value && <small>{item.value}</small>}
+                </span>
+              )}
+            </span>
+          ))}
+        </span>
+        {badge && (
+          <span class="art-panel__foot">
+            <Icon name="sparkle" size={12} />
+            {badge}
+          </span>
+        )}
+      </>
+    )
+  }
+
+  {
+    layout === 'list' && (
+      <>
+        {(eyebrow || title) && (
+          <span class="art-panel__head">
+            {eyebrow && <small>{eyebrow}</small>}
+            {title && <strong>{title}</strong>}
+          </span>
+        )}
+        <span class="art-panel__list">
+          {items.slice(0, 5).map((item) => (
+            <span class="art-panel__row">
+              <span class="art-panel__row-icon">
+                <Icon name={item.icon} size={18} strokeWidth={1.65} />
+              </span>
+              <span class="art-panel__row-copy">
+                <strong>{item.label}</strong>
+                {item.value && <small>{item.value}</small>}
+              </span>
+            </span>
+          ))}
+        </span>
+        {badge && (
+          <span class="art-panel__foot">
+            <Icon name="sparkle" size={12} />
+            {badge}
+          </span>
+        )}
+      </>
+    )
+  }
+</div>
+
+<style>
+  .art-panel {
+    --art-bg: var(--pink-soft);
+    --art-bg-deep: #f2c3d1;
+    --art-ink: var(--purple);
+    --art-accent: var(--pink-deep);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    padding: clamp(1.1rem, 3.4vw, 1.75rem);
+    background:
+      radial-gradient(circle at 82% 8%, rgba(255, 255, 255, 0.7), transparent 38%),
+      linear-gradient(150deg, var(--art-bg) 0%, var(--art-bg-deep) 100%);
+    color: var(--art-ink);
+    isolation: isolate;
+  }
+  .art-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(rgba(45, 22, 116, 0.12) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.28;
+    mask-image: linear-gradient(180deg, #000, transparent 72%);
+  }
+  .art-panel--sage {
+    --art-bg: #e3ecd9;
+    --art-bg-deep: var(--sage);
+    --art-accent: var(--sage-ink);
+  }
+  .art-panel--gold {
+    --art-bg: #fbf0d8;
+    --art-bg-deep: var(--gold-soft);
+    --art-accent: #8a5a13;
+  }
+  .art-panel--plum {
+    --art-bg: #ece6fa;
+    --art-bg-deep: #d9cdf2;
+    --art-accent: var(--purple);
+  }
+  .art-panel--cream {
+    --art-bg: var(--cream-light);
+    --art-bg-deep: var(--cream-deep);
+    --art-accent: #8a5a13;
+  }
+
+  /* Orbit */
+  .art-panel--orbit {
+    align-items: center;
+    justify-content: center;
+  }
+  .art-panel__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border: 1px solid rgba(45, 22, 116, 0.14);
+    border-radius: 50%;
+    transform: translate(-50%, -54%);
+  }
+  .art-panel__ring--one {
+    width: 58%;
+    aspect-ratio: 1;
+  }
+  .art-panel__ring--two {
+    width: 86%;
+    aspect-ratio: 1;
+    border-style: dashed;
+    opacity: 0.7;
+  }
+  .art-panel__dot {
+    position: absolute;
+    z-index: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--art-accent);
+    opacity: 0.5;
+  }
+  .art-panel__dot--one {
+    top: 18%;
+    right: 22%;
+  }
+  .art-panel__dot--two {
+    bottom: 34%;
+    left: 12%;
+    width: 6px;
+    height: 6px;
+  }
+  .art-panel__core {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: clamp(88px, 29%, 122px);
+    aspect-ratio: 1;
+    border: 6px solid rgba(255, 253, 249, 0.72);
+    border-radius: 50%;
+    background: var(--cream-light);
+    color: var(--art-accent);
+    box-shadow:
+      0 26px 46px -24px rgba(45, 22, 116, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    transform: translateY(-8%);
+  }
+  .art-panel__orbit {
+    position: absolute;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: clamp(42px, 14%, 56px);
+    aspect-ratio: 1;
+    border-radius: 17px;
+    background: rgba(255, 253, 249, 0.94);
+    color: var(--art-accent);
+    box-shadow: 0 16px 28px -18px rgba(45, 22, 116, 0.6);
+  }
+  .art-panel__orbit::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(45, 22, 116, 0.08);
+    border-radius: 12px;
+  }
+  .art-panel__orbit--1 {
+    top: 12%;
+    left: 9%;
+    transform: rotate(-6deg);
+  }
+  .art-panel__orbit--2 {
+    top: 15%;
+    right: 9%;
+    transform: rotate(5deg);
+  }
+  .art-panel__orbit--3 {
+    bottom: 26%;
+    left: 7%;
+    transform: rotate(4deg);
+  }
+  .art-panel__orbit--4 {
+    right: 7%;
+    bottom: 24%;
+    transform: rotate(-5deg);
+  }
+  .art-panel__badge {
+    position: absolute;
+    top: 0.9rem;
+    left: 50%;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 253, 249, 0.86);
+    color: var(--art-accent);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .art-panel__caption {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    left: 0.9rem;
+    z-index: 4;
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 14px;
+    background: rgba(255, 253, 249, 0.88);
+    box-shadow: 0 14px 30px -24px rgba(45, 22, 116, 0.6);
+  }
+  .art-panel__caption small,
+  .art-panel__head small {
+    color: var(--art-accent);
+    font-size: 0.54rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .art-panel__caption strong,
+  .art-panel__head strong {
+    color: var(--purple);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+
+  /* Grid */
+  .art-panel--grid {
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .art-panel__head {
+    display: grid;
+    gap: 0.2rem;
+    max-width: 26ch;
+  }
+  .art-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+  }
+  .art-panel__cell {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 13px;
+    background: rgba(255, 253, 249, 0.78);
+    box-shadow: 0 12px 26px -24px rgba(45, 22, 116, 0.55);
+  }
+  .art-panel__cell-icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(45, 22, 116, 0.07);
+    color: var(--art-accent);
+  }
+  .art-panel__cell-label {
+    display: grid;
+    min-width: 0;
+  }
+  .art-panel__cell-label strong {
+    color: var(--purple);
+    font-size: 0.64rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .art-panel__cell-label small {
+    color: var(--art-accent);
+    font-size: 0.56rem;
+    line-height: 1.3;
+  }
+  .art-panel__foot {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.35rem;
+    padding: 0.32rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 253, 249, 0.8);
+    color: var(--art-accent);
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* List */
+  .art-panel--list {
+    justify-content: center;
+    gap: 1.1rem;
+  }
+  .art-panel__list {
+    position: relative;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .art-panel__list::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 19px;
+    width: 1px;
+    background: rgba(45, 22, 116, 0.16);
+  }
+  .art-panel__row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 0.65rem 0.55rem 0;
+  }
+  .art-panel__row-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    background: var(--cream-light);
+    color: var(--art-accent);
+    box-shadow: 0 10px 22px -16px rgba(45, 22, 116, 0.55);
+  }
+  .art-panel__row-copy {
+    display: grid;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .art-panel__row-copy strong {
+    color: var(--purple);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .art-panel__row-copy small {
+    color: var(--art-accent);
+    font-size: 0.6rem;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 420px) {
+    .art-panel__badge {
+      top: 0.65rem;
+      max-width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .art-panel__orbit {
+      width: 40px;
+      border-radius: 13px;
+    }
+    .art-panel__orbit--1 {
+      top: 13%;
+      left: 6%;
+    }
+    .art-panel__orbit--2 {
+      top: 16%;
+      right: 6%;
+    }
+    .art-panel__orbit--3 {
+      bottom: 27%;
+      left: 5%;
+    }
+    .art-panel__orbit--4 {
+      right: 5%;
+      bottom: 25%;
+    }
+    .art-panel__caption strong {
+      font-size: 0.86rem;
+    }
+    .art-panel__caption small {
+      font-size: 0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .art-panel__core {
+      transition: transform 0.5s var(--ease);
+    }
+    .art-panel:hover .art-panel__core {
+      transform: translateY(-10%) scale(1.03);
+    }
+  }
+</style>

@@ -47,6 +47,7 @@ export function webPageSchema({
     name,
     description,
     url: new URL(path, site.url).href,
+    dateModified: new Date().toISOString().slice(0, 10),
     about: { '@id': `${site.url}/#organization` },
     isPartOf: { '@id': `${site.url}/#website` },
     inLanguage: 'en-IN',

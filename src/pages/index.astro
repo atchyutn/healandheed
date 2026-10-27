@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
 import BrandMarquee from '../components/BrandMarquee.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Doodle from '../components/Doodle.astro';
@@ -41,8 +42,8 @@ const pageSchema = {
 ---
 
 <BaseLayout
-  title="Child Development & Rehabilitation Center in Hyderabad"
-  description="Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad. Occupational therapy, behaviour therapy, speech therapy and special education for children and families."
+  title="Child Development & Rehabilitation in Hyderabad"
+  description="Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad. Occupational, behaviour, speech therapy and special education."
   jsonLd={[pageSchema, faqSchema]}
 >
   <!-- Hero -->
@@ -119,16 +120,11 @@ const pageSchema = {
         </figure>
 
         <figure class="hero-card hero-card--two">
-          <div class="hero-card__frame">
-            <img
-              src={images.logo.src}
-              alt="Heal and Heed crowned brain mascot"
-              width="500"
-              height="500"
-              loading="eager"
-              decoding="async"
-              class="crop crop--mascot-right"
-            />
+          <div class="hero-card__frame hero-card__frame--icon">
+            <span class="hero-card__icon">
+              <Icon name="sprout" size={62} strokeWidth={1.25} />
+            </span>
+            <span class="hero-card__spark" aria-hidden="true"></span>
           </div>
           <figcaption><span>02</span> Grow</figcaption>
         </figure>
@@ -148,16 +144,11 @@ const pageSchema = {
         </figure>
 
         <figure class="hero-card hero-card--four">
-          <div class="hero-card__frame">
-            <img
-              src={images.logo.src}
-              alt="Heal and Heed brain mascot"
-              width="500"
-              height="500"
-              loading="lazy"
-              decoding="async"
-              class="crop crop--mascot-left"
-            />
+          <div class="hero-card__frame hero-card__frame--icon">
+            <span class="hero-card__icon">
+              <Icon name="star" size={58} strokeWidth={1.25} />
+            </span>
+            <span class="hero-card__spark" aria-hidden="true"></span>
           </div>
           <figcaption><span>04</span> Thrive</figcaption>
         </figure>
@@ -173,14 +164,18 @@ const pageSchema = {
     <div class="container intro">
       <div class="intro__side intro__side--left">
         <div class="intro__side-bg intro__side-bg--pink"></div>
-        <img
-          src={images.kid.src}
-          alt="A child playing with a toy car"
-          width="1094"
-          height="811"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="intro__art intro__art--left">
+          <ArtPanel
+            layout="grid"
+            tone="pink"
+            items={[
+              { icon: 'hands', label: 'OT' },
+              { icon: 'brain', label: 'Behaviour' },
+              { icon: 'chat', label: 'Speech' },
+              { icon: 'book', label: 'Learning' },
+            ]}
+          />
+        </div>
       </div>
 
       <div class="intro__content reveal">
@@ -204,14 +199,18 @@ const pageSchema = {
 
       <div class="intro__side intro__side--right">
         <div class="intro__side-bg intro__side-bg--sage"></div>
-        <img
-          src={images.doctor.src}
-          alt="A doctor illustration representing compassionate care"
-          width="1105"
-          height="783"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="intro__art intro__art--right">
+          <ArtPanel
+            layout="grid"
+            tone="sage"
+            items={[
+              { icon: 'home', label: 'Clinic' },
+              { icon: 'video', label: 'Online' },
+              { icon: 'heart', label: 'Home' },
+              { icon: 'clipboard', label: 'Assess' },
+            ]}
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -249,13 +248,18 @@ const pageSchema = {
         <div class="media-frame">
           <div class="media-frame__bg media-frame__bg--sage"></div>
           <div class="mission__portrait arch">
-            <img
-              src={images.kid.src}
-              alt="A child playing and learning through play"
-              width="1094"
-              height="811"
-              loading="lazy"
-              decoding="async"
+            <ArtPanel
+              layout="orbit"
+              tone="sage"
+              centerIcon="heart"
+              items={[
+                { icon: 'hands' },
+                { icon: 'brain' },
+                { icon: 'chat' },
+                { icon: 'book' },
+              ]}
+              eyebrow="One connected team"
+              title="Four therapies, one plan."
             />
           </div>
           <div class="media-frame__badge">
@@ -302,23 +306,30 @@ const pageSchema = {
 
       <div class="expert__visual reveal" style="--reveal-delay:120ms">
         <div class="expert__arch expert__arch--main">
-          <img
-            src={images.doctor.src}
-            alt="A doctor illustration representing specialised child development care"
-            width="1105"
-            height="783"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="orbit"
+            tone="plum"
+            centerIcon="brain"
+            items={[
+              { icon: 'hands' },
+              { icon: 'chat' },
+              { icon: 'book' },
+              { icon: 'chart' },
+            ]}
+            badge="Assessment to progress"
           />
         </div>
         <div class="expert__arch expert__arch--small">
-          <img
-            src={images.kid.src}
-            alt="A child playing with a toy car"
-            width="1094"
-            height="811"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="grid"
+            tone="pink"
+            showLabels={false}
+            items={[
+              { icon: 'check' },
+              { icon: 'home' },
+              { icon: 'heart' },
+              { icon: 'sparkle' },
+            ]}
           />
         </div>
         <div class="expert__note">
@@ -358,13 +369,16 @@ const pageSchema = {
       <div class="why__visual reveal">
         <div class="why__blob"></div>
         <div class="why__portrait organic-frame">
-          <img
-            src={images.doctor.src}
-            alt="Illustration of a doctor with a heart"
-            width="1105"
-            height="783"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="orbit"
+            tone="cream"
+            centerIcon="home"
+            items={[
+              { icon: 'heart' },
+              { icon: 'users' },
+              { icon: 'sun' },
+            ]}
+            badge="Skills for real life"
           />
         </div>
         <blockquote class="why__quote">
@@ -439,13 +453,14 @@ const pageSchema = {
 
       <div class="impact__visual reveal" style="--reveal-delay:220ms">
         <div class="impact__circle">
-          <img
-            src={images.kid.src}
-            alt="A child playing and learning"
-            width="1094"
-            height="811"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="orbit"
+            tone="pink"
+            centerIcon="chart"
+            items={[
+              { icon: 'sprout' },
+              { icon: 'heart' },
+            ]}
           />
         </div>
         <div class="impact__badge">
@@ -493,13 +508,15 @@ const pageSchema = {
       <div class="team-section__visual reveal" style="--reveal-delay:140ms">
         <div class="team-section__ring"></div>
         <div class="team-section__portrait">
-          <img
-            src={images.doctor.src}
-            alt="A member of the Heal and Heed care team illustration"
-            width="1105"
-            height="783"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="orbit"
+            tone="sage"
+            centerIcon="users"
+            items={[
+              { icon: 'hands' },
+              { icon: 'brain' },
+              { icon: 'chat' },
+            ]}
           />
         </div>
         <div class="team-section__quote">
@@ -520,13 +537,16 @@ const pageSchema = {
     <div class="container grid-2">
       <div class="evidence__visual reveal">
         <div class="evidence__portrait arch">
-          <img
-            src={images.kid.src}
-            alt="A child engaging in play-based learning"
-            width="1094"
-            height="811"
-            loading="lazy"
-            decoding="async"
+          <ArtPanel
+            layout="list"
+            tone="plum"
+            items={[
+              { icon: 'check', label: 'Goals that matter to your family' },
+              { icon: 'home', label: 'Strategies for home and school' },
+              { icon: 'chart', label: 'Regular review, at your pace' },
+            ]}
+            eyebrow="Our approach"
+            title="A plan that keeps learning."
           />
         </div>
         <div class="evidence__tag">
@@ -564,13 +584,13 @@ const pageSchema = {
     <div class="quote-band__inner container">
       <div class="quote-band__faces" aria-hidden="true">
         <span class="quote-band__face quote-band__face--one">
-          <img src={images.kid.src} alt="" width="1094" height="811" loading="lazy" />
+          <Icon name="heart" size={26} strokeWidth={1.4} />
         </span>
         <span class="quote-band__face quote-band__face--two">
-          <img src={images.doctor.src} alt="" width="1105" height="783" loading="lazy" />
+          <Icon name="hands" size={26} strokeWidth={1.4} />
         </span>
         <span class="quote-band__face quote-band__face--three">
-          <img src={images.logo.src} alt="" width="500" height="500" loading="lazy" class="crop crop--mascot-right" />
+          <Icon name="sparkle" size={24} strokeWidth={1.4} />
         </span>
       </div>
 
@@ -707,16 +727,8 @@ const pageSchema = {
           <figcaption><span>Care</span> that meets them where they are.</figcaption>
         </figure>
 
-        <figure class="gallery-tile gallery-tile--mascot gallery-tile--gold">
-          <img
-            src={images.logo.src}
-            alt="Heal and Heed crown mascot"
-            width="500"
-            height="500"
-            loading="lazy"
-            decoding="async"
-            class="crop crop--mascot-right"
-          />
+        <figure class="gallery-tile gallery-tile--mascot gallery-tile--gold gallery-tile--icon">
+          <span class="gallery-tile__icon"><Icon name="heart" size={42} strokeWidth={1.3} /></span>
           <figcaption><span>Heal</span> with care.</figcaption>
         </figure>
 
@@ -726,15 +738,8 @@ const pageSchema = {
           <span>Our everyday reminder</span>
         </div>
 
-        <figure class="gallery-tile gallery-tile--kid-two">
-          <img
-            src={images.kid.src}
-            alt="A child playing and exploring"
-            width="1094"
-            height="811"
-            loading="lazy"
-            decoding="async"
-          />
+        <figure class="gallery-tile gallery-tile--kid-two gallery-tile--sage gallery-tile--icon">
+          <span class="gallery-tile__icon"><Icon name="sprout" size={42} strokeWidth={1.3} /></span>
           <figcaption><span>Thrive</span> at their own pace.</figcaption>
         </figure>
       </div>
@@ -905,6 +910,67 @@ const pageSchema = {
     height: 100%;
     object-fit: cover;
   }
+.hero-card__frame--icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 55%),
+      var(--pink-soft);
+  }
+.hero-card--four .hero-card__frame--icon {
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 55%),
+      var(--gold-soft);
+  }
+.hero-card__frame--icon::before,
+.hero-card__frame--icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(45, 22, 116, 0.16);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+.hero-card__frame--icon::before {
+    width: 68%;
+    aspect-ratio: 1;
+  }
+.hero-card__frame--icon::after {
+    width: 92%;
+    aspect-ratio: 1;
+    border-style: dashed;
+    opacity: 0.65;
+  }
+.hero-card__icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: clamp(86px, 10vw, 118px);
+    aspect-ratio: 1;
+    border: 5px solid rgba(255, 253, 249, 0.72);
+    border-radius: 50%;
+    background: var(--cream-light);
+    color: var(--pink-deep);
+    box-shadow: 0 22px 38px -22px rgba(45, 22, 116, 0.5);
+  }
+.hero-card--four .hero-card__icon {
+    color: #8a5a13;
+  }
+.hero-card__spark {
+    position: absolute;
+    right: 18%;
+    bottom: 20%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--pink);
+  }
+.hero-card--four .hero-card__spark {
+    background: var(--gold);
+  }
 .hero-card--one {
     transform: translateY(0) rotate(-2.5deg);
   }
@@ -949,19 +1015,6 @@ const pageSchema = {
     font-size: 0.55rem;
     letter-spacing: 0.08em;
   }
-.crop {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-.crop--mascot-right {
-    transform: scale(2.35);
-    transform-origin: 79% 17%;
-  }
-.crop--mascot-left {
-    transform: scale(2.35);
-    transform-origin: 21% 17%;
-  }
 /* Intro ------------------------------------------------ */
   .intro-section {
     position: relative;
@@ -1001,19 +1054,22 @@ const pageSchema = {
     place-items: center;
     isolation: isolate;
   }
-.intro__side img {
+.intro__art {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 320px;
-    height: auto;
-    filter: drop-shadow(0 28px 30px rgba(45, 22, 116, 0.08));
+    max-width: 300px;
+    overflow: hidden;
+    border: 5px solid var(--cream-light);
+    border-radius: 26px;
+    background: var(--cream-light);
+    box-shadow: var(--shadow);
   }
-.intro__side--left img {
-    transform: rotate(-5deg) translateY(10px);
+.intro__art--left {
+    transform: rotate(-4deg) translateY(8px);
   }
-.intro__side--right img {
-    transform: rotate(4deg) translateY(-8px);
+.intro__art--right {
+    transform: rotate(3deg) translateY(-6px);
   }
 .intro__side-bg {
     position: absolute;
@@ -1784,30 +1840,31 @@ const pageSchema = {
     margin-bottom: 0.5rem;
   }
 .quote-band__face {
+    display: grid;
+    place-items: center;
     width: clamp(58px, 7vw, 88px);
     aspect-ratio: 1;
     overflow: hidden;
     border: 4px solid var(--purple);
     border-radius: 50%;
     background: var(--pink-soft);
+    color: var(--pink-deep);
     box-shadow: 0 0 0 1px rgba(255, 250, 242, 0.18);
   }
 .quote-band__face + .quote-band__face {
     margin-left: -1rem;
   }
-.quote-band__face img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.quote-band__face :global(svg) {
+    width: 44%;
+    height: 44%;
   }
-.quote-band__face--one img {
-    object-position: 62% 58%;
-  }
-.quote-band__face--two img {
-    object-position: 50% 30%;
+.quote-band__face--two {
+    background: var(--sage);
+    color: var(--sage-ink);
   }
 .quote-band__face--three {
     background: var(--gold-soft);
+    color: #8a5a13;
   }
 .quote-band blockquote {
     max-width: 900px;
@@ -2066,6 +2123,33 @@ const pageSchema = {
 .gallery-tile--gold {
     background: var(--gold-soft);
   }
+.gallery-tile--icon {
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 58%),
+      var(--gold-soft);
+  }
+.gallery-tile--icon.gallery-tile--sage {
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.8), transparent 58%),
+      var(--sage);
+  }
+.gallery-tile__icon {
+    display: grid;
+    place-items: center;
+    width: clamp(84px, 13vw, 126px);
+    aspect-ratio: 1;
+    border: 5px solid rgba(255, 253, 249, 0.75);
+    border-radius: 50%;
+    background: var(--cream-light);
+    color: #8a5a13;
+    box-shadow: 0 22px 38px -22px rgba(45, 22, 116, 0.45);
+    transform: translateY(-8%);
+  }
+.gallery-tile--sage .gallery-tile__icon {
+    color: var(--sage-ink);
+  }
 .gallery-tile--mascot img {
     object-fit: cover;
   }
@@ -2224,8 +2308,8 @@ const pageSchema = {
       order: 3;
       margin-top: 1.5rem;
     }
-.intro__side img {
-      max-width: 240px;
+.intro__art {
+      max-width: 270px;
     }
 .hero-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
