@@ -10,7 +10,7 @@ interface Props {
   lead: string;
   image?: ImageMetadata | string;
   imageAlt?: string;
-  imageTone?: 'pink' | 'sage' | 'gold' | 'cream';
+  imageTone?: 'pink' | 'sage' | 'gold' | 'cream' | 'periwinkle' | 'lilac' | 'rose' | 'mauve';
   imagePosition?: string;
   badge?: string;
   breadcrumb?: string;
@@ -194,6 +194,18 @@ const hasImage = Boolean(image);
   }
 .page-hero__visual-bg--sage {
     background: var(--sage);
+  }
+.page-hero__visual-bg--periwinkle {
+    background: var(--periwinkle-deep);
+  }
+.page-hero__visual-bg--lilac {
+    background: var(--lavender);
+  }
+.page-hero__visual-bg--rose {
+    background: var(--rose);
+  }
+.page-hero__visual-bg--mauve {
+    background: var(--mauve-deep);
   }
 .page-hero__visual-bg--gold {
     background: var(--gold-soft);

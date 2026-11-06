@@ -6,6 +6,9 @@
   --ink: #2b1a33;
   --ink-soft: #4e3c56;
   --purple: #2d1674;
+  --blue: #2d1674;
+  --blue-deep: #211056;
+  --blue-soft: #4b3b9c;
   --plum: #3b1c55;
   --pink: #e36c8a;
   --pink-deep: #c94f70;
@@ -14,7 +17,16 @@
   --cream: #faf4e9;
   --cream-deep: #f3e7d5;
   --cream-light: #fffaf2;
+  --paper: #fdf8fb;
   --lavender: #e8e1f8;
+  --lilac: #f2eafb;
+  --periwinkle: #e4e7fa;
+  --periwinkle-deep: #d6dbf6;
+  --mauve: #ecd7e7;
+  --mauve-deep: #e1c3d8;
+  --blush: #fdf0f5;
+  --petal: #f9dbe6;
+  --rose: #f5cfdf;
   --sage: #c9dcbb;
   --sage-deep: #8eaa7b;
   --sage-ink: #3a5330;
@@ -53,7 +65,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -201,11 +213,11 @@ hr {
 }
 
 .section--cream {
-  background: var(--cream);
+  background: var(--blush);
 }
 
 .section--cream-deep {
-  background: var(--cream-deep);
+  background: var(--mauve);
 }
 
 .section--white {
@@ -213,15 +225,47 @@ hr {
 }
 
 .section--pink {
-  background: var(--pink-wash);
+  background: var(--lilac);
 }
 
 .section--pink-solid {
-  background: var(--pink-soft);
+  background: var(--rose);
 }
 
 .section--sage {
-  background: var(--sage);
+  background: var(--periwinkle);
+}
+
+.section--periwinkle {
+  background: var(--periwinkle);
+}
+
+.section--periwinkle-deep {
+  background: var(--periwinkle-deep);
+}
+
+.section--lilac {
+  background: var(--lilac);
+}
+
+.section--mauve {
+  background: var(--mauve);
+}
+
+.section--blush {
+  background: var(--blush);
+}
+
+.section--petal {
+  background: var(--petal);
+}
+
+.section--rose {
+  background: var(--rose);
+}
+
+.section--lavender {
+  background: var(--lavender);
 }
 
 .section--plum {
@@ -710,8 +754,24 @@ hr {
   background: var(--sage);
 }
 
+.blob--periwinkle {
+  background: var(--periwinkle-deep);
+}
+
+.blob--lilac {
+  background: var(--lavender);
+}
+
+.blob--mauve {
+  background: var(--mauve);
+}
+
+.blob--rose {
+  background: var(--rose);
+}
+
 .blob--cream {
-  background: var(--cream-deep);
+  background: var(--mauve);
 }
 
 .arch {
@@ -812,6 +872,18 @@ hr {
 
 .media-frame__bg--sage {
   background: var(--sage);
+}
+
+.media-frame__bg--periwinkle {
+  background: var(--periwinkle-deep);
+}
+
+.media-frame__bg--lilac {
+  background: var(--lavender);
+}
+
+.media-frame__bg--rose {
+  background: var(--rose);
 }
 
 .media-frame__bg--gold {

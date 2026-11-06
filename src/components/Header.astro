@@ -147,17 +147,17 @@ const isActive = (href: string) =>
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--lavender);
-    border-bottom: 1px solid transparent;
+    background: var(--blue);
+    border-bottom: 1px solid rgba(255, 253, 249, 0.1);
     transition:
       background-color 0.25s var(--ease),
       border-color 0.25s var(--ease),
       box-shadow 0.25s var(--ease);
   }
 .site-header.is-scrolled, .site-header.is-open {
-    background: var(--lavender);
-    border-bottom-color: var(--line);
-    box-shadow: 0 10px 30px -22px rgba(45, 22, 116, 0.35);
+    background: var(--blue-deep);
+    border-bottom-color: rgba(255, 253, 249, 0.16);
+    box-shadow: 0 14px 34px -24px rgba(18, 8, 48, 0.9);
   }
 .site-header__inner {
     display: flex;
@@ -183,16 +183,16 @@ const isActive = (href: string) =>
 .desktop-nav ul {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 1.8vw, 1.75rem);
+    gap: clamp(1.1rem, 1.9vw, 1.9rem);
   }
 .desktop-nav a {
     position: relative;
     display: inline-flex;
-    padding-block: 0.4rem;
-    color: var(--ink-soft);
-    font-size: 0.78rem;
+    padding-block: 0.45rem;
+    color: rgba(255, 253, 249, 0.84);
+    font-size: 0.9rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
     text-decoration: none;
     white-space: nowrap;
     transition: color 0.2s var(--ease);
@@ -210,7 +210,7 @@ const isActive = (href: string) =>
     transition: transform 0.25s var(--ease);
   }
 .desktop-nav a:hover, .desktop-nav a[aria-current='page'] {
-    color: var(--purple);
+    color: var(--cream-light);
   }
 .desktop-nav a:hover::after, .desktop-nav a[aria-current='page']::after {
     transform: scaleX(1);
@@ -227,17 +227,17 @@ const isActive = (href: string) =>
     gap: 0.45rem;
     min-height: 44px;
     padding-inline: 0.25rem;
-    color: var(--ink-soft);
-    font-size: 0.7rem;
+    color: rgba(255, 253, 249, 0.78);
+    font-size: 0.74rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
   }
 .header-phone:hover {
-    color: var(--pink-deep);
+    color: var(--cream-light);
   }
 .header-phone :global(svg) {
-    color: var(--pink-deep);
+    color: var(--rose);
   }
 .menu-toggle {
     display: none;
@@ -245,10 +245,10 @@ const isActive = (href: string) =>
     gap: 0.6rem;
     min-height: 44px;
     padding: 0.55rem 0.8rem;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 253, 249, 0.3);
     border-radius: 999px;
     background: transparent;
-    color: var(--purple);
+    color: var(--cream-light);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -287,9 +287,9 @@ const isActive = (href: string) =>
     right: 0;
     display: none;
     padding: 1rem var(--gutter) 2rem;
-    background: var(--lavender);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 30px 50px -30px rgba(45, 22, 116, 0.4);
+    background: var(--blue-deep);
+    border-bottom: 1px solid rgba(255, 253, 249, 0.14);
+    box-shadow: 0 30px 50px -30px rgba(18, 8, 48, 0.8);
   }
 .mobile-menu nav ul {
     display: grid;
@@ -312,17 +312,17 @@ const isActive = (href: string) =>
     justify-content: space-between;
     gap: 1rem;
     padding: 0.85rem 0;
-    border-bottom: 1px solid var(--line);
-    color: var(--purple);
+    border-bottom: 1px solid rgba(255, 253, 249, 0.14);
+    color: var(--cream-light);
     font-family: var(--font-serif);
     font-size: 1.5rem;
     text-decoration: none;
   }
 .mobile-menu nav a[aria-current='page'] {
-    color: var(--pink-deep);
+    color: var(--rose);
   }
 .mobile-menu nav a :global(svg) {
-    color: var(--pink);
+    color: var(--rose);
   }
 .mobile-menu__footer {
     display: grid;
@@ -336,13 +336,13 @@ const isActive = (href: string) =>
     align-items: center;
     gap: 0.5rem;
     min-height: 44px;
-    color: var(--purple);
+    color: var(--cream-light);
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
   }
 .mobile-menu__footer p {
-    color: var(--muted);
+    color: rgba(255, 253, 249, 0.62);
     font-size: 0.72rem;
   }
 

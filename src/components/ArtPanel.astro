@@ -9,7 +9,7 @@ interface ArtItem {
 
 interface Props {
   layout?: 'orbit' | 'grid' | 'list';
-  tone?: 'pink' | 'sage' | 'gold' | 'plum' | 'cream';
+  tone?: 'pink' | 'sage' | 'gold' | 'plum' | 'cream' | 'periwinkle' | 'lilac' | 'rose';
   items?: ArtItem[];
   centerIcon?: string;
   eyebrow?: string;
@@ -176,6 +176,21 @@ const {
     --art-bg: #e3ecd9;
     --art-bg-deep: var(--sage);
     --art-accent: var(--sage-ink);
+  }
+  .art-panel--periwinkle {
+    --art-bg: #eef1fe;
+    --art-bg-deep: var(--periwinkle-deep);
+    --art-accent: #3f4794;
+  }
+  .art-panel--lilac {
+    --art-bg: #f8f2fd;
+    --art-bg-deep: var(--lavender);
+    --art-accent: #6a4a92;
+  }
+  .art-panel--rose {
+    --art-bg: #fdf3f6;
+    --art-bg-deep: var(--rose);
+    --art-accent: var(--pink-deep);
   }
   .art-panel--gold {
     --art-bg: #fbf0d8;

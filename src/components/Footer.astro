@@ -109,8 +109,8 @@ const year = new Date().getFullYear();
 <style>
 .site-footer {
     position: relative;
-    background: var(--sage);
-    color: var(--ink);
+    background: var(--blue-deep);
+    color: var(--cream-light);
     padding-block: clamp(3.5rem, 7vw, 6rem) 1.5rem;
   }
 .site-footer::before {
@@ -118,7 +118,7 @@ const year = new Date().getFullYear();
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: radial-gradient(rgba(45, 22, 116, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 253, 249, 0.09) 1px, transparent 1px);
     background-size: 26px 26px;
     mask-image: linear-gradient(to bottom, transparent, black 35%);
   }
@@ -148,7 +148,7 @@ const year = new Date().getFullYear();
   }
 .footer-tagline {
     max-width: 30ch;
-    color: var(--ink-soft);
+    color: rgba(255, 253, 249, 0.66);
     font-size: 0.82rem;
     line-height: 1.7;
   }
@@ -161,22 +161,22 @@ const year = new Date().getFullYear();
     place-items: center;
     width: 44px;
     height: 44px;
-    border: 1px solid rgba(45, 22, 116, 0.18);
+    border: 1px solid rgba(255, 253, 249, 0.26);
     border-radius: 50%;
-    color: var(--purple);
+    color: var(--cream-light);
     transition:
       background-color 0.2s var(--ease),
       color 0.2s var(--ease),
       transform 0.2s var(--ease);
   }
 .footer-socials a:hover {
-    background: var(--purple);
-    color: var(--cream-light);
+    background: var(--cream-light);
+    color: var(--blue-deep);
     transform: translateY(-2px);
   }
 .footer-heading {
     margin-bottom: 1.15rem;
-    color: var(--purple);
+    color: var(--rose);
     font-family: var(--font-sans);
     font-size: 0.66rem;
     font-weight: 700;
@@ -191,12 +191,12 @@ const year = new Date().getFullYear();
     display: inline-flex;
     align-items: center;
     min-height: 28px;
-    color: var(--ink-soft);
+    color: rgba(255, 253, 249, 0.78);
     font-size: 0.82rem;
     text-decoration: none;
   }
 .footer-links a:hover {
-    color: var(--purple);
+    color: var(--cream-light);
     text-decoration: underline;
   }
 .footer-contact {
@@ -208,13 +208,13 @@ const year = new Date().getFullYear();
     grid-template-columns: 20px 1fr;
     gap: 0.6rem;
     align-items: start;
-    color: var(--ink-soft);
+    color: rgba(255, 253, 249, 0.78);
     font-size: 0.8rem;
     line-height: 1.65;
   }
 .footer-contact :global(svg) {
     margin-top: 0.16rem;
-    color: var(--purple);
+    color: var(--rose);
   }
 .footer-contact a {
     display: inline-flex;
@@ -224,7 +224,7 @@ const year = new Date().getFullYear();
     font-weight: 500;
   }
 .footer-contact a:hover {
-    color: var(--purple);
+    color: var(--cream-light);
   }
 .footer-visit {
     display: grid;
@@ -233,7 +233,7 @@ const year = new Date().getFullYear();
 .footer-map {
     display: grid;
     gap: 0.7rem;
-    color: var(--ink);
+    color: var(--cream-light);
     text-decoration: none;
   }
 .footer-map svg {
@@ -251,14 +251,14 @@ const year = new Date().getFullYear();
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    color: var(--ink-soft);
+    color: rgba(255, 253, 249, 0.7);
     font-size: 0.7rem;
   }
 .footer-map__label span:last-child {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    color: var(--purple);
+    color: var(--rose);
     font-weight: 600;
   }
 .footer-book {
@@ -267,17 +267,17 @@ const year = new Date().getFullYear();
     gap: 0.45rem;
     min-height: 44px;
     margin-top: 1rem;
-    color: var(--purple);
+    color: var(--cream-light);
     font-size: 0.78rem;
     font-weight: 600;
     text-decoration: none;
-    border-bottom: 1px solid rgba(45, 22, 116, 0.25);
+    border-bottom: 1px solid rgba(255, 253, 249, 0.32);
     justify-self: start;
     padding-bottom: 0.15rem;
   }
 .footer-book:hover {
-    color: var(--pink-deep);
-    border-color: var(--pink-deep);
+    color: var(--rose);
+    border-color: var(--rose);
   }
 .site-footer__bottom {
     position: relative;
@@ -286,15 +286,15 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     gap: 0.5rem;
     padding-top: 1.4rem;
-    border-top: 1px solid rgba(45, 22, 116, 0.16);
-    color: rgba(43, 26, 51, 0.72);
+    border-top: 1px solid rgba(255, 253, 249, 0.16);
+    color: rgba(255, 253, 249, 0.5);
     font-size: 0.68rem;
   }
 .site-footer__note {
     font-family: var(--font-serif);
     font-style: italic;
     font-size: 0.82rem;
-    color: var(--purple);
+    color: var(--rose);
   }
 
   @media (max-width: 980px) {

@@ -50,7 +50,7 @@ const pageSchema = {
   <!-- Hero -->
   <section class="home-hero">
     <div class="home-hero__blob home-hero__blob--pink blob"></div>
-    <div class="home-hero__blob home-hero__blob--sage blob"></div>
+    <div class="home-hero__blob home-hero__blob--periwinkle blob"></div>
     <Doodle type="butterfly" class="home-hero__doodle home-hero__doodle--butterfly" />
     <Doodle type="sparkle" class="home-hero__doodle home-hero__doodle--sparkle" />
     <Doodle type="flower" class="home-hero__doodle home-hero__doodle--flower" />
@@ -96,12 +96,12 @@ const pageSchema = {
           <svg viewBox="0 0 1440 240" preserveAspectRatio="none">
             <path
               d="M0 118c142-52 259-48 400-9 141 38 240 75 393 35 154-40 231-71 371-40 106 24 183 47 276 20v116H0V118Z"
-              fill="var(--sage)"
+              fill="var(--rose)"
             />
             <path
               d="M0 160c129-33 245-25 371 10 153 42 253 61 403 25 170-41 274-52 398-17 109 31 185 39 268 20v42H0v-80Z"
-              fill="var(--sage-deep)"
-              opacity=".28"
+              fill="var(--mauve-deep)"
+              opacity=".45"
             />
           </svg>
         </div>
@@ -160,7 +160,7 @@ const pageSchema = {
   <BrandMarquee />
 
   <!-- Intro -->
-  <section class="section section--cream grid-lines intro-section">
+  <section class="section section--periwinkle grid-lines intro-section">
     <Doodle type="sun" class="intro-section__doodle intro-section__doodle--sun" />
     <div class="container intro">
       <div class="intro__side intro__side--left">
@@ -199,11 +199,11 @@ const pageSchema = {
       </div>
 
       <div class="intro__side intro__side--right">
-        <div class="intro__side-bg intro__side-bg--sage"></div>
+        <div class="intro__side-bg intro__side-bg--periwinkle"></div>
         <div class="intro__art intro__art--right">
           <ArtPanel
             layout="grid"
-            tone="sage"
+            tone="periwinkle"
             items={[
               { icon: 'home', label: 'Clinic' },
               { icon: 'video', label: 'Online' },
@@ -247,11 +247,11 @@ const pageSchema = {
 
       <div class="mission__visual reveal" style="--reveal-delay:120ms">
         <div class="media-frame">
-          <div class="media-frame__bg media-frame__bg--sage"></div>
+          <div class="media-frame__bg media-frame__bg--periwinkle"></div>
           <div class="mission__portrait arch">
             <ArtPanel
               layout="orbit"
-              tone="sage"
+              tone="periwinkle"
               centerIcon="heart"
               items={[
                 { icon: 'hands' },
@@ -346,7 +346,7 @@ const pageSchema = {
   </section>
 
   <!-- Care formats -->
-  <section class="section section--cream section--tight formats">
+  <section class="section section--blush section--tight formats">
     <div class="container">
       <div class="formats__head reveal">
         <span class="eyebrow">Care that fits your family</span>
@@ -365,14 +365,14 @@ const pageSchema = {
   </section>
 
   <!-- Why families choose us -->
-  <section class="section section--pink why">
+  <section class="section section--lilac why">
     <div class="container grid-2">
       <div class="why__visual reveal">
         <div class="why__blob"></div>
         <div class="why__portrait organic-frame">
           <ArtPanel
             layout="orbit"
-            tone="cream"
+            tone="rose"
             centerIcon="home"
             items={[
               { icon: 'heart' },
@@ -408,7 +408,7 @@ const pageSchema = {
   </section>
 
   <!-- Impact -->
-  <section class="section section--cream impact">
+  <section class="section section--mauve impact">
     <div class="container impact__inner">
       <div class="impact__copy reveal">
         <span class="eyebrow">Our impact</span>
@@ -437,11 +437,11 @@ const pageSchema = {
           <strong>04</strong>
           <span>Ways to access support</span>
         </article>
-        <article class="stat-card stat-card--sage">
+        <article class="stat-card stat-card--periwinkle">
           <strong>2–12</strong>
           <span>Ages in our summer programme</span>
         </article>
-        <article class="stat-card stat-card--cream">
+        <article class="stat-card stat-card--lilac">
           <strong>01</strong>
           <span>Plan built around your child</span>
         </article>
@@ -469,7 +469,7 @@ const pageSchema = {
   </section>
 
   <!-- Team -->
-  <section class="section section--sage team-section" id="team">
+  <section class="section section--periwinkle-deep team-section" id="team">
     <Doodle type="giraffe" class="team-section__giraffe" />
     <Doodle type="leaf" class="team-section__leaf" />
     <Doodle type="sun" class="team-section__sun" />
@@ -506,7 +506,7 @@ const pageSchema = {
         <div class="team-section__portrait">
           <ArtPanel
             layout="orbit"
-            tone="sage"
+            tone="rose"
             centerIcon="users"
             items={[
               { icon: 'hands' },
@@ -621,11 +621,11 @@ const pageSchema = {
         <Icon name="arrow" size={15} />
       </a>
     </div>
-    <WaveDivider color="var(--cream)" flip />
+    <WaveDivider color="var(--lavender)" flip />
   </section>
 
   <!-- Approach -->
-  <section class="section section--cream approach-section">
+  <section class="section section--lavender approach-section">
     <div class="container">
       <SectionHeading
         eyebrow="How it works"
@@ -661,7 +661,7 @@ const pageSchema = {
   </section>
 
   <!-- Values -->
-  <section class="section section--pink-solid values">
+  <section class="section section--rose values">
     <div class="container values__inner">
       <div class="values__intro reveal">
         <span class="eyebrow">Our core values</span>
@@ -701,7 +701,7 @@ const pageSchema = {
   </section>
 
   <!-- Gallery -->
-  <section class="section section--cream gallery">
+  <section class="section section--petal gallery">
     <div class="container">
       <SectionHeading
         eyebrow="Gallery"
@@ -711,7 +711,7 @@ const pageSchema = {
       />
 
       <div class="gallery-grid">
-        <figure class="gallery-tile gallery-tile--tall gallery-tile--sage">
+        <figure class="gallery-tile gallery-tile--tall gallery-tile--periwinkle">
           <img
             src={images.kid.src}
             alt="A child playing with a toy car"
@@ -723,7 +723,7 @@ const pageSchema = {
           <figcaption><span>Play</span> is how they learn.</figcaption>
         </figure>
 
-        <div class="gallery-tile gallery-tile--quote gallery-tile--pink">
+        <div class="gallery-tile gallery-tile--quote gallery-tile--lilac">
           <Icon name="sparkle" size={22} />
           <p>“The best progress is the kind you see at home.”</p>
           <span>Our favourite kind of win</span>
@@ -746,13 +746,13 @@ const pageSchema = {
           <figcaption><span>Heal</span> with care.</figcaption>
         </figure>
 
-        <div class="gallery-tile gallery-tile--wide gallery-tile--quote gallery-tile--cream">
+        <div class="gallery-tile gallery-tile--wide gallery-tile--quote gallery-tile--mauve">
           <Icon name="heart" size={22} />
           <p>“Small steps still move us forward.”</p>
           <span>Our everyday reminder</span>
         </div>
 
-        <figure class="gallery-tile gallery-tile--kid-two gallery-tile--sage gallery-tile--icon">
+        <figure class="gallery-tile gallery-tile--kid-two gallery-tile--periwinkle gallery-tile--icon">
           <span class="gallery-tile__icon"><Icon name="sprout" size={42} strokeWidth={1.3} /></span>
           <figcaption><span>Thrive</span> at their own pace.</figcaption>
         </figure>
@@ -804,7 +804,7 @@ const pageSchema = {
     transform: translateX(-50%) rotate(-4deg);
     opacity: 0.7;
   }
-.home-hero__blob--sage {
+.home-hero__blob--periwinkle {
     width: clamp(220px, 30vw, 420px);
     height: clamp(220px, 28vw, 380px);
     right: -12%;
@@ -1096,8 +1096,8 @@ const pageSchema = {
     background: var(--pink-soft);
     transform: rotate(14deg);
   }
-.intro__side-bg--sage {
-    background: var(--sage);
+.intro__side-bg--periwinkle {
+    background: var(--periwinkle-deep);
     transform: rotate(-10deg);
   }
 :global(.intro-section__doodle--sun) {
@@ -1160,7 +1160,7 @@ const pageSchema = {
   }
 /* Expert ---------------------------------------------- */
   .expert {
-    background: var(--sage);
+    background: var(--periwinkle);
     overflow: clip;
   }
 .expert__blob--one {
@@ -1175,7 +1175,7 @@ const pageSchema = {
     height: clamp(200px, 24vw, 340px);
     left: -8%;
     bottom: -18%;
-    background: rgba(227, 108, 138, 0.2);
+    background: rgba(245, 207, 223, 0.55);
   }
 .expert__inner {
     position: relative;
@@ -1196,7 +1196,7 @@ const pageSchema = {
     font-style: italic;
   }
 .expert__copy p {
-    color: var(--sage-ink);
+    color: var(--ink-soft);
     font-size: 0.96rem;
     line-height: 1.75;
   }
@@ -1214,7 +1214,7 @@ const pageSchema = {
     padding: 0.55rem 0.7rem;
     border-radius: 12px;
     background: rgba(255, 253, 249, 0.56);
-    color: var(--sage-ink);
+    color: var(--ink-soft);
     font-size: 0.72rem;
     font-weight: 600;
     line-height: 1.3;
@@ -1479,12 +1479,12 @@ const pageSchema = {
     background: var(--pink-soft);
     border-color: transparent;
   }
-.stat-card--sage {
-    background: var(--sage);
+.stat-card--periwinkle {
+    background: var(--periwinkle-deep);
     border-color: transparent;
   }
-.stat-card--cream {
-    background: var(--cream-deep);
+.stat-card--lilac {
+    background: var(--lilac);
     border-color: transparent;
   }
 .impact__visual {
@@ -1568,7 +1568,7 @@ const pageSchema = {
     font-style: italic;
   }
 .team-section__copy p {
-    color: var(--sage-ink);
+    color: var(--ink-soft);
     font-size: 0.94rem;
   }
 .team-roles {
@@ -1597,7 +1597,7 @@ const pageSchema = {
   }
 .team-roles strong {
     display: block;
-    color: var(--sage-ink);
+    color: var(--ink);
     font-size: 0.78rem;
     font-weight: 600;
     line-height: 1.35;
@@ -1684,15 +1684,15 @@ const pageSchema = {
     width: clamp(80px, 10vw, 140px);
     right: 2%;
     bottom: 2%;
-    color: var(--sage-ink);
-    opacity: 0.35;
+    color: var(--blue-soft);
+    opacity: 0.4;
   }
 :global(.team-section__leaf) {
     width: clamp(60px, 8vw, 108px);
     left: 2%;
     bottom: 4%;
-    color: var(--sage-ink);
-    opacity: 0.45;
+    color: var(--sage-deep);
+    opacity: 0.35;
   }
 :global(.team-section__sun) {
     width: clamp(45px, 6vw, 78px);
@@ -1846,8 +1846,8 @@ const pageSchema = {
     height: 44%;
   }
 .quote-band__face--two {
-    background: var(--sage);
-    color: var(--sage-ink);
+    background: var(--lavender);
+    color: var(--purple);
   }
 .quote-band__face--three {
     background: var(--gold-soft);
@@ -1913,10 +1913,10 @@ const pageSchema = {
     box-shadow: var(--shadow-sm);
   }
 .approach-card--tone-1 {
-    background: var(--pink-wash);
+    background: var(--blush);
   }
 .approach-card--tone-2 {
-    background: var(--sage);
+    background: var(--periwinkle);
     border-color: transparent;
   }
 .approach-card__top {
@@ -2016,11 +2016,11 @@ const pageSchema = {
     gap: 0.7rem;
     padding: clamp(1.15rem, 2.2vw, 1.8rem);
     border-radius: 18px;
-    background: var(--cream-light);
+    background: var(--white);
     box-shadow: var(--shadow-sm);
   }
 .value-card:nth-child(2n) {
-    background: var(--white);
+    background: var(--blush);
   }
 .value-card__icon {
     display: grid;
@@ -2090,10 +2090,10 @@ const pageSchema = {
 .gallery-tile--wide {
     grid-column: span 2;
   }
-.gallery-tile--sage {
-    background: var(--sage);
+.gallery-tile--periwinkle {
+    background: var(--periwinkle-deep);
   }
-.gallery-tile--sage img {
+.gallery-tile--periwinkle img {
     object-position: 62% 58%;
     transform: scale(1.08);
   }
@@ -2117,10 +2117,10 @@ const pageSchema = {
       radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9), transparent 58%),
       var(--gold-soft);
   }
-.gallery-tile--icon.gallery-tile--sage {
+.gallery-tile--icon.gallery-tile--periwinkle {
     background:
       radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.8), transparent 58%),
-      var(--sage);
+      var(--periwinkle-deep);
   }
 .gallery-tile__icon {
     display: grid;
@@ -2134,8 +2134,8 @@ const pageSchema = {
     box-shadow: 0 22px 38px -22px rgba(45, 22, 116, 0.45);
     transform: translateY(-8%);
   }
-.gallery-tile--sage .gallery-tile__icon {
-    color: var(--sage-ink);
+.gallery-tile--periwinkle .gallery-tile__icon {
+    color: var(--blue-soft);
   }
 .gallery-tile--mascot img {
     object-fit: cover;
@@ -2163,11 +2163,11 @@ const pageSchema = {
     font-size: 0.62rem;
     letter-spacing: 0.04em;
   }
-.gallery-tile--pink {
-    background: var(--pink-soft);
+.gallery-tile--lilac {
+    background: var(--lilac);
   }
-.gallery-tile--cream {
-    background: var(--cream-deep);
+.gallery-tile--mauve {
+    background: var(--mauve);
   }
 /* FAQ ----------------------------------------------- */
   .faq-section__inner {
