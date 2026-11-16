@@ -12,7 +12,7 @@ import TestimonialSlider from '../components/TestimonialSlider.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import { images } from '../lib/images';
 import { services, careFormats } from '../data/services';
-import { approach, ratingOnlyReviews, values, team } from '../data/content';
+import { approach, googleReviewSummary, values, team } from '../data/content';
 import { homeFaqs } from '../data/faqs';
 import { site, trustPoints } from '../data/site';
 
@@ -705,10 +705,10 @@ const pageSchema = {
               <Icon name="star" size={12} />
             ))}
           </span>
-          Also rated five stars on Google
+          {googleReviewSummary.rating} out of 5 on Google
         </p>
-        <p class="testimonials__more-names">
-          {ratingOnlyReviews.slice(0, -1).join(' · ')} · {ratingOnlyReviews.at(-1)}
+        <p class="testimonials__more-meta">
+          Based on {googleReviewSummary.count} reviews from parents and families.
         </p>
         <a
           class="testimonials__more-link"
@@ -716,7 +716,7 @@ const pageSchema = {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Read all reviews on Google
+          Read all {googleReviewSummary.count} reviews on Google
           <Icon name="arrow" size={14} />
         </a>
       </div>
@@ -2221,11 +2221,10 @@ const pageSchema = {
 .testimonials__more-stars :global(svg) {
     fill: currentColor;
   }
-.testimonials__more-names {
-    max-width: 68ch;
+.testimonials__more-meta {
     color: var(--muted);
-    font-size: 0.74rem;
-    line-height: 1.9;
+    font-size: 0.78rem;
+    line-height: 1.8;
   }
 .testimonials__more-link {
     display: inline-flex;

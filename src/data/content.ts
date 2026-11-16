@@ -91,25 +91,10 @@ export const testimonials = [
   },
 ];
 
-export const ratingOnlyReviews = [
-  'Arifa Jabeen',
-  'Kota Mounika',
-  'Srinivas Reddy',
-  'Veerendar Singh Shekhawat',
-  'Shubh Bhandari',
-  'Dr Sowjanya Sircilla',
-  'Karthik Reddy',
-  'Tarunikaa Gupta',
-  'Sowmya Lakshmi',
-  'Archna Bali',
-  'Sarika Kapoor',
-  'Ayushi Sharma',
-  'Richa Dureja',
-  'Neeraj Panwar',
-  'Asha Rani',
-  'Sakshi Dawar',
-  'Suravaram Sriteja',
-];
+export const googleReviewSummary = {
+  rating: '4.6',
+  count: 30,
+};
 
 export const values = [
   {
