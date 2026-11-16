@@ -91,11 +91,6 @@ export const testimonials = [
   },
 ];
 
-export const googleReviewSummary = {
-  rating: '4.6',
-  count: 30,
-};
-
 export const values = [
   {
     title: 'Empathy first',
