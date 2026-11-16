@@ -23,7 +23,7 @@ import { testimonials } from '../data/content';
             </span>
             <span>
               <strong>{testimonial.name}</strong>
-              <small>{testimonial.context} · Heal &amp; Heed</small>
+              <small>{testimonial.context} · {testimonial.source ?? 'Heal & Heed'}</small>
             </span>
           </figcaption>
         </figure>
@@ -31,7 +31,7 @@ import { testimonials } from '../data/content';
     }
   </div>
   <div class="testimonial-slider__controls">
-    <p class="testimonial-slider__hint">A few words from families we work with</p>
+    <p class="testimonial-slider__hint">{testimonials.length} reviews from our Google listing</p>
     <div class="testimonial-slider__buttons">
       <button type="button" data-slider-prev aria-label="Previous testimonial">
         <Icon name="arrow" size={17} />
@@ -83,7 +83,7 @@ import { testimonials } from '../data/content';
 .testimonial-slider__track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(320px, 43%);
+    grid-auto-columns: clamp(300px, 32vw, 440px);
     gap: 1.25rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;

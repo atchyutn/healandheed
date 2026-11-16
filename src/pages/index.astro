@@ -12,7 +12,7 @@ import TestimonialSlider from '../components/TestimonialSlider.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import { images } from '../lib/images';
 import { services, careFormats } from '../data/services';
-import { approach, values, team } from '../data/content';
+import { approach, ratingOnlyReviews, values, team } from '../data/content';
 import { homeFaqs } from '../data/faqs';
 import { site, trustPoints } from '../data/site';
 
@@ -694,9 +694,32 @@ const pageSchema = {
         eyebrow="Parent stories"
         title="Words from"
         accent="our families."
-        lead="Real experiences from parents who trusted us with their child’s journey."
+        lead="Real experiences from parents who trusted us with their child’s journey — collected from our Google listing."
       />
       <TestimonialSlider />
+
+      <div class="testimonials__more reveal">
+        <p class="testimonials__more-label">
+          <span class="testimonials__more-stars" aria-hidden="true">
+            {Array.from({ length: 5 }).map(() => (
+              <Icon name="star" size={12} />
+            ))}
+          </span>
+          Also rated five stars on Google
+        </p>
+        <p class="testimonials__more-names">
+          {ratingOnlyReviews.slice(0, -1).join(' · ')} · {ratingOnlyReviews.at(-1)}
+        </p>
+        <a
+          class="testimonials__more-link"
+          href={site.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read all reviews on Google
+          <Icon name="arrow" size={14} />
+        </a>
+      </div>
     </div>
   </section>
 
@@ -2168,6 +2191,57 @@ const pageSchema = {
   }
 .gallery-tile--mauve {
     background: var(--mauve);
+  }
+/* Testimonials --------------------------------------- */
+  .testimonials__more {
+    display: grid;
+    justify-items: center;
+    gap: 0.55rem;
+    max-width: 880px;
+    margin: clamp(2rem, 4vw, 3rem) auto 0;
+    padding-top: clamp(1.6rem, 3vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+.testimonials__more-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--purple);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+.testimonials__more-stars {
+    display: inline-flex;
+    gap: 0.12rem;
+    color: var(--gold);
+  }
+.testimonials__more-stars :global(svg) {
+    fill: currentColor;
+  }
+.testimonials__more-names {
+    max-width: 68ch;
+    color: var(--muted);
+    font-size: 0.74rem;
+    line-height: 1.9;
+  }
+.testimonials__more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    margin-top: 0.2rem;
+    color: var(--purple);
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+  }
+.testimonials__more-link:hover {
+    color: var(--pink-deep);
+    border-color: var(--pink-deep);
   }
 /* FAQ ----------------------------------------------- */
   .faq-section__inner {
