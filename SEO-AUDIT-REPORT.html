@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heal &amp; Heed — Local SEO Audit &amp; Implementation Report</title>
+<style>
+  :root{
+    --ink:#241746; --ink-soft:#4d4270; --muted:#6f6788;
+    --blue:#2d1674; --blue-deep:#1b0d4d; --pink:#e36c8a; --pink-deep:#b83f66;
+    --pink-soft:#fbe4ec; --lavender:#efeafb; --cream:#fffaf3; --line:#e7e0f0;
+    --green:#1f7a55; --green-soft:#e4f3eb; --amber:#9a6510; --amber-soft:#fff2d9;
+    --red:#a13544; --red-soft:#fbe7ea; --white:#fff;
+    --shadow:0 20px 50px -30px rgba(27,13,77,.55); --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif; line-height:1.18; margin:0}
+  a{color:var(--pink-deep)}
+  code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:#f3eefb; padding:.12em .4em; border-radius:6px}
+
+  /* Layout */
+  .topbar{position:sticky; top:0; z-index:20; background:rgba(27,13,77,.96); backdrop-filter:blur(10px); color:#fff; border-bottom:1px solid rgba(255,255,255,.1)}
+  .topbar__inner{max-width:1240px; margin:auto; padding:14px 24px; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+  .brandmark{display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:.01em}
+  .brandmark span.logo{display:grid; place-items:center; width:34px; height:34px; border-radius:11px; background:var(--pink); color:#fff; font-family:Georgia,serif; font-size:18px}
+  .topbar nav{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap}
+  .topbar nav a{color:rgba(255,255,255,.78); text-decoration:none; font-size:12.5px; padding:7px 11px; border-radius:999px; border:1px solid transparent}
+  .topbar nav a:hover{color:#fff; border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.07)}
+
+  .hero{background:linear-gradient(135deg,#2d1674 0%,#3f1d86 55%,#7a2d73 100%); color:#fff; overflow:hidden; position:relative}
+  .hero::after{content:""; position:absolute; width:520px; height:520px; right:-140px; top:-220px; border-radius:50%; background:rgba(227,108,138,.28)}
+  .hero__inner{max-width:1240px; margin:auto; padding:70px 24px 76px; position:relative; z-index:1; display:grid; grid-template-columns:1.5fr .9fr; gap:50px; align-items:center}
+  .eyebrow{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#ffd4e1; margin-bottom:18px}
+  .hero h1{font-size:clamp(2.3rem,5vw,4.1rem); letter-spacing:-.02em}
+  .hero h1 em{color:#ffc0d5; font-style:italic}
+  .hero p.lead{max-width:62ch; color:rgba(255,255,255,.82); font-size:1.02rem; margin:20px 0 0}
+  .hero__meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px}
+  .hero__meta span{font-size:12px; padding:8px 13px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18)}
+
+  .stats{max-width:1240px; margin:-34px auto 0; padding:0 24px; position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  .stat{background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow)}
+  .stat strong{display:block; font-family:Georgia,serif; font-size:2.1rem; color:var(--blue); line-height:1}
+  .stat span{display:block; margin-top:8px; color:var(--muted); font-size:12px}
+
+  .wrap{max-width:1240px; margin:auto; padding:56px 24px 90px; display:grid; grid-template-columns:230px minmax(0,1fr); gap:56px; align-items:start}
+  .toc{position:sticky; top:92px; border-left:2px solid var(--line); padding-left:18px}
+  .toc h4{font-family:inherit; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+  .toc a{display:block; color:var(--ink-soft); text-decoration:none; font-size:13px; padding:6px 0}
+  .toc a:hover{color:var(--pink-deep)}
+  .toc a::before{content:"— "; color:#c9bfdd}
+
+  section.block{margin-bottom:62px; scroll-margin-top:100px}
+  .block__head{margin-bottom:22px}
+  .block__head .num{color:var(--pink-deep); font-family:Georgia,serif; font-style:italic; font-size:14px}
+  .block__head h2{font-size:clamp(1.7rem,3vw,2.5rem); color:var(--blue); margin:6px 0 10px}
+  .block__head p{color:var(--muted); max-width:78ch; margin:0}
+  .callout{background:var(--lavender); border:1px solid #dcd2f4; border-radius:var(--radius); padding:18px 20px; margin:0 0 24px; color:var(--ink-soft); font-size:13.5px}
+  .callout strong{color:var(--blue)}
+
+  .cards{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:0 10px 25px -25px rgba(27,13,77,.5)}
+  .card h3{font-size:1.06rem; color:var(--blue); margin-bottom:8px}
+  .card p{margin:0; color:var(--ink-soft); font-size:13.2px}
+  .card ul{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:13px}
+  .card li{margin:5px 0}
+  .tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+  .tag{font:700 10px/1.4 -apple-system,sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:4px 8px; border-radius:999px}
+  .tag.done{background:var(--green-soft); color:var(--green)}
+  .tag.partial{background:var(--amber-soft); color:var(--amber)}
+  .tag.open{background:var(--red-soft); color:var(--red)}
+  .tag.info{background:var(--pink-soft); color:var(--pink-deep)}
+
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+  table{border-collapse:collapse; width:100%; min-width:720px; font-size:13px}
+  th,td{text-align:left; padding:13px 15px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{background:#faf7ff; color:var(--blue); font-size:11px; letter-spacing:.1em; text-transform:uppercase; position:sticky; top:0}
+  tr:last-child td{border-bottom:0}
+  td small{display:block; color:var(--muted); margin-top:3px; line-height:1.5}
+  .pill{display:inline-block; white-space:nowrap; font-size:10px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:4px 9px; border-radius:999px}
+  .pill.done{background:var(--green-soft); color:var(--green)}
+  .pill.partial{background:var(--amber-soft); color:var(--amber)}
+  .pill.open{background:var(--red-soft); color:var(--red)}
+  .pill.info{background:var(--pink-soft); color:var(--pink-deep)}
+
+  .asset{background:var(--blue-deep); color:#f4efff; border-radius:var(--radius); padding:20px; margin-top:14px}
+  .asset h3{color:#fff; font-size:1rem; margin-bottom:8px}
+  .asset pre{white-space:pre-wrap; word-break:break-word; margin:0; font:12.5px/1.7 ui-monospace,Menlo,Consolas,monospace; color:#ffd9e6}
+  .asset .label{font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:#b9a8e6; margin-bottom:6px; display:block}
+
+  .note{background:#fff8ec; border:1px solid #f2dfba; border-left:4px solid #d59a2b; border-radius:12px; padding:16px 18px; color:#6b501e; font-size:13px; margin-top:18px}
+  footer{border-top:1px solid var(--line); margin-top:20px; padding-top:24px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+  @media (max-width:980px){
+    .hero__inner{grid-template-columns:1fr; gap:24px; padding-top:52px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .wrap{grid-template-columns:1fr; gap:24px; padding-top:40px}
+    .toc{position:static; display:flex; flex-wrap:wrap; gap:4px 14px; border-left:0; border-bottom:1px solid var(--line); padding:0 0 14px}
+    .toc h4{width:100%; margin-bottom:2px}
+    .toc a::before{content:none}
+    .cards{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){ .stats{grid-template-columns:1fr 1fr; padding:0 16px} .hero__inner{padding-inline:18px} .wrap{padding-inline:18px} }
+  @media print{
+    .topbar,.toc{display:none}
+    body{background:#fff}
+    .wrap{display:block; padding:0}
+    .hero__inner{padding:24px 0}
+    .card,.stat,.table-wrap{box-shadow:none; break-inside:avoid}
+    section.block{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="brandmark"><span class="logo">H</span> Heal &amp; Heed · Local SEO</div>
+    <nav aria-label="Report sections">
+      <a href="#summary">Summary</a>
+      <a href="#done">Completed</a>
+      <a href="#pages">New pages</a>
+      <a href="#open">Still open</a>
+      <a href="#technical">Technical</a>
+      <a href="#assets">Copy-paste assets</a>
+      <a href="#cadence">Month two</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero__inner">
+    <div>
+      <span class="eyebrow">Implementation report · 17 November 2026</span>
+      <h1>Local SEO, <em>fixed where we can.</em></h1>
+      <p class="lead">This report records the website work completed against the 30-day checklist and the full audit register — and lists, clearly, the items that still need clinic ownership or access to Google and third-party directories. Nothing here promises a ranking or a number of leads.</p>
+      <div class="hero__meta">
+        <span>Branch: <strong>SEO-audit</strong></span>
+        <span>Deploy target: <strong>main → production</strong></span>
+        <span>Clinical sign-off: <strong>required for guides</strong></span>
+      </div>
+    </div>
+    <div class="stats" style="margin:0; position:static; padding:0; grid-template-columns:1fr 1fr; max-width:none">
+      <div class="stat"><strong>13</strong><span>Register items addressed in code</span></div>
+      <div class="stat"><strong>9</strong><span>New indexable pages added</span></div>
+      <div class="stat"><strong>12</strong><span>Items still needing owner / platform access</span></div>
+      <div class="stat"><strong>18</strong><span>URLs now in the XML sitemap</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <a href="#summary">01 · Executive summary</a>
+    <a href="#done">02 · What was done</a>
+    <a href="#pages">03 · New pages</a>
+    <a href="#open">04 · What was not handled</a>
+    <a href="#technical">05 · Technical checklist</a>
+    <a href="#assets">06 · Ready-to-use assets</a>
+    <a href="#cadence">07 · Month two &amp; cadence</a>
+    <a href="#notes">08 · Important notes</a>
+  </aside>
+
+  <main>
+    <section class="block" id="summary">
+      <div class="block__head">
+        <span class="num">01</span>
+        <h2>Executive summary</h2>
+        <p>The audit's recommended first move was to fix location identity and contact clarity, then publish the four core service pages, verify technical indexing and establish measurable enquiry tracking. The website-controlled part of that sequence is now in place.</p>
+      </div>
+      <div class="callout">
+        <strong>What changed in this release:</strong> four dedicated service landing pages, three clinician-review-flagged condition guides, an Our Team page, a working parent-guides section with two articles, clearer local homepage messaging, prominent call / WhatsApp / booking paths on mobile, enquiry click tracking, and consistent structured data. The sitemap, canonicals, robots file and page metadata were checked and rebuilt.
+      </div>
+      <div class="callout" style="background:var(--red-soft); border-color:#f0ccd3">
+        <strong>What did not change:</strong> anything that requires Google Business Profile manager access, Search Console verification, clinic decisions about branches and services, therapist-approved credentials and medical wording, real clinic photographs with consent, or corrections on external directories. These are listed in section 04 — none have been guessed at or quietly removed.
+      </div>
+    </section>
+
+    <section class="block" id="done">
+      <div class="block__head">
+        <span class="num">02</span>
+        <h2>What was done</h2>
+        <p>Each item below maps to a number in the original issues register or the 30-day checklist.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #03</span></div>
+          <h3>Service-page architecture</h3>
+          <p>Four separate, indexable landing pages now exist for the core therapies instead of one combined block.</p>
+          <ul><li>Speech therapy, occupational therapy, behaviour therapy, special education</li><li>Each has symptoms / suitability, how sessions work, FAQs and a booking CTA</li><li>Every page carries <code>Service</code> + <code>FAQPage</code> + breadcrumb schema</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #09</span></div>
+          <h3>Condition / support guides</h3>
+          <p>Three parent-facing guides were added for the discovery gaps in the audit.</p>
+          <ul><li>Autism support, ADHD-related support, speech delay</li><li>No diagnosis, cure or outcome promises</li><li>Flagged for therapist sign-off before being treated as final</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #06, #20</span></div>
+          <h3>Blog navigation &amp; content</h3>
+          <p>The broken / missing Blog destination is now a real, functioning article index.</p>
+          <ul><li><code>/blog/</code> with two published parent articles</li><li>Author / reviewer framing, dates, reading time, clinical disclaimer</li><li>Blog added to the main navigation and footer</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #07</span></div>
+          <h3>Homepage positioning</h3>
+          <p>The generic hero was rewritten around the actual service and locality intent.</p>
+          <ul><li>New title: <em>Child Development &amp; Therapies in L.B. Nagar</em></li><li>New H1 and opening copy naming the four therapies and L.B. Nagar</li><li>Unique meta description, page schema and Open Graph tags inherited</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #05, #08, #14</span></div>
+          <h3>Contact clarity &amp; parent intent</h3>
+          <p>Enquiry routes are now visible and the information parents need is on the relevant page.</p>
+          <ul><li>Tap-to-call in the header; sticky mobile bar with Call / WhatsApp / Book</li><li>First-visit, assessment, session-format and "contact for current rates" wording added</li><li>FAQs answer suitability, duration, online options and next steps</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #16, #18</span></div>
+          <h3>Structured data &amp; internal links</h3>
+          <p>One source of truth now drives the business details in schema.</p>
+          <ul><li>Address derived from <code>site.ts</code> rather than duplicated</li><li><code>LocalBusiness</code> / <code>MedicalBusiness</code>, <code>Service</code>, <code>FAQPage</code>, <code>BreadcrumbList</code>, <code>Article</code></li><li>Homepage, services page, footer and every new page cross-linked</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #19</span></div>
+          <h3>Enquiry tracking</h3>
+          <p>Rankings alone cannot show which clicks turn into enquiries, so events were added.</p>
+          <ul><li>GA4 <code>enquiry_click</code> events for call, WhatsApp and booking clicks</li><li>Events carry only the click type — no personal data or child details</li><li>Header, CTA bands, new pages and mobile bar are all tagged</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag done">Fixed</span><span class="tag info">Register #17, #15, #01</span></div>
+          <h3>Indexing, trust &amp; NAP hygiene</h3>
+          <p>Technical foundations were re-generated and checked.</p>
+          <ul><li>18 clean URLs in <code>sitemap-index.xml</code>; 404 excluded; robots file points to it</li><li>Testimonial disclaimer added: stories shared with permission, progress varies</li><li>Vanasthalipuram removed from schema <code>areaServed</code> to reduce conflicting signals; no business listing was deleted</li></ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag partial">Partial</span><span class="tag info">Register #04</span></div>
+          <h3>Our Team page</h3>
+          <p>A dedicated team page now exists, but it could not be completed honestly.</p>
+          <ul><li>Shows the four disciplines and how the team coordinates care</li><li>Invites parents to ask about qualifications directly</li><li><strong>Still needed:</strong> named therapists, qualifications, registrations, portraits with consent</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="pages">
+      <div class="block__head">
+        <span class="num">03</span>
+        <h2>New pages in this release</h2>
+        <p>All nine are static, crawlable, canonicalised, included in the sitemap and linked from at least one other page.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Page</th><th>Purpose</th><th>Schema</th><th>Review flag</th></tr></thead>
+          <tbody>
+            <tr><td><code>/speech-therapy/</code></td><td>Speech therapy in L.B. Nagar — signs, process, FAQs, booking</td><td>Service, FAQ, Breadcrumb</td><td><span class="pill done">Clinic to confirm service</span></td></tr>
+            <tr><td><code>/occupational-therapy/</code></td><td>Occupational therapy, daily living and sensory support</td><td>Service, FAQ, Breadcrumb</td><td><span class="pill done">Clinic to confirm service</span></td></tr>
+            <tr><td><code>/behaviour-therapy/</code></td><td>In-person and online behaviour therapy</td><td>Service, FAQ, Breadcrumb</td><td><span class="pill done">Clinic to confirm service</span></td></tr>
+            <tr><td><code>/special-education/</code></td><td>Tailored learning support, with availability check</td><td>Service, FAQ, Breadcrumb</td><td><span class="pill partial">Confirm currently offered</span></td></tr>
+            <tr><td><code>/autism-support/</code></td><td>Parent guide to support options</td><td>WebPage, FAQ, Breadcrumb</td><td><span class="pill partial">Therapist sign-off</span></td></tr>
+            <tr><td><code>/adhd-support/</code></td><td>Parent guide to attention and learning support</td><td>WebPage, FAQ, Breadcrumb</td><td><span class="pill partial">Therapist sign-off</span></td></tr>
+            <tr><td><code>/speech-delay/</code></td><td>When to seek a speech-language assessment</td><td>WebPage, FAQ, Breadcrumb</td><td><span class="pill partial">Therapist sign-off</span></td></tr>
+            <tr><td><code>/our-team/</code></td><td>Team disciplines and coordinated care</td><td>WebPage, FAQ, Breadcrumb</td><td><span class="pill partial">Add named profiles</span></td></tr>
+            <tr><td><code>/blog/</code> + 2 articles</td><td>Parent guides index and two published articles</td><td>CollectionPage, Article, Breadcrumb</td><td><span class="pill partial">Therapist sign-off</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="open">
+      <div class="block__head">
+        <span class="num">04</span>
+        <h2>What was not handled — and why</h2>
+        <p>These items were deliberately left alone. They need clinic decisions, permissions or platform access that the website code cannot supply. Nothing was removed or rewritten on a guess.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Open item</th><th>Why it was not done</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>01–02</td><td>Verify which branches are open; audit the LB Nagar and Vanasthalipuram Google listings, ownership, pin, category and hours; request permitted corrections or merges.</td><td>Requires GBP manager access and a clinic decision. No legitimate branch was removed.</td><td>Owner + SEO</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>Day 2 / 17</td><td>Add and verify <code>healandheed.org</code> in Google Search Console, submit the sitemap, record baseline clicks and impressions.</td><td>Needs a verified GSC property. The sitemap file itself is built and ready.</td><td>Owner / SEO</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>Day 1</td><td>Capture private-window baseline screenshots for the five target searches; open the top three competitors and log review counts and gaps.</td><td>Manual research task; results change by location and time and should not be invented.</td><td>SEO</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>Day 3 / 24 / 26 / 29</td><td>GBP category and service audit, ten real photos, two GBP posts, UTM-tagged GBP website link, calls/directions metrics.</td><td>All require Google Business Profile manager access.</td><td>SEO</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>Day 8–10 / #10</td><td>Create the Google review short link and QR code, send the WhatsApp request to ten recent parents, reply to every existing review.</td><td>Needs the GBP place ID / review link, front-desk execution and a consent-based process. No reviews were bought, incentivised or written.</td><td>Front desk</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>11–13 / Day 25</td><td>Correct NAP, hours and services on Justdial, Practo, Sulekha, Nayi Disha and LinkedIn; resolve the physiotherapy and 24-hour claims.</td><td>External accounts and a clinic decision on which services are genuinely offered.</td><td>Owner + SEO</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>04 / Day 9</td><td>Named therapist biographies, qualifications, registrations and professional portraits with consent.</td><td>Only the clinic can supply and approve staff credentials and photographs.</td><td>Owner</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>09 / 15 / Notes</td><td>Formal therapist sign-off on every condition guide, blog article, testimonial and medical statement.</td><td>Clinical governance — the wording was written conservatively but is not a substitute for review.</td><td>Clinic therapists</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>14</td><td>Actual fees, session durations, available slots and home/online availability.</td><td>Pricing policy was not supplied; pages say "contact for current rates" instead of guessing.</td><td>Owner</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>18 / Day 20</td><td>Real clinic photographs, compressed and described with consent-approved alt text.</td><td>The imagery must come from the clinic with parent and patient permission.</td><td>Owner</td><td><span class="pill open">Not handled</span></td></tr>
+            <tr><td>Day 5 / 19 / 21</td><td>Live PageSpeed Insights scores, Core Web Vitals, Rich Results Test validation and a GSC coverage check.</td><td>These need the deployed public URL and tool access. Good practices are in place; scores were not measured.</td><td>Developer / SEO</td><td><span class="pill partial">Verify after deploy</span></td></tr>
+            <tr><td>Day 30</td><td>One-page monthly report with real review counts, impressions, calls, direction requests and booked assessments; two new blog topics and a local backlink outreach.</td><td>Depends on a full month of live data and a school / parenting-group contact.</td><td>Owner + SEO</td><td><span class="pill open">Not handled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="technical">
+      <div class="block__head">
+        <span class="num">05</span>
+        <h2>Technical SEO checklist</h2>
+        <p>Status of the checks listed in the audit's "technical checks before declaring SEO complete" table.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Area</th><th>Status</th><th>Evidence in this release</th></tr></thead>
+          <tbody>
+            <tr><td>Crawl + indexing</td><td><span class="pill done">Done locally</span></td><td>18 URLs in sitemap, 404 excluded, robots file references sitemap. Live GSC coverage check still pending.</td></tr>
+            <tr><td>Page metadata</td><td><span class="pill done">Done</span></td><td>Unique titles and descriptions per page, one H1 each, canonical and hreflang tags on every page.</td></tr>
+            <tr><td>Structured data</td><td><span class="pill done">Done locally</span></td><td>Valid JSON-LD generated from one source; Rich Results Test on the live URL still pending.</td></tr>
+            <tr><td>Mobile UX</td><td><span class="pill done">Done</span></td><td>Responsive layouts, 48px-plus tap targets, sticky mobile contact bar with three clear actions.</td></tr>
+            <tr><td>Page speed</td><td><span class="pill partial">Best practice only</span></td><td>Astro optimises images to WebP, lazy loading and width/height are in place. Live Core Web Vitals not measured.</td></tr>
+            <tr><td>Accessibility</td><td><span class="pill done">Done</span></td><td>Descriptive alt text, semantic headings, skip link, labelled controls, reduced-motion support.</td></tr>
+            <tr><td>Measurement</td><td><span class="pill partial">Partial</span></td><td>GA4 loaded in production with enquiry-click events. GSC / GA4 property verification and reporting still pending.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Build and type checks both pass with zero errors, and all 19 pages generated successfully. A full final check should be repeated after the production deploy, because Google's tools can only validate the live URL.</div>
+    </section>
+
+    <section class="block" id="assets">
+      <div class="block__head">
+        <span class="num">06</span>
+        <h2>Ready-to-use assets</h2>
+        <p>Copy these into the relevant platform once access is available.</p>
+      </div>
+
+      <div class="asset">
+        <span class="label">WhatsApp message to recent parents — neutral, no incentive</span>
+        <h3>Review request</h3>
+        <pre>Hi [Parent name], thank you for trusting Heal &amp; Heed with your child's care. If you are happy with the support you have received, would you consider leaving a short Google review? It helps other parents in L.B. Nagar find us. No pressure at all — and please do not include your child's name or personal details in the review. Thank you. [Link]</pre>
+      </div>
+
+      <div class="asset">
+        <span class="label">Paste into the Google Business Profile "Website" field</span>
+        <h3>UTM-tagged website link</h3>
+        <pre>https://www.healandheed.org/?utm_source=google&amp;utm_medium=organic&amp;utm_campaign=gbp&amp;utm_content=website</pre>
+      </div>
+
+      <div class="asset">
+        <span class="label">Two Google Business Profile post ideas</span>
+        <h3>Service post + article post</h3>
+        <pre>1) "Wondering whether speech therapy could help your child? Our L.B. Nagar centre starts with a conversation and an assessment, then builds a plan around your child. Call or WhatsApp us to ask a question." → link to /speech-therapy/
+
+2) "New parent guide: Signs of speech delay in a two-year-old — what to look for and what happens at a first assessment." → link to /blog/signs-of-speech-delay-in-a-two-year-old/</pre>
+      </div>
+    </section>
+
+    <section class="block" id="cadence">
+      <div class="block__head">
+        <span class="num">07</span>
+        <h2>Month two and the ongoing cadence</h2>
+        <p>The site structure is ready; the next month is about real data, permissions and steady publishing.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="tags"><span class="tag info">Next 30 days</span></div>
+          <h3>Plan month two</h3>
+          <ul>
+            <li>Two new clinician-reviewed blog topics</li>
+            <li>A target of four to eight genuine new reviews (never bought or incentivised)</li>
+            <li>One local backlink idea: a parenting group or school partnership</li>
+            <li>Resolve branch identity and directory consistency first</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="tags"><span class="tag info">Every month</span></div>
+          <h3>Monthly routine</h3>
+          <ul>
+            <li>Two blog posts and four Google Business Profile posts</li>
+            <li>Reply to every review within a day</li>
+            <li>Ask for reviews after good sessions</li>
+            <li>Refresh directories and send a one-page report</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="notes">
+      <div class="block__head">
+        <span class="num">08</span>
+        <h2>Important notes</h2>
+      </div>
+      <div class="callout">
+        <strong>No ranking or lead promises.</strong> Local rankings depend on relevance, distance and prominence, and public review counts change. Targets here are activity targets, not forecasts.
+      </div>
+      <div class="callout">
+        <strong>Clinical review is mandatory.</strong> The autism, ADHD, speech-delay and blog content was written for parents and kept deliberately conservative, but a qualified therapist must approve it before it is treated as final. Testimonials need permission and should never identify a child or describe treatment details.
+      </div>
+      <div class="callout">
+        <strong>Do not delete listings.</strong> The Vanasthalipuram question is marked "verify", not "remove". Confirm ownership and operating status before any merge, correction or deletion.
+      </div>
+      <footer>
+        <span>Heal &amp; Heed · Child Development &amp; Rehabilitation Center · L.B. Nagar, Hyderabad</span>
+        <span>Prepared for internal SEO execution · 17 November 2026</span>
+      </footer>
+    </section>
+  </main>
+</div>
+</body>
+</html>

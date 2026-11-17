@@ -39,11 +39,11 @@ const {
       </h2>
       <p>{text}</p>
       <div class="button-row">
-        <a class="btn btn--large" href={primaryHref}>
+        <a class="btn btn--large" href={primaryHref} data-track="booking">
           {primaryLabel}
           <Icon name="arrow" size={16} />
         </a>
-        <a class="btn btn--large btn--ghost" href={secondaryHref}>
+        <a class="btn btn--large btn--ghost" href={secondaryHref} data-track={secondaryHref === site.phoneHref ? 'call' : 'booking'}>
           <Icon name="phone" size={16} />
           {secondaryLabel}
         </a>

@@ -32,11 +32,11 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="header-actions">
-      <a class="header-phone" href={site.phoneHref} aria-label={`Call ${site.name} on ${site.phone}`}>
+      <a class="header-phone" href={site.phoneHref} data-track="call" aria-label={`Call ${site.name} on ${site.phone}`}>
         <Icon name="phone" size={17} />
         <span>{site.phone}</span>
       </a>
-      <a class="btn btn--small header-cta" href="/online-sessions/">
+      <a class="btn btn--small header-cta" href="/online-sessions/" data-track="booking">
         Book a session
         <Icon name="arrow" size={14} />
       </a>
@@ -77,11 +77,11 @@ const isActive = (href: string) =>
       </ul>
     </nav>
     <div class="mobile-menu__footer">
-      <a class="btn" href="/online-sessions/">
+      <a class="btn" href="/online-sessions/" data-track="booking">
         Book an online session
         <Icon name="arrow" size={15} />
       </a>
-      <a class="mobile-menu__call" href={site.phoneHref}>
+      <a class="mobile-menu__call" href={site.phoneHref} data-track="call">
         <Icon name="phone" size={18} />
         {site.phone}
       </a>
