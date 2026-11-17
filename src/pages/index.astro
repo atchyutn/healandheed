@@ -31,9 +31,9 @@ const faqSchema = {
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Heal & Heed — Child Development & Rehabilitation Center',
+  name: 'Child development and therapy centre in L.B. Nagar',
   description:
-    'Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad.',
+    'Occupational, speech and behaviour therapy and special education for children in L.B. Nagar, Hyderabad.',
   url: `${site.url}/`,
   about: { '@id': `${site.url}/#organization` },
   primaryImageOfPage: `${site.url}/og-image.png`,
@@ -42,8 +42,8 @@ const pageSchema = {
 ---
 
 <BaseLayout
-  title="Child Development & Rehabilitation in Hyderabad"
-  description="Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad. Occupational, behaviour, speech therapy and special education."
+  title="Child Development & Therapies in L.B. Nagar"
+  description="Child development and rehabilitation centre in L.B. Nagar, Hyderabad. Occupational, speech and behaviour therapy, and special education for children. Book an assessment."
   jsonLd={[pageSchema, faqSchema]}
 >
   <!-- Hero -->
@@ -61,14 +61,14 @@ const pageSchema = {
       </span>
 
       <h1>
-        Building brighter futures,<br />
-        <em>one step at a time.</em>
+        Child development therapy<br />
+        <em>in L.B. Nagar.</em>
       </h1>
 
       <p class="lead home-hero__lead">
-        Compassionate, personalised therapy for children and families in Hyderabad.
-        We help little ones grow, communicate and thrive — with care that sees the
-        whole child.
+        Occupational, speech and behaviour therapy, and special education for
+        children in Hyderabad. Compassionate, personalised support that helps your
+        child communicate, learn and thrive — right here in L.B. Nagar.
       </p>
 
       <div class="button-row home-hero__actions">
@@ -290,13 +290,23 @@ const pageSchema = {
         <ul class="expert__services">
           {services.map((service) => (
             <li>
-              <span class:list={['expert__service-icon', `expert__service-icon--${service.accent}`]}>
-                <Icon name={service.icon} size={17} />
-              </span>
-              {service.title}
+              <a href={`/${service.slug}/`}>
+                <span class:list={['expert__service-icon', `expert__service-icon--${service.accent}`]}>
+                  <Icon name={service.icon} size={17} />
+                </span>
+                <span>{service.title}</span>
+                <Icon name="arrow" size={13} />
+              </a>
             </li>
           ))}
         </ul>
+
+        <p class="expert__conditions">
+          Parent guides:
+          <a href="/autism-support/">Autism support</a>,
+          <a href="/adhd-support/">ADHD support</a> and
+          <a href="/speech-delay/">speech delay</a>.
+        </p>
 
         <a class="btn" href="/services/">
           See how we help
@@ -694,6 +704,10 @@ const pageSchema = {
         lead="Real experiences from parents who trusted us with their child’s journey — collected from our Google listing."
       />
       <TestimonialSlider />
+      <p class="testimonials-note">
+        Parent stories are shared with permission from our Google listing. Every
+        child’s journey is different, and individual progress varies.
+      </p>
     </div>
   </section>
 
@@ -1237,6 +1251,30 @@ const pageSchema = {
 .expert__service-icon--plum {
     background: rgba(45, 22, 116, 0.1);
     color: var(--purple);
+  }
+.expert__services li a {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+.expert__services li a > :global(svg:last-child) {
+    margin-left: auto;
+    flex: 0 0 auto;
+    color: var(--pink-deep);
+  }
+.expert__conditions {
+    color: var(--ink-soft);
+    font-size: 0.74rem;
+    line-height: 1.6;
+  }
+.expert__conditions a {
+    color: var(--pink-deep);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 .expert__visual {
     position: relative;
@@ -2444,4 +2482,13 @@ const pageSchema = {
       font-size: 2.4rem;
     }
   }
+
+.testimonials-note {
+  max-width: 72ch;
+  margin: 1.5rem auto 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  text-align: center;
+}
 </style>

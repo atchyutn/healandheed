@@ -15,6 +15,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
 import { site } from '../data/site';
+import { services } from '../data/services';
 
 interface Props {
   title: string;
@@ -63,8 +64,11 @@ const organizationSchema = {
   hasMap: site.mapsUrl,
   address: {
     '@type': 'PostalAddress',
-    streetAddress:
-      'H.No. 8, 15-106/1, Lane, beside Vijaya Lakshmi Theatre, Sriram Nagar, Raghavendra Nagar Colony',
+    streetAddress: [
+      site.address.line1,
+      site.address.line2,
+      site.address.line3,
+    ].join(', '),
     addressLocality: 'Hyderabad',
     addressRegion: 'Telangana',
     postalCode: '500074',
@@ -73,7 +77,6 @@ const organizationSchema = {
   areaServed: [
     { '@type': 'City', name: 'Hyderabad' },
     { '@type': 'Place', name: 'L.B. Nagar' },
-    { '@type': 'Place', name: 'Vanasthalipuram' },
   ],
   openingHoursSpecification: [
     {
@@ -124,14 +127,14 @@ const organizationSchema = {
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Child development and rehabilitation services',
-    itemListElement: [
-      'Occupational Therapy',
-      'Behaviour Therapy',
-      'Speech Therapy',
-      'Special Education',
-    ].map((name) => ({
+    itemListElement: services.map((service) => ({
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name },
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.summary,
+        url: new URL(`/${service.slug}/`, site.url).href,
+      },
     })),
   },
 };
@@ -255,10 +258,32 @@ const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Heal and Heed on WhatsApp"
+      data-track="whatsapp"
     >
       <WhatsAppIcon />
       <span>WhatsApp us</span>
     </a>
+
+    <!-- Sticky mobile enquiry bar: one-tap call, WhatsApp and booking -->
+    <div class="mobile-action-bar" role="group" aria-label="Quick contact options">
+      <a href={site.phoneHref} data-track="call" aria-label={`Call ${site.name} on ${site.phone}`}>
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.2 2 2 0 0 1 3.1 1h2a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L6.1 9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z" />
+        </svg>
+        <span>Call</span>
+      </a>
+      <a href={site.whatsapp} data-track="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <WhatsAppIcon />
+        <span>WhatsApp</span>
+      </a>
+      <a href="/contact/" data-track="booking" aria-label="Book an appointment">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="3" />
+          <path d="M8 3v4M16 3v4M3 10h18" />
+        </svg>
+        <span>Book</span>
+      </a>
+    </div>
 
     <script>
       const revealItems = document.querySelectorAll('.reveal');
@@ -287,8 +312,29 @@ const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
       }
     </script>
 
+    <script>
+      // Privacy-conscious enquiry tracking: records the type of contact click,
+      // never personal details. Events only fire when GA4 has loaded.
+      const gtagFn = (globalThis as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+      document.querySelectorAll<HTMLElement>('[data-track]').forEach((element) => {
+        element.addEventListener('click', () => {
+          const action = element.dataset.track || 'enquiry';
+          if (typeof gtagFn === 'function') {
+            gtagFn('event', 'enquiry_click', {
+              event_category: 'Enquiries',
+              event_label: action,
+              transport_type: 'beacon',
+            });
+          }
+        });
+      });
+    </script>
+
     <style>
-.whatsapp-fab {
+.mobile-action-bar {
+        display: none;
+      }
+ .whatsapp-fab {
         position: fixed;
         right: clamp(0.9rem, 2.5vw, 1.75rem);
         bottom: clamp(0.9rem, 2.5vw, 1.75rem);
@@ -325,8 +371,48 @@ const schemas = [organizationSchema, websiteSchema, ...pageSchemas];
           padding: 0;
           justify-content: center;
         }
-.whatsapp-fab span {
+.whatsapp-fab {
           display: none;
+        }
+.mobile-action-bar {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 95;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.4rem;
+          padding: 0.55rem var(--gutter, 1rem) calc(0.55rem + env(safe-area-inset-bottom, 0px));
+          background: rgba(255, 253, 249, 0.97);
+          border-top: 1px solid rgba(45, 22, 116, 0.12);
+          box-shadow: 0 -10px 30px -20px rgba(18, 8, 48, 0.7);
+          backdrop-filter: blur(8px);
+        }
+.mobile-action-bar a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.2rem;
+          min-height: 48px;
+          border-radius: 12px;
+          background: var(--pink-soft, #f7dfe7);
+          color: var(--purple, #2d1674);
+          font-size: 0.66rem;
+          font-weight: 700;
+          text-decoration: none;
+        }
+.mobile-action-bar a:nth-child(2) {
+          background: #256d4d;
+          color: #fffdf9;
+        }
+.mobile-action-bar a:nth-child(3) {
+          background: var(--blue, #2d1674);
+          color: #fffdf9;
+        }
+body {
+          padding-bottom: 72px;
         }
       }
 

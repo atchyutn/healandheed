@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArtPanel from '../../components/ArtPanel.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import { blogPosts } from '../../data/blog';
+import { breadcrumbSchema, webPageSchema } from '../../lib/schema';
+
+const description =
+  'Practical parent guides from Heal & Heed in L.B. Nagar, Hyderabad — written for families and reviewed by our clinical team.';
+
+const schemas = [
+  webPageSchema({
+    name: 'Parent guides and articles',
+    description,
+    path: '/blog/',
+    type: 'CollectionPage',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Parent guides', path: '/blog/' },
+  ]),
+];
+---
+
+<BaseLayout title="Parent Guides & Articles" description={description} jsonLd={schemas}>
+  <PageHero
+    eyebrow="Parent guides"
+    title="Clear answers for"
+    accent="curious parents."
+    lead="Short, practical articles about child development and therapy — written for families, reviewed by our clinical team, and free from jargon and promises."
+    badge="Clinician-reviewed · Written for parents"
+    breadcrumb="Parent guides"
+    imageTone="periwinkle"
+    compact
+  >
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="periwinkle"
+      centerIcon="book"
+      items={[{ icon: 'chat' }, { icon: 'hands' }, { icon: 'brain' }, { icon: 'sprout' }]}
+      eyebrow="Learn with us"
+      title="Understanding comes first."
+    />
+  </PageHero>
+
+  <section class="section section--white blog-index">
+    <div class="container">
+      <div class="blog-index__grid">
+        {blogPosts.map((post, index) => (
+          <article class="blog-card reveal" style={`--reveal-delay:${index * 70}ms`}>
+            <a class="blog-card__link" href={`/blog/${post.slug}/`} aria-label={`Read: ${post.title}`}>
+              <div class:list={['blog-card__visual', `blog-card__visual--${post.tone}`]}>
+                <Icon name={post.icon} size={40} strokeWidth={1.3} />
+                <span class="blog-card__category">{post.category}</span>
+              </div>
+              <div class="blog-card__body">
+                <p class="blog-card__meta">{post.readMinutes} min read · Updated {new Date(post.dateModified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                <h2>{post.title}</h2>
+                <p class="blog-card__excerpt">{post.excerpt}</p>
+                <span class="text-link">
+                  Read the article
+                  <Icon name="arrow" size={14} />
+                </span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="blog-index__note">
+        These articles are general information. They are not a diagnosis, and they
+        do not promise a particular outcome. Only a qualified professional can
+        assess your child.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Questions after reading?"
+    title="Let’s talk about"
+    accent="your child."
+    text="Every child is different. Tell us what you have noticed and we will explain the options in plain language."
+    primaryLabel="Talk to our team"
+    primaryHref="/contact/"
+    secondaryLabel="Call our team"
+    secondaryHref="/contact/"
+  />
+</BaseLayout>
+
+<style>
+  .blog-index__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.1rem, 2.5vw, 2rem);
+  }
+  .blog-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg, 24px);
+    background: var(--white);
+    overflow: hidden;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .blog-card__link { display: block; text-decoration: none; }
+  .blog-card__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 180px;
+    color: var(--pink-deep);
+  }
+  .blog-card__visual--gold { background: var(--gold-soft); color: #7f5a1f; }
+  .blog-card__visual--pink { background: var(--pink-soft); }
+  .blog-card__visual--sage { background: var(--sage); color: var(--sage-ink); }
+  .blog-card__visual--plum { background: var(--lavender); color: var(--purple); }
+  .blog-card__category {
+    position: absolute; left: 1rem; bottom: 1rem;
+    padding: 0.4rem 0.75rem; border-radius: 999px;
+    background: rgba(255, 253, 249, 0.86);
+    color: var(--purple); font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .blog-card__body { display: grid; justify-items: start; gap: 0.75rem; padding: clamp(1.3rem, 2.5vw, 1.9rem); }
+  .blog-card__meta { color: var(--muted); font-size: 0.68rem; letter-spacing: 0.03em; }
+  .blog-card__body h2 { color: var(--purple); font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; }
+  .blog-card__excerpt { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.65; }
+  .blog-index__note {
+    max-width: 70ch; margin: clamp(2rem, 4vw, 3rem) auto 0;
+    color: var(--muted); font-size: 0.8rem; line-height: 1.6; text-align: center;
+  }
+  @media (max-width: 760px) { .blog-index__grid { grid-template-columns: 1fr; } }
+</style>

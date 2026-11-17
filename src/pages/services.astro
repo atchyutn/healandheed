@@ -26,7 +26,7 @@ const serviceListSchema = {
       '@type': 'Service',
       name: service.title,
       description: service.summary,
-      url: new URL(`/services/#${service.slug}`, site.url).href,
+      url: new URL(`/${service.slug}/`, site.url).href,
       provider: { '@id': `${site.url}/#organization` },
       areaServed: { '@type': 'City', name: 'Hyderabad' },
     },
@@ -102,7 +102,7 @@ const schemas = [
 
         <nav class="service-jump reveal" aria-label="Our services" style="--reveal-delay:100ms">
           {services.map((service) => (
-            <a href={`#${service.slug}`}>
+            <a href={`/${service.slug}/`}>
               <span class:list={['service-jump__icon', `service-jump__icon--${service.accent}`]}>
                 <Icon name={service.icon} size={18} />
               </span>
@@ -152,9 +152,13 @@ const schemas = [
               ))}
             </ul>
             <div class="service-row__actions">
-              <a class="btn" href="/online-sessions/">
+              <a class="btn" href="/online-sessions/" data-track="booking">
                 Ask about {service.title.toLowerCase()}
                 <Icon name="arrow" size={15} />
+              </a>
+              <a class="text-link" href={`/${service.slug}/`}>
+                Learn more
+                <Icon name="arrow" size={14} />
               </a>
               <span class="service-row__format">
                 <Icon name="pin" size={14} />
@@ -166,6 +170,44 @@ const schemas = [
       </section>
     ))
   }
+
+  <!-- Condition and support guides -->
+  <section class="section section--lilac service-guides">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Parent guides"
+        title="Trying to understand"
+        accent="what you are seeing?"
+        lead="Plain-language guides to common questions families ask. Written for parents and reviewed by our clinical team."
+      />
+      <div class="service-guides__grid">
+        <a class="service-guides__card" href="/autism-support/">
+          <span><Icon name="heart" size={20} /></span>
+          <strong>Autism support</strong>
+          <small>How we support communication, daily living and learning.</small>
+          <Icon name="arrow" size={15} />
+        </a>
+        <a class="service-guides__card" href="/adhd-support/">
+          <span><Icon name="sparkle" size={20} /></span>
+          <strong>ADHD support</strong>
+          <small>Practical strategies for attention, routines and learning.</small>
+          <Icon name="arrow" size={15} />
+        </a>
+        <a class="service-guides__card" href="/speech-delay/">
+          <span><Icon name="chat" size={20} /></span>
+          <strong>Speech delay</strong>
+          <small>When to seek an assessment and what happens first.</small>
+          <Icon name="arrow" size={15} />
+        </a>
+        <a class="service-guides__card" href="/our-team/">
+          <span><Icon name="users" size={20} /></span>
+          <strong>Our team</strong>
+          <small>The disciplines working together for your child.</small>
+          <Icon name="arrow" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Care formats -->
   <section class="section section--periwinkle formats">
@@ -767,6 +809,36 @@ const schemas = [
     margin-inline: 0;
   }
 
+  .service-guides__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: clamp(1.8rem, 3vw, 2.6rem);
+  }
+  .service-guides__card {
+    display: grid;
+    grid-template-columns: 40px 1fr 18px;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm, 16px);
+    background: var(--white);
+    text-decoration: none;
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .service-guides__card:hover { transform: translateX(4px); box-shadow: var(--shadow-sm, var(--shadow)); }
+  .service-guides__card > span {
+    display: grid; place-items: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--pink-soft); color: var(--pink-deep);
+  }
+  .service-guides__card strong { color: var(--purple); font-size: 0.85rem; font-weight: 600; }
+  .service-guides__card small {
+    grid-column: 2; color: var(--muted); font-size: 0.72rem; line-height: 1.5;
+  }
+  .service-guides__card > :global(svg:last-child) { grid-column: 3; grid-row: 1 / span 2; color: var(--pink-deep); }
+
   @media (max-width: 1024px) {
 .formats-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -793,7 +865,7 @@ const schemas = [
   }
 
   @media (max-width: 640px) {
-.formats-grid {
+.formats-grid, .service-guides__grid {
       grid-template-columns: 1fr;
     }
 .service-row__actions {

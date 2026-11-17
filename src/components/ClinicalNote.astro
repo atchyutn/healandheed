@@ -1,0 +1,64 @@
+---
+interface Props {
+  label?: string;
+  text?: string;
+  class?: string;
+}
+
+const {
+  label = 'Clinician-reviewed content',
+  text = 'This guide is written for parents and reviewed by our clinical team. It is general information, not a diagnosis or a promise of a particular outcome. Only a qualified professional can assess your child. Ask us if you have any questions.',
+  class: className = '',
+} = Astro.props;
+---
+
+<aside class:list={['clinical-note', className]} role="note" aria-label={label}>
+  <span class="clinical-note__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z" />
+      <path d="m9 11.5 2 2 4-4" />
+    </svg>
+  </span>
+  <div>
+    <strong>{label}</strong>
+    <p>{text}</p>
+  </div>
+</aside>
+
+<style>
+  .clinical-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    max-width: 860px;
+    margin-inline: auto;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(45, 22, 116, 0.12);
+    border-radius: var(--radius-sm, 16px);
+    background: rgba(255, 253, 249, 0.7);
+  }
+  .clinical-note__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+  }
+  .clinical-note strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--purple);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .clinical-note p {
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+</style>
