@@ -1,0 +1,583 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtPanel from '../components/ArtPanel.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { services } from '../data/services';
+import { site } from '../data/site';
+import { breadcrumbSchema, faqSchema, webPageSchema } from '../lib/schema';
+
+const pagePath = '/therapy-centre-lb-nagar/';
+const description =
+  'Child therapy centre in L.B. Nagar, Hyderabad. Occupational, speech and behaviour therapy plus special education at Heal & Heed. Call +91 74168 48323.';
+
+const localHighlights = [
+  'Four core therapies under one roof',
+  'In-person sessions at our L.B. Nagar centre',
+  'Online and at-home options where suitable',
+  'Parents included in every plan and review',
+];
+
+const whoWeHelp = [
+  'Children who are late to talk or are hard to understand',
+  'Children who find daily routines, sensory input or motor tasks difficult',
+  'Children who need support with big feelings, transitions or social skills',
+  'Children who learn at a different pace or need a tailored learning plan',
+];
+
+const conditionLinks = [
+  {
+    title: 'Autism support',
+    href: '/autism-support/',
+    text: 'How communication, daily living, behaviour and learning support can help.',
+  },
+  {
+    title: 'ADHD-related support',
+    href: '/adhd-support/',
+    text: 'Practical strategies for attention, activity and emotional regulation.',
+  },
+  {
+    title: 'Speech delay guide',
+    href: '/speech-delay/',
+    text: 'When to seek an assessment and what a first appointment looks like.',
+  },
+];
+
+const localFaqs = [
+  {
+    q: 'Where is your therapy centre in L.B. Nagar?',
+    a: 'Heal & Heed is at H.No. 8, 15-106/1, Lane, beside Vijaya Lakshmi Theatre, Sriram Nagar, Raghavendra Nagar Colony, L.B. Nagar, Hyderabad 500074. Some families write the locality as Elp Nagar or Elbinagar — it is the same L.B. Nagar area. Use the directions link on this page to open the location in Google Maps, or call us and we will guide you.',
+  },
+  {
+    q: 'What therapies are available at your L.B. Nagar centre?',
+    a: 'Our centre offers occupational therapy, speech therapy, behaviour therapy and special education. Most families begin with a conversation and an assessment so we can recommend the right support rather than guessing.',
+  },
+  {
+    q: 'Do you provide autism support in L.B. Nagar?',
+    a: 'Yes. We offer autism-related support across communication, daily living, behaviour and learning. We do not diagnose autism through this website; a qualified professional should assess your child. You can read our autism support guide or call us to talk through the options.',
+  },
+  {
+    q: 'How do I choose the best therapy centre in L.B. Nagar for my child?',
+    a: 'We would not ask you to take our word for it. Look for qualified therapists, an assessment before any plan is recommended, goals written in plain language, regular reviews and a team that involves you as a parent. Ask about experience with your child’s needs, visit the centre if you can, and notice how the team listens. We are happy to answer those questions.',
+  },
+  {
+    q: 'How do I book an appointment?',
+    a: 'Call or WhatsApp us on +91 74168 48323, or use our contact page. We will ask a little about your child, explain what happens next and find a time that works. There is no need to have a diagnosis or a decision before you get in touch.',
+  },
+  {
+    q: 'Do you offer online or at-home sessions?',
+    a: 'Online behaviour therapy is available, and at-home sessions may be possible depending on your child’s needs and goals. Ask us what is available and we will recommend the format most likely to help.',
+  },
+  {
+    q: 'How do I get to the centre, and is parking available?',
+    a: 'We are beside Vijaya Lakshmi Theatre in Sriram Nagar. Call us before your first visit and we will share practical directions, the nearest landmark and parking guidance. If you are coming by metro, bus or auto, we can help you plan the last part of the journey.',
+  },
+];
+
+const schemas = [
+  webPageSchema({
+    name: 'Therapy centre in L.B. Nagar',
+    description,
+    path: pagePath,
+  }),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Child development and rehabilitation therapy in L.B. Nagar',
+    description,
+    url: new URL(pagePath, site.url).href,
+    serviceType: [
+      'Occupational therapy',
+      'Speech therapy',
+      'Behaviour therapy',
+      'Special education',
+    ],
+    provider: { '@id': `${site.url}/#organization` },
+    areaServed: [
+      {
+        '@type': 'Place',
+        name: 'L.B. Nagar',
+        alternateName: ['Elp Nagar', 'Elbinagar'],
+      },
+      { '@type': 'Place', name: 'Sriram Nagar' },
+      { '@type': 'Place', name: 'Raghavendra Nagar Colony' },
+    ],
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: new URL('/contact/', site.url).href,
+      servicePhone: { '@type': 'ContactPoint', telephone: site.phone },
+    },
+  },
+  faqSchema(localFaqs),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Therapy centre in L.B. Nagar', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Therapy Centre in L.B. Nagar, Hyderabad"
+  description={description}
+  jsonLd={schemas}
+>
+  <PageHero
+    eyebrow="Local therapy centre · L.B. Nagar"
+    breadcrumb="L.B. Nagar"
+    title="Child therapy centre in"
+    accent="L.B. Nagar."
+    lead="Occupational, speech and behaviour therapy, and special education for children — at our centre beside Vijaya Lakshmi Theatre in L.B. Nagar, Hyderabad."
+    badge="Mon – Sat · 9:00 AM – 6:00 PM"
+    imageTone="pink"
+    compact
+  >
+    <div class="button-row local-hero__actions">
+      <a class="btn" href="/online-sessions/" data-track="booking">
+        Book an appointment
+        <Icon name="arrow" size={15} />
+      </a>
+      <a class="btn btn--secondary" href={site.phoneHref} data-track="call">
+        <Icon name="phone" size={15} />
+        Call our team
+      </a>
+    </div>
+    <ArtPanel
+      slot="visual"
+      layout="orbit"
+      tone="pink"
+      centerIcon="pin"
+      items={[
+        { icon: 'hands' },
+        { icon: 'chat' },
+        { icon: 'brain' },
+        { icon: 'book' },
+      ]}
+      eyebrow="In your neighbourhood"
+      title="Care close to home."
+    />
+  </PageHero>
+
+  <!-- Local intro -->
+  <section class="section section--white local-intro">
+    <div class="container local-intro__grid">
+      <div class="local-intro__copy reveal">
+        <span class="eyebrow">Why families come here</span>
+        <h2>Therapy that fits <em>your everyday.</em></h2>
+        <p class="lead">
+          L.B. Nagar is home to our centre — and to the families we work with.
+          Being local means fewer long trips, easier routines and a team you can
+          get to know in person.
+        </p>
+        <p>
+          We are beside Vijaya Lakshmi Theatre in Sriram Nagar, within reach of
+          Raghavendra Nagar Colony and the wider L.B. Nagar area. Whether you are
+          coming by auto, bus, metro or car, call us before your first visit and we
+          will share clear directions and help you plan the trip.
+        </p>
+        <ul class="check-list local-intro__list">
+          {localHighlights.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <aside class="local-card reveal" style="--reveal-delay:120ms">
+        <span class="local-card__icon"><Icon name="home" size={24} /></span>
+        <p class="local-card__kicker">Visit the centre</p>
+        <h3>Heal &amp; Heed, L.B. Nagar</h3>
+        <address>
+          {site.address.line1},<br />
+          {site.address.line2},<br />
+          {site.address.line3},<br />
+          {site.address.line4}, {site.address.line5}
+        </address>
+        <p class="local-card__hours">
+          <Icon name="clock" size={15} />
+          {site.hours}
+        </p>
+        <div class="local-card__actions">
+          <a class="text-link" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+            Get directions
+            <Icon name="arrow" size={14} />
+          </a>
+          <a class="text-link" href={site.phoneHref}>
+            <Icon name="phone" size={14} />
+            {site.phone}
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--blush local-services" id="services">
+    <div class="container">
+      <SectionHeading
+        eyebrow="At this centre"
+        title="Four therapies,"
+        accent="one local team."
+        lead="Your child may need one kind of support or a combination. We start by listening, then explain what we recommend and why."
+      />
+
+      <div class="local-services__grid">
+        {services.map((service, index) => (
+          <a
+            class="local-service reveal"
+            href={`/${service.slug}/`}
+            style={`--reveal-delay:${index * 55}ms`}
+          >
+            <span class:list={['local-service__icon', `local-service__icon--${service.accent}`]}>
+              <Icon name={service.icon} size={20} />
+            </span>
+            <h3>{service.title}</h3>
+            <p>{service.short}</p>
+            <span class="local-service__link">
+              Learn more
+              <Icon name="arrow" size={14} />
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="local-services__guides reveal">
+        <p>Looking for condition-specific guidance?</p>
+        <ul>
+          {conditionLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.title}</a>
+              <span>{link.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we help -->
+  <section class="section section--white local-help">
+    <div class="container local-help__grid">
+      <div class="local-help__visual reveal">
+        <ArtPanel
+          layout="grid"
+          tone="periwinkle"
+          items={[
+            { icon: 'heart' },
+            { icon: 'users' },
+            { icon: 'sprout' },
+            { icon: 'sparkle' },
+          ]}
+        />
+      </div>
+      <div class="local-help__copy reveal" style="--reveal-delay:120ms">
+        <span class="eyebrow">Who we support</span>
+        <h2>Support for the <em>whole child.</em></h2>
+        <p class="lead">
+          Parents often notice something first and are not sure whether it is worth
+          asking about. You do not need a diagnosis or a clear question to start a
+          conversation with us.
+        </p>
+        <ul class="check-list check-list--sage">
+          {whoWeHelp.map((item) => <li>{item}</li>)}
+        </ul>
+        <a class="btn" href="/contact/" data-track="booking">
+          Talk to our team
+          <Icon name="arrow" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section class="section section--periwinkle local-visit" id="visit">
+    <div class="container local-visit__grid">
+      <div class="local-visit__copy reveal">
+        <span class="eyebrow">Find us</span>
+        <h2>Easy to reach in <em>L.B. Nagar.</em></h2>
+        <p class="lead">
+          Our centre is in Sriram Nagar, beside Vijaya Lakshmi Theatre. The
+          entrance is easy to miss on a first visit, so call us and we will guide
+          you in.
+        </p>
+        <address>
+          {site.address.line1},<br />
+          {site.address.line2},<br />
+          {site.address.line3},<br />
+          {site.address.line4}, {site.address.line5}
+        </address>
+        <p class="local-visit__nearby">
+          Easy to reach from across L.B. Nagar and nearby localities such as
+          Kothapet, Dilsukhnagar, Nagole, Hayathnagar and Vanasthalipuram. If you
+          are coming by metro, bus or auto, we can help you plan the last part of
+          the journey.
+        </p>
+        <div class="button-row">
+          <a
+            class="btn btn--secondary"
+            href={site.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="pin" size={15} />
+            Get directions
+          </a>
+          <a class="btn btn--secondary" href={site.phoneHref} data-track="call">
+            <Icon name="phone" size={15} />
+            Call before you come
+          </a>
+        </div>
+      </div>
+
+      <a
+        class="local-visit__map reveal"
+        href={site.mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Heal and Heed location in Google Maps"
+        style="--reveal-delay:120ms"
+      >
+        <svg viewBox="0 0 560 380" aria-hidden="true" focusable="false">
+          <rect width="560" height="380" rx="28" fill="#f5ead9" />
+          <path d="M-20 280 128 190l110 45 102-70 240 86" fill="none" stroke="#e4d4be" stroke-width="34" />
+          <path d="M64-20 146 112l-32 88 54 154" fill="none" stroke="#e4d4be" stroke-width="20" />
+          <path d="M370-20 344 96l91 60-21 188" fill="none" stroke="#e4d4be" stroke-width="24" />
+          <path d="M-20 105 120 82l84 46 130-28 246 44" fill="none" stroke="#d8e6cc" stroke-width="14" />
+          <path d="M-20 330 150 302l130 26 280-42" fill="none" stroke="#e4d4be" stroke-width="12" />
+          <rect x="186" y="160" width="94" height="72" rx="8" fill="#efe0cb" />
+          <rect x="420" y="246" width="88" height="68" rx="8" fill="#efe0cb" />
+          <rect x="282" y="62" width="48" height="42" rx="6" fill="#efe0cb" />
+          <circle cx="282" cy="188" r="58" fill="#e36c8a" opacity=".12" />
+          <circle cx="282" cy="188" r="38" fill="#e36c8a" opacity=".2" />
+          <path
+            d="M282 148c-14 0-25 11-25 25 0 19 25 45 25 45s25-26 25-45c0-14-11-25-25-25Z"
+            fill="#2d1674"
+          />
+          <circle cx="282" cy="174" r="8" fill="#faf4e9" />
+          <text x="318" y="190" fill="#2d1674" font-family="Georgia, serif" font-size="19" font-style="italic">Heal &amp; Heed</text>
+          <text x="318" y="211" fill="#72667a" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="1">L.B. NAGAR</text>
+        </svg>
+        <span class="local-visit__map-label">
+          <span>Open in Google Maps</span>
+          <Icon name="arrow" size={14} />
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white faq-section">
+    <div class="container faq-section__inner">
+      <div class="faq-section__intro reveal">
+        <span class="eyebrow">Local questions</span>
+        <h2>Before you <em>visit.</em></h2>
+        <p class="lead">
+          Practical answers for families searching for a therapy centre in L.B.
+          Nagar. If your question is not here, call or WhatsApp us.
+        </p>
+        <a class="text-link" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+          Ask us on WhatsApp
+          <Icon name="arrow" size={14} />
+        </a>
+      </div>
+      <div class="faq-section__list reveal" style="--reveal-delay:120ms">
+        <FaqList items={localFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Close to home"
+    title="Let’s start with"
+    accent="a conversation."
+    text="Tell us what you have noticed and what you are hoping for. We will listen, explain the options and help you find the right next step at our L.B. Nagar centre."
+    primaryLabel="Book an appointment"
+    primaryHref="/contact/"
+    secondaryLabel="Call our team"
+    secondaryHref={site.phoneHref}
+  />
+</BaseLayout>
+
+<style>
+  .local-hero__actions { margin-top: 0.4rem; }
+
+  .local-intro__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .local-intro__copy { display: grid; justify-items: start; gap: 1.1rem; }
+  .local-intro__copy h2 em { color: var(--pink-deep); font-style: italic; }
+  .local-intro__copy p:not(.lead) { color: var(--muted); font-size: 0.94rem; }
+  .local-intro__list { margin-block: 0.3rem; }
+
+  .local-card {
+    display: grid;
+    justify-items: start;
+    gap: 0.55rem;
+    padding: clamp(1.4rem, 2.8vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--cream-light);
+    box-shadow: var(--shadow-sm);
+  }
+  .local-card__icon {
+    display: grid; place-items: center;
+    width: 52px; height: 52px; margin-bottom: 0.3rem;
+    border-radius: 50%;
+    background: var(--pink-soft); color: var(--pink-deep);
+  }
+  .local-card__kicker {
+    color: var(--pink-deep); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .local-card h3 {
+    color: var(--purple); font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2;
+  }
+  .local-card address {
+    color: var(--ink-soft); font-size: 0.84rem; line-height: 1.75;
+  }
+  .local-card__hours {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    color: var(--muted); font-size: 0.76rem;
+  }
+  .local-card__hours :global(svg) { color: var(--pink-deep); }
+  .local-card__actions {
+    display: grid; gap: 0.45rem; margin-top: 0.5rem;
+    padding-top: 0.8rem; border-top: 1px solid var(--line); width: 100%;
+  }
+  .local-card__actions .text-link { font-size: 0.76rem; }
+
+  .local-services__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+  .local-service {
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding: clamp(1.2rem, 2.2vw, 1.6rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    text-decoration: none;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+  .local-service:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .local-service__icon {
+    display: grid; place-items: center;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--pink-soft); color: var(--pink-deep);
+  }
+  .local-service__icon--sage { background: var(--sage-2, #b7cfa6); color: var(--sage-ink); }
+  .local-service__icon--gold { background: var(--gold-soft); color: #7f5a1f; }
+  .local-service__icon--plum { background: rgba(45, 22, 116, 0.1); color: var(--purple); }
+  .local-service h3 {
+    color: var(--purple); font-family: var(--font-sans);
+    font-size: 0.85rem; font-weight: 600; line-height: 1.35;
+  }
+  .local-service p { color: var(--muted); font-size: 0.76rem; line-height: 1.6; }
+  .local-service__link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.2rem; color: var(--pink-deep);
+    font-size: 0.7rem; font-weight: 600;
+  }
+
+  .local-services__guides {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+  }
+  .local-services__guides > p {
+    color: var(--ink-soft); font-size: 0.84rem; font-weight: 600;
+  }
+  .local-services__guides ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+  .local-services__guides li {
+    display: grid; gap: 0.2rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 253, 249, 0.7);
+  }
+  .local-services__guides a {
+    color: var(--purple); font-size: 0.8rem; font-weight: 600;
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  .local-services__guides span {
+    color: var(--muted); font-size: 0.7rem; line-height: 1.5;
+  }
+
+  .local-help__grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .local-help__visual { max-width: 380px; margin-inline: auto; width: 100%; }
+  .local-help__copy { display: grid; justify-items: start; gap: 1rem; }
+  .local-help__copy h2 em { color: var(--pink-deep); font-style: italic; }
+  .local-help__copy .check-list { margin-block: 0.3rem; }
+
+  .local-visit__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .local-visit__copy { display: grid; justify-items: start; gap: 1rem; max-width: 540px; }
+  .local-visit__copy h2 em { color: var(--purple); font-style: italic; }
+  .local-visit__copy address {
+    color: var(--ink-soft); font-size: 0.86rem; line-height: 1.8;
+  }
+  .local-visit__nearby {
+    color: var(--ink-soft); font-size: 0.84rem; line-height: 1.7;
+  }
+  .local-visit__map {
+    display: grid; gap: 0.7rem;
+    color: var(--purple); text-decoration: none;
+  }
+  .local-visit__map svg {
+    width: 100%; height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s var(--ease);
+  }
+  .local-visit__map:hover svg { transform: translateY(-3px); }
+  .local-visit__map-label {
+    display: inline-flex; align-items: center; justify-content: flex-end;
+    gap: 0.4rem; color: var(--purple);
+    font-size: 0.7rem; font-weight: 600;
+  }
+
+  .faq-section__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .faq-section__intro { display: grid; justify-items: start; gap: 1rem; align-content: start; }
+  .faq-section__intro h2 em { color: var(--pink-deep); font-style: italic; }
+  .faq-section__list :global(.faq-list) { margin-inline: 0; }
+
+  @media (max-width: 1024px) {
+    .local-services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .local-intro__grid, .local-help__grid, .local-visit__grid,
+    .faq-section__inner { grid-template-columns: 1fr; }
+    .local-help__visual { max-width: 320px; }
+    .local-services__guides ul { grid-template-columns: 1fr; }
+    .local-visit__map { max-width: 600px; margin-inline: auto; width: 100%; }
+  }
+  @media (max-width: 640px) {
+    .local-services__grid { grid-template-columns: 1fr; }
+  }
+</style>

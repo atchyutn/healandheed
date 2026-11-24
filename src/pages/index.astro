@@ -31,9 +31,9 @@ const faqSchema = {
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Child development and therapy centre in L.B. Nagar',
+  name: 'Heal & Heed — Child Development & Rehabilitation Center',
   description:
-    'Occupational, speech and behaviour therapy and special education for children in L.B. Nagar, Hyderabad.',
+    'Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad.',
   url: `${site.url}/`,
   about: { '@id': `${site.url}/#organization` },
   primaryImageOfPage: `${site.url}/og-image.png`,
@@ -42,8 +42,8 @@ const pageSchema = {
 ---
 
 <BaseLayout
-  title="Child Development & Therapies in L.B. Nagar"
-  description="Child development and rehabilitation centre in L.B. Nagar, Hyderabad. Occupational, speech and behaviour therapy, and special education for children. Book an assessment."
+  title="Child Development & Rehabilitation in Hyderabad"
+  description="Compassionate child development and rehabilitation therapy in L.B. Nagar, Hyderabad. Occupational, behaviour, speech therapy and special education."
   jsonLd={[pageSchema, faqSchema]}
 >
   <!-- Hero -->
@@ -61,14 +61,14 @@ const pageSchema = {
       </span>
 
       <h1>
-        Child development therapy<br />
-        <em>in L.B. Nagar.</em>
+        Building brighter futures,<br />
+        <em>one step at a time.</em>
       </h1>
 
       <p class="lead home-hero__lead">
-        Occupational, speech and behaviour therapy, and special education for
-        children in Hyderabad. Compassionate, personalised support that helps your
-        child communicate, learn and thrive — right here in L.B. Nagar.
+        Compassionate, personalised therapy for children and families in Hyderabad.
+        We help little ones grow, communicate and thrive — with care that sees the
+        whole child.
       </p>
 
       <div class="button-row home-hero__actions">
@@ -190,6 +190,10 @@ const pageSchema = {
           At Heal &amp; Heed, we see the whole child — not just the challenge in front
           of us. We work alongside families so progress feels possible at home, at
           school and everywhere in between.
+        </p>
+        <p class="intro__local">
+          Visiting us? Find directions, opening hours and local details on our
+          <a href="/therapy-centre-lb-nagar/">L.B. Nagar therapy centre page</a>.
         </p>
         <a class="btn" href="/about/">
           Get to know us
@@ -1072,6 +1076,18 @@ const pageSchema = {
   }
 .intro__content .btn {
     margin-top: 0.6rem;
+  }
+.intro__local {
+    max-width: 52ch;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+.intro__local a {
+    color: var(--pink-deep);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 .intro__side {
     position: relative;

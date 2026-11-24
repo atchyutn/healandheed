@@ -275,6 +275,10 @@ const contactCards = [
           {site.address.line3},<br />
           {site.address.line4}, {site.address.line5}
         </address>
+        <p class="visit__local-link">
+          Read more about our
+          <a href="/therapy-centre-lb-nagar/">therapy centre in L.B. Nagar</a>.
+        </p>
         <div class="button-row">
           <a
             class="btn btn--secondary"
@@ -712,6 +716,17 @@ const contactCards = [
     color: var(--ink-soft);
     font-size: 0.86rem;
     line-height: 1.8;
+  }
+.visit__local-link {
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    line-height: 1.65;
+  }
+.visit__local-link a {
+    color: var(--purple);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 .visit__map {
     display: grid;
