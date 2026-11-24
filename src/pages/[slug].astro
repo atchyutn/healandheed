@@ -264,6 +264,14 @@ if (page.kind === 'service' && page.serviceName) {
           </span>
           <Icon name="arrow" size={16} />
         </a>
+        <a class="landing-related__card landing-related__card--wide reveal" href="/therapy-centre-lb-nagar/">
+          <span class="landing-related__icon"><Icon name="pin" size={19} /></span>
+          <span class="landing-related__text">
+            <strong>Our L.B. Nagar centre</strong>
+            <small>Directions, opening hours and local information for families.</small>
+          </span>
+          <Icon name="arrow" size={16} />
+        </a>
       </div>
     </div>
   </nav>
@@ -423,6 +431,7 @@ if (page.kind === 'service' && page.serviceName) {
     overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   }
   .landing-related__card > :global(svg:last-child) { color: var(--pink-deep); }
+  .landing-related__card--wide { grid-column: 1 / -1; }
 
   .faq-section__inner {
     display: grid;
